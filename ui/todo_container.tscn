@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn4dpk6jstlbq"]
+
+[ext_resource type="Script" path="res://scripts/TodoItemContainer.cs" id="1_qaa6s"]
+
+[node name="TodoItemContainer" type="VBoxContainer" node_paths=PackedStringArray("todoToggle", "todoTextLabel")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+script = ExtResource("1_qaa6s")
+todoToggle = NodePath("UserTodo")
+todoTextLabel = NodePath("TodoText")
+
+[node name="UserTodo" type="CheckBox" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.0745098, 0, 1)
+text = "User Name"
+text_overrun_behavior = 3
+
+[node name="TodoText" type="Label" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(0, 24.895)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -3
+theme_override_font_sizes/font_size = 13
+text = "Todo Text"
+autowrap_mode = 2
+justification_flags = 75
+max_lines_visible = 2

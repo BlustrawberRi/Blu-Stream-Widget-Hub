@@ -1,0 +1,33 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Stream Todo Widget"
+run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.2", "C#", "Forward Plus")
+boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 0)
+boot_splash/fullsize=false
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/transparent=true
+window/size/extend_to_title=true
+window/subwindows/embed_subwindows=false
+window/per_pixel_transparency/allowed=true
+
+[dotnet]
+
+project/assembly_name="Stream Todo Widget"
+
+[rendering]
+
+viewport/transparent_background=true

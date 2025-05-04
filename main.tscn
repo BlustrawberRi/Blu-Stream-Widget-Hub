@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmrvwqy1pc50k"]
+
+[ext_resource type="Script" path="res://scripts/Main.cs" id="1_86vev"]
+[ext_resource type="Texture2D" uid="uid://b6tm5cuqwjlhh" path="res://img/2024-4 stream productivity mockup  2.png" id="2_cx7jg"]
+[ext_resource type="Script" path="res://scripts/ConnectionButton.cs" id="2_i2btq"]
+[ext_resource type="Script" path="res://scripts/StreamerbotClient.cs" id="2_yulal"]
+[ext_resource type="PackedScene" uid="uid://ccwf651efih01" path="res://ui/chat_todo_window.tscn" id="6_uodij"]
+[ext_resource type="PackedScene" uid="uid://ct3k6bteic4m7" path="res://ui/stats_window.tscn" id="7_bhtsn"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_86vev")
+
+[node name="Streamer Bot Connection" type="Node" parent="."]
+script = ExtResource("2_yulal")
+
+[node name="UI" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_lock_ = true
+
+[node name="Background" type="Sprite2D" parent="UI"]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_cx7jg")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+visible = false
+layout_mode = 0
+offset_right = 187.0
+offset_bottom = 66.0
+
+[node name="RequestBtn" type="Button" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "REQUEST"
+
+[node name="ConnectionBtn" type="Button" parent="UI/VBoxContainer" node_paths=PackedStringArray("StreamerBotConnection")]
+layout_mode = 2
+text = "CONNECT"
+script = ExtResource("2_i2btq")
+StreamerBotConnection = NodePath("../../../Streamer Bot Connection")
+
+[node name="Dragable Window" parent="." instance=ExtResource("7_bhtsn")]
+offset_left = 869.0
+offset_top = 31.0
+offset_right = 1122.0
+offset_bottom = 175.0
+
+[node name="Chat Todo Widget" parent="." node_paths=PackedStringArray("StreamerbotClient") instance=ExtResource("6_uodij")]
+offset_left = 869.0
+offset_top = 229.0
+offset_right = 1122.0
+offset_bottom = 672.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+StreamerbotClient = NodePath("../Streamer Bot Connection")
+
+[connection signal="ConnectionClosed" from="Streamer Bot Connection" to="UI/VBoxContainer/ConnectionBtn" method="SetConnectState" binds= [true]]
+[connection signal="ConnectionEstablished" from="Streamer Bot Connection" to="UI/VBoxContainer/ConnectionBtn" method="SetConnectState" binds= [false]]
+[connection signal="ConnectionRequested" from="Streamer Bot Connection" to="UI/VBoxContainer/ConnectionBtn" method="Disable"]
+[connection signal="button_up" from="UI/VBoxContainer/RequestBtn" to="Streamer Bot Connection" method="SendRequest"]

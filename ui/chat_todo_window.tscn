@@ -1,0 +1,175 @@
+[gd_scene load_steps=14 format=3 uid="uid://ccwf651efih01"]
+
+[ext_resource type="Script" path="res://scripts/ChatTodoWidget.cs" id="1_1cska"]
+[ext_resource type="Script" path="res://scripts/DragableWindowContainer.cs" id="1_vdu8d"]
+[ext_resource type="Texture2D" uid="uid://47k06k7rt8uv" path="res://img/2025-01 window blätter 1.png" id="2_yxwb5"]
+[ext_resource type="Texture2D" uid="uid://fgdj157ask3r" path="res://img/2025-01 window blätter 2.png" id="3_hena6"]
+[ext_resource type="Texture2D" uid="uid://boro5fhkuv2lg" path="res://img/2025-01 window blätter 3.png" id="4_ciuj5"]
+[ext_resource type="StyleBox" uid="uid://blgcfg3mg4g51" path="res://ui/WindowHeaderStyle.tres" id="5_eot23"]
+[ext_resource type="Texture2D" uid="uid://dbyctbwurbcsh" path="res://img/2025-01 window blätter bg 1.png" id="5_kc125"]
+[ext_resource type="Texture2D" uid="uid://d6jrtett040e" path="res://img/greenl-grid.png" id="6_q2ljj"]
+[ext_resource type="Script" path="res://scripts/TodoDataMapper.cs" id="7_bks1y"]
+[ext_resource type="PackedScene" uid="uid://bn4dpk6jstlbq" path="res://ui/todo_container.tscn" id="8_5x634"]
+
+[sub_resource type="Animation" id="Animation_26b40"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("2025-01WindowBlätter1:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ncje4"]
+resource_name = "leaf_sway"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("2025-01WindowBlätter1:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.9, 5),
+"transitions": PackedFloat32Array(1, -2, 1),
+"update": 0,
+"values": [0.0, 0.0680678, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("2025-01WindowBlätter3:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_th83t"]
+_data = {
+"RESET": SubResource("Animation_26b40"),
+"leaf_sway": SubResource("Animation_ncje4")
+}
+
+[node name="Chat Todo Widget" type="VBoxContainer"]
+offset_right = 253.0
+offset_bottom = 443.0
+theme_override_constants/separation = 0
+script = ExtResource("1_1cska")
+
+[node name="Chat Todo Container" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("1_vdu8d")
+
+[node name="WindowDecoration" type="Control" parent="Chat Todo Container"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="2025-01WindowBlätter1" type="Sprite2D" parent="Chat Todo Container/WindowDecoration"]
+z_index = 10
+position = Vector2(-2.62111, 11.9762)
+scale = Vector2(0.589965, 0.589965)
+texture = ExtResource("2_yxwb5")
+centered = false
+offset = Vector2(-115.095, -28.775)
+
+[node name="2025-01WindowBlätter2" type="Sprite2D" parent="Chat Todo Container/WindowDecoration"]
+z_index = 10
+position = Vector2(-19.3106, 99.2262)
+scale = Vector2(0.605035, 0.612069)
+texture = ExtResource("3_hena6")
+
+[node name="2025-01WindowBlätter3" type="Sprite2D" parent="Chat Todo Container/WindowDecoration"]
+z_index = 10
+position = Vector2(-22.621, 159.976)
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("4_ciuj5")
+
+[node name="2025-01WindowBlätterBg1" type="Sprite2D" parent="Chat Todo Container/WindowDecoration"]
+position = Vector2(-11.2731, 87.7399)
+scale = Vector2(0.66, 0.66)
+texture = ExtResource("5_kc125")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Chat Todo Container/WindowDecoration"]
+libraries = {
+"": SubResource("AnimationLibrary_th83t")
+}
+autoplay = "leaf_sway"
+
+[node name="WindowContent" type="VBoxContainer" parent="Chat Todo Container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Chat Todo Head" type="Button" parent="Chat Todo Container/WindowContent"]
+layout_mode = 2
+mouse_default_cursor_shape = 6
+theme_override_styles/normal = ExtResource("5_eot23")
+action_mode = 0
+text = "Chat Todo's"
+icon_alignment = 2
+
+[node name="Chat Todo UI" type="NinePatchRect" parent="Chat Todo Container/WindowContent"]
+texture_repeat = 2
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("6_q2ljj")
+region_rect = Rect2(1, 1, 2750, 2745)
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="TodoDataMapper" type="Node" parent="Chat Todo Container/WindowContent/Chat Todo UI" node_paths=PackedStringArray("todoListContainer")]
+script = ExtResource("7_bks1y")
+todoItemContainer = ExtResource("8_5x634")
+todoListContainer = NodePath("../MarginContainer/VScrollBar/TodoList")
+
+[node name="MarginContainer" type="MarginContainer" parent="Chat Todo Container/WindowContent/Chat Todo UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VScrollBar" type="ScrollContainer" parent="Chat Todo Container/WindowContent/Chat Todo UI/MarginContainer"]
+layout_mode = 2
+
+[node name="TodoList" type="VBoxContainer" parent="Chat Todo Container/WindowContent/Chat Todo UI/MarginContainer/VScrollBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="Chat Todo Header" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("5_eot23")
+
+[node name="Label" type="Label" parent="Chat Todo Header"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Chat Todo's"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="TodoDone" from="." to="Chat Todo Container/WindowContent/Chat Todo UI/TodoDataMapper" method="ToggleDone"]
+[connection signal="TodoReceived" from="." to="Chat Todo Container/WindowContent/Chat Todo UI/TodoDataMapper" method="GenerateTodoItem"]
+[connection signal="button_up" from="Chat Todo Container/WindowContent/Chat Todo Head" to="Chat Todo Container" method="OnHeaderReleased"]
+[connection signal="pressed" from="Chat Todo Container/WindowContent/Chat Todo Head" to="Chat Todo Container" method="OnHeaderPressed"]
