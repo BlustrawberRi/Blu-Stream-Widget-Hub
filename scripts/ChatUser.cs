@@ -3,9 +3,11 @@ using Godot;
 
 public partial class ChatUser : GodotObject
 {
-    public int id;
-    public string display;
-    public UserType type;
+    public int Id { get; set; }
+    public string Display { get; set; }
+    public UserType Type { get; set; }
+
+    public string Subscribed { get;  set; }
 
     public enum UserType
     {

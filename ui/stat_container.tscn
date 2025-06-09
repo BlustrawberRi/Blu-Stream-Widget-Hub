@@ -1,12 +1,16 @@
-[gd_scene format=3 uid="uid://d0s1khrgscwuu"]
+[gd_scene load_steps=2 format=3 uid="uid://d0s1khrgscwuu"]
+
+[ext_resource type="Script" uid="uid://d14d470nky62s" path="res://ui/StatContainer.cs" id="1_dtqq1"]
 
 [node name="StatContainer" type="HBoxContainer"]
+script = ExtResource("1_dtqq1")
 
-[node name="Label" type="Label" parent="."]
+[node name="StatNameLabel" type="Label" parent="."]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Stat"
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="StatProgressBar" type="ProgressBar" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+allow_greater = true

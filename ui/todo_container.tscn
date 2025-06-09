@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bn4dpk6jstlbq"]
 
-[ext_resource type="Script" path="res://scripts/TodoItemContainer.cs" id="1_qaa6s"]
+[ext_resource type="Script" uid="uid://b5fh33rximmn7" path="res://scripts/ChatTodo/TodoItemContainer.cs" id="1_qaa6s"]
 
 [node name="TodoItemContainer" type="VBoxContainer" node_paths=PackedStringArray("todoToggle", "todoTextLabel")]
 anchors_preset = 15

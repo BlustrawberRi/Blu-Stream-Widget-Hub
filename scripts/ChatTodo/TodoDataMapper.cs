@@ -26,7 +26,7 @@ public partial class TodoDataMapper : Node
 
 		todoItems.Add(instance);
 
-		instance.SetUserName(user.display);
+		instance.SetUserName(user.Display);
 		instance.SetTodo(todoText);
 
 	}
@@ -39,7 +39,7 @@ public partial class TodoDataMapper : Node
 
 	private TodoItemContainer FindOpenTodoItemByUser(ChatUser user)
 	{
-		var existingTodo = todoItems.Find( i => i.userName == user.display && !i.isDone );
+		var existingTodo = todoItems.Find( i => i.userName == user.Display && !i.isDone );
 		return existingTodo;
 	}
 

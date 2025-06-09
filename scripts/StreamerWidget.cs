@@ -2,35 +2,54 @@ using Godot;
 using System;
 using System.Linq;
 using System.Reflection.Metadata;
+using System.Text.RegularExpressions;
 
+/// <summary>
+/// Baseclass for widgets who respond to <see cref="StreamerbotClient"/> event answers.
+/// </summary>
+[GlobalClass] [GodotClassName("StreamerWidget")]  [Icon("res://editor/icons/StreamerWidget.svg")]
 public abstract partial class StreamerWidget : Node
 {
+    /// <summary>
+    /// The client connected to the streamer.bot instance to receive event data from.
+    /// </summary>
     [Export]
     public StreamerbotClient StreamerbotClient;
 
-    public abstract Enum[] StreamerbotEventRequests { get; }
+    /// <summary>
+    /// The streamer.bot events whose data is needed.
+    /// </summary>
+    /// <value>Use the enums in <see cref="StreamerbotEventTypes"/>.</value>
+    public abstract Enum[] StreamerbotEventRequests { get; set; }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
-	{
+    {
         RequestEvents();
     }
 
-    
+
     /// <summary>
-    /// Asks StreamerbotClient for EventTypes to Subscribe to.
+    /// Asks StreamerbotClient for event types to Subscribe to.
     /// </summary>
     protected void RequestEvents()
     {
-		if (StreamerbotClient == null)
+        if (StreamerbotClient == null)
         {
             GD.PushWarning("Widget missing reference to Streamerbot client.");
             return;
-        }    
-        StreamerbotClient.AddEventRequests(StreamerbotEventRequests, this);   
+        }
+        StreamerbotClient.AddEventRequests(StreamerbotEventRequests, this);
     }
 
-    public abstract void OnAnswerReceived(string message);
+    /// <summary>
+    /// Work with event data as it arrives.
+    /// </summary>
+    /// <remarks>
+    /// This method is triggered when <see cref="StreamerbotClient"/> receives the event data requested over <see cref="RequestEvents"/>.
+    /// </remarks>
+    /// <param name="message">A JSON string that has the event data.</param>
+    public abstract void OnEventDataReceived(string answer);
 
 
 }

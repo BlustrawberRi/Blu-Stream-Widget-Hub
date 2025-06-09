@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6tm5cuqwjlhh"
-path="res://.godot/imported/2024-4 stream productivity mockup  2.png-57c4dc590de146ae009dd0f6c722ae7b.ctex"
+uid="uid://bgfdwfo5wdwjx"
+path="res://.godot/imported/StreamerWidget.svg-2d459c97be9c46f4aa4129f5233854a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://img/2024-4 stream productivity mockup  2.png"
-dest_files=["res://.godot/imported/2024-4 stream productivity mockup  2.png-57c4dc590de146ae009dd0f6c722ae7b.ctex"]
+source_file="res://editor/icons/StreamerWidget.svg"
+dest_files=["res://.godot/imported/StreamerWidget.svg-2d459c97be9c46f4aa4129f5233854a2.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
