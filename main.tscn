@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://bmrvwqy1pc50k"]
+[gd_scene load_steps=10 format=3 uid="uid://bmrvwqy1pc50k"]
 
 [ext_resource type="Script" uid="uid://c5scwyhflblo6" path="res://scripts/Main.cs" id="1_86vev"]
 [ext_resource type="Script" uid="uid://62smx8eui7eu" path="res://scripts/ConnectionButton.cs" id="2_i2btq"]
 [ext_resource type="Script" uid="uid://d0aju1fflv1e" path="res://scripts/StreamerbotClient.cs" id="2_yulal"]
+[ext_resource type="Script" uid="uid://kxcpvedqwfr4" path="res://ProductivityStatUpdaterWidget.cs" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://ccwf651efih01" path="res://ui/chat_todo_window.tscn" id="6_uodij"]
+[ext_resource type="Resource" path="res://stats/Energy Stat.tres" id="7_5vw27"]
+[ext_resource type="Resource" uid="uid://f6mkmnie4bjf" path="res://stats/Productivity_Stat.tres" id="7_272bh"]
 [ext_resource type="PackedScene" uid="uid://ct3k6bteic4m7" path="res://ui/stats_window.tscn" id="7_bhtsn"]
+[ext_resource type="Script" uid="uid://fmcqa4gde4wu" path="res://EnergyStatUpdaterWidget.cs" id="9_kek77"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_86vev")
@@ -24,7 +28,6 @@ size_flags_vertical = 3
 metadata/_edit_lock_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI"]
-visible = false
 layout_mode = 0
 offset_right = 187.0
 offset_bottom = 66.0
@@ -48,13 +51,23 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 StreamerbotClient = NodePath("../Streamer Bot Connection")
 
-[node name="Stats Window" parent="." node_paths=PackedStringArray("StreamerbotClient") instance=ExtResource("7_bhtsn")]
+[node name="Stats Window" parent="." instance=ExtResource("7_bhtsn")]
 offset_left = 869.0
 offset_top = 31.0
 offset_right = 1122.0
-offset_bottom = 175.0
-StreamerbotClient = NodePath("../Streamer Bot Connection")
+offset_bottom = 74.0
+size_flags_vertical = 2
+stats = Array[Resource]([ExtResource("7_272bh"), ExtResource("7_5vw27")])
 
-[node name="Stats" type="Node" parent="."]
+[node name="ProductivityStatUpdater" type="Node" parent="." node_paths=PackedStringArray("StreamerbotClient")]
+script = ExtResource("6_7mycd")
+productivityStat = ExtResource("7_272bh")
+StreamerbotClient = NodePath("../Streamer Bot Connection")
+metadata/_custom_type_script = "uid://d34pmiql6abn3"
+
+[node name="EnergyStatUpdater" type="Node" parent="."]
+script = ExtResource("9_kek77")
+EnergyStat = ExtResource("7_5vw27")
+metadata/_custom_type_script = "uid://d34pmiql6abn3"
 
 [connection signal="button_up" from="UI/VBoxContainer/RequestBtn" to="Streamer Bot Connection" method="SendRequest"]

@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="StreamStat" load_steps=2 format=3 uid="uid://cjmu25ab8n30p"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cjcrwass4lak6"]
 
 [ext_resource type="Script" uid="uid://b7k2brp34c2st" path="res://scripts/Stats/StreamStat.cs" id="1_1msgp"]
 
 [resource]
 script = ExtResource("1_1msgp")
 StatName = "Energy"
-Value = 0
-MaxValue = 5
+Value = 99
+MaxValue = 100
 metadata/_custom_type_script = "uid://b7k2brp34c2st"

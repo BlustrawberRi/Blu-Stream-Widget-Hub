@@ -1,14 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://ct3k6bteic4m7"]
+[gd_scene load_steps=4 format=3 uid="uid://ct3k6bteic4m7"]
 
 [ext_resource type="PackedScene" uid="uid://bfhuhyljeey84" path="res://ui/dragable_window.tscn" id="1_6rser"]
-[ext_resource type="Script" uid="uid://cd7y4xufsfsqq" path="res://scripts/Stats/StatsWidget.cs" id="2_3hci8"]
+[ext_resource type="Script" uid="uid://cd7y4xufsfsqq" path="res://scripts/Stats/StatsWindow.cs" id="2_3hci8"]
 [ext_resource type="PackedScene" uid="uid://d0s1khrgscwuu" path="res://ui/stat_container.tscn" id="2_wrk1y"]
-[ext_resource type="Resource" uid="uid://chruxcihnhf4r" path="res://stats/Productivity_Stat.tres" id="3_2xbg7"]
 
 [node name="Stats Window" instance=ExtResource("1_6rser")]
 size_flags_vertical = 0
 script = ExtResource("2_3hci8")
-productivityStat = ExtResource("3_2xbg7")
 statContainer = ExtResource("2_wrk1y")
 
 [node name="StatsListContainer" type="VBoxContainer" parent="Dragable Window Container/WindowContent/Content/MarginContainer" index="0"]
