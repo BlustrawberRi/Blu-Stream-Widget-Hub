@@ -5,9 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://d0s1khrgscwuu" path="res://ui/stat_container.tscn" id="2_wrk1y"]
 
 [node name="Stats Window" instance=ExtResource("1_6rser")]
+offset_bottom = 220.0
 size_flags_vertical = 0
 script = ExtResource("2_3hci8")
 statContainer = ExtResource("2_wrk1y")
+
+[node name="Dragable Window Container" parent="." index="0"]
+size_flags_vertical = 0
 
 [node name="StatsListContainer" type="VBoxContainer" parent="Dragable Window Container/WindowContent/Content/MarginContainer" index="0"]
 unique_name_in_owner = true

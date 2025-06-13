@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://f6mkmnie4bjf"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ciaynrg3h5w47"]
 
 [ext_resource type="Script" uid="uid://b7k2brp34c2st" path="res://scripts/Stats/StreamStat.cs" id="1_8cmjo"]
 
@@ -6,5 +6,5 @@
 resource_name = "Productivity"
 script = ExtResource("1_8cmjo")
 StatName = "Productivity"
-Value = 19
+Value = 20
 MaxValue = 3

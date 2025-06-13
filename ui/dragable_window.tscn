@@ -4,12 +4,16 @@
 [ext_resource type="StyleBox" uid="uid://blgcfg3mg4g51" path="res://ui/WindowHeaderStyle.tres" id="5_o777s"]
 [ext_resource type="StyleBox" uid="uid://cvl06e74ebd01" path="res://ui/WindowBackgroundStyle_Yellow.tres" id="6_5fsay"]
 
-[node name="Dragable Window" type="PanelContainer"]
+[node name="Dragable Window" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 253.0
 offset_bottom = 43.0
 
 [node name="Dragable Window Container" type="VBoxContainer" parent="."]
 layout_mode = 2
+offset_right = 253.0
+offset_bottom = 43.0
 theme_override_constants/separation = 0
 script = ExtResource("1_fv6x5")
 
