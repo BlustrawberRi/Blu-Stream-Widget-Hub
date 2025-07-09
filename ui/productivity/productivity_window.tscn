@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp11s4wtlsdn2"]
+
+[ext_resource type="PackedScene" uid="uid://c2rdpl27dpmdu" path="res://ui/productivity/base_dragable_window.tscn" id="1_pvp71"]
+[ext_resource type="Script" uid="uid://bc2x05ul3jlla" path="res://scripts/ChatTodo/TodoDataMapper.cs" id="2_58dvj"]
+[ext_resource type="Script" uid="uid://chjabn386tk4a" path="res://scripts/ChatTodo/ChatTodoWidget.cs" id="2_otclr"]
+[ext_resource type="PackedScene" uid="uid://bn4dpk6jstlbq" path="res://ui/todo_container.tscn" id="3_otclr"]
+
+[node name="ChatTodoWindow" instance=ExtResource("1_pvp71")]
+script = ExtResource("2_otclr")
+
+[node name="TodoGenerator" type="Node" parent="." index="1"]
+script = ExtResource("2_58dvj")
+todoItemContainer = ExtResource("3_otclr")
+
+[connection signal="TodoDone" from="." to="TodoGenerator" method="ToggleDone"]
+[connection signal="TodoReceived" from="." to="TodoGenerator" method="GenerateTodoItem"]

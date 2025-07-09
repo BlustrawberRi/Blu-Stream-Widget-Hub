@@ -31,7 +31,7 @@ public partial class StatsWindow : Control
             var container = statContainer.Instantiate<StatContainer>();
             statsListContainer.AddChild(container);
             container.Stat = stat;
-            GD.Print(stat);
+            //GD.Print(stat);
         }
     }
 }

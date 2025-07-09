@@ -75,11 +75,19 @@ public partial class StreamerbotClient : WebsocketClient
         _FilterAnswer(answer);
     }
 
+    /// <summary>
+    /// Goes through every Widget that is subscribed and look for a matching StreamerBot event that the answer has. Then calls this widget's ONEventDataReceived. 
+    /// </summary>
+    /// <param name="answer"></param>
     private void _FilterAnswer(string answer)
     {
         var answerDic = Json.ParseString(answer).AsGodotDictionary();
         if (!answerDic.ContainsKey("event")) return;
 
+        string eventSourceStr = (answerDic["event"].AsGodotDictionary())?["source"].AsString();
+        string eventTypeStr = (answerDic["event"].AsGodotDictionary())?["type"].AsString();
+
+        GD.Print("Answer is " + eventSourceStr  + "/" + eventTypeStr);
         foreach (var widget in ConnectedWidgets)
         {
             foreach (var eventType in widget.StreamerbotEventRequests)
@@ -87,7 +95,6 @@ public partial class StreamerbotClient : WebsocketClient
                 if ((answerDic["event"].AsGodotDictionary())?["source"].AsString() != eventType.GetType().Name)
                     continue;
 
-                GD.Print("Answer is " + eventType.GetType().Name + "/" + eventType.ToString());
                 widget.OnEventDataReceived(answer);
                 break;
             }

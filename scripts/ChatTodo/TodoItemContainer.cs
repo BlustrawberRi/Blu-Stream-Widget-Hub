@@ -2,29 +2,26 @@ using Godot;
 using System;
 using System.Globalization;
 
-public partial class TodoItemContainer : VBoxContainer
+public partial class TodoItemContainer : Container
 {
 	[Export] public CheckBox todoToggle;
-	[Export] public Label todoTextLabel;
+	[Export] public RichTextLabel todoTextLabel;
 
 	public string userName;
-	public bool isDone = false;
+    public string todo;
+    public bool isDone = false;
 
-	public void SetUserName(string userDisplayName) 
-	{
-		if (todoToggle == null)
-			return;
+	
 
-		todoToggle.Text = userDisplayName;
-		userName = userDisplayName;
-	}
-
-	public void SetTodo(string todoText) 
+	public void UpdateText(string userDisplayName, string todoText)
 	{
 		if (todoTextLabel == null)
 			return;
-		
-		todoTextLabel.Text = todoText;
+
+		userName = userDisplayName;
+        todo = todoText;
+
+        todoTextLabel.Text = "[b]"+ userName + ":[/b]  " + todoText; 
 	}
 
 	public void SetDone()

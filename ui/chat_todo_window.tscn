@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://47k06k7rt8uv" path="res://img/2025-01 window blätter 1.png" id="2_yxwb5"]
 [ext_resource type="Texture2D" uid="uid://fgdj157ask3r" path="res://img/2025-01 window blätter 2.png" id="3_hena6"]
 [ext_resource type="Texture2D" uid="uid://boro5fhkuv2lg" path="res://img/2025-01 window blätter 3.png" id="4_ciuj5"]
-[ext_resource type="StyleBox" uid="uid://blgcfg3mg4g51" path="res://ui/WindowHeaderStyle.tres" id="5_eot23"]
+[ext_resource type="StyleBox" uid="uid://blgcfg3mg4g51" path="res://ui/productivity/productivity_window_header_style.tres" id="5_eot23"]
 [ext_resource type="Texture2D" uid="uid://dbyctbwurbcsh" path="res://img/2025-01 window blätter bg 1.png" id="5_kc125"]
 [ext_resource type="Texture2D" uid="uid://d6jrtett040e" path="res://img/greenl-grid.png" id="6_q2ljj"]
 [ext_resource type="Script" uid="uid://bc2x05ul3jlla" path="res://scripts/ChatTodo/TodoDataMapper.cs" id="7_bks1y"]
@@ -142,10 +142,9 @@ region_rect = Rect2(1, 1, 2750, 2745)
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
-[node name="TodoDataMapper" type="Node" parent="Dragable Window Container/WindowContent/Chat Todo UI" node_paths=PackedStringArray("todoListContainer")]
+[node name="TodoDataMapper" type="Node" parent="Dragable Window Container/WindowContent/Chat Todo UI"]
 script = ExtResource("7_bks1y")
 todoItemContainer = ExtResource("8_5x634")
-todoListContainer = NodePath("../MarginContainer/VScrollBar/TodoList")
 
 [node name="MarginContainer" type="MarginContainer" parent="Dragable Window Container/WindowContent/Chat Todo UI"]
 layout_mode = 1
@@ -167,5 +166,3 @@ size_flags_vertical = 0
 
 [connection signal="TodoDone" from="." to="Dragable Window Container/WindowContent/Chat Todo UI/TodoDataMapper" method="ToggleDone"]
 [connection signal="TodoReceived" from="." to="Dragable Window Container/WindowContent/Chat Todo UI/TodoDataMapper" method="GenerateTodoItem"]
-[connection signal="button_up" from="Dragable Window Container/WindowContent/Chat Todo Head" to="Dragable Window Container" method="OnHeaderReleased"]
-[connection signal="pressed" from="Dragable Window Container/WindowContent/Chat Todo Head" to="Dragable Window Container" method="OnHeaderPressed"]

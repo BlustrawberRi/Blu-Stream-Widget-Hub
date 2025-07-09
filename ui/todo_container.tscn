@@ -2,31 +2,33 @@
 
 [ext_resource type="Script" uid="uid://b5fh33rximmn7" path="res://scripts/ChatTodo/TodoItemContainer.cs" id="1_qaa6s"]
 
-[node name="TodoItemContainer" type="VBoxContainer" node_paths=PackedStringArray("todoToggle", "todoTextLabel")]
-anchors_preset = 15
+[node name="TodoItemContainer" type="HBoxContainer" node_paths=PackedStringArray("todoToggle", "todoTextLabel")]
+clip_contents = true
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
+offset_bottom = 56.0
 grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 4
+size_flags_horizontal = 3
+size_flags_vertical = 2
 script = ExtResource("1_qaa6s")
 todoToggle = NodePath("UserTodo")
 todoTextLabel = NodePath("TodoText")
 
 [node name="UserTodo" type="CheckBox" parent="."]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.2, 0.0745098, 0, 1)
+size_flags_horizontal = 0
+size_flags_vertical = 0
 text = "User Name"
 text_overrun_behavior = 3
 
-[node name="TodoText" type="Label" parent="."]
-clip_contents = true
+[node name="TodoText" type="RichTextLabel" parent="."]
 custom_minimum_size = Vector2(0, 24.895)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -3
-theme_override_font_sizes/font_size = 13
-text = "Todo Text"
-autowrap_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+bbcode_enabled = true
+text = "[b]user[/b]: This is my task ERGHAREGLJGRELGRliergdli gireoegri "
+scroll_active = false
+context_menu_enabled = true
 justification_flags = 75
-max_lines_visible = 2
+selection_enabled = true

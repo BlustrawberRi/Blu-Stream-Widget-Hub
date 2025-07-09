@@ -59,7 +59,6 @@ public partial class ChatTodoWidget : StreamerWidget
     }
     public void AddNewTodo(String todo, ChatUser user)
     {
-
         GD.PrintRich("[wave]New Todo from [b]"+user.Display+"[/b]: "+todo+"[/wave]");
         EmitSignal(SignalName.TodoReceived, todo, user, Time.GetDatetimeStringFromSystem());
     }

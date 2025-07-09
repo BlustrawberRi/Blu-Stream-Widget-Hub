@@ -1,0 +1,73 @@
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://blwjr54f6akyw"]
+
+[ext_resource type="FontFile" uid="uid://bcxwvxum1m5ov" path="res://ui/MADE Tommy Soft Regular PERSONAL USE.otf" id="1_tei74"]
+[ext_resource type="StyleBox" uid="uid://bpppsws15uphp" path="res://ui/productivity/productivity_window_button_style.tres" id="2_cwubt"]
+[ext_resource type="StyleBox" uid="uid://chqp7qwpqoxpe" path="res://ui/productivity/productivity_window_panel_style.tres" id="3_cwubt"]
+[ext_resource type="FontFile" uid="uid://cd733hmafgxp4" path="res://ui/MADE Tommy Soft Medium PERSONAL USE.otf" id="4_cwubt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwubt"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_cwubt"]
+base_font = ExtResource("4_cwubt")
+spacing_glyph = 2
+
+[sub_resource type="FontVariation" id="FontVariation_3wc2m"]
+base_font = ExtResource("1_tei74")
+spacing_glyph = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3wc2m"]
+bg_color = Color(0.729412, 0.752941, 0.713726, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vlsko"]
+bg_color = Color(1, 0.864594, 0.945895, 1)
+draw_center = false
+border_width_left = 5
+border_width_right = 5
+border_color = Color(0.992157, 0.941176, 0.901961, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[resource]
+Button/colors/font_color = Color(0.87451, 0.870588, 0.815686, 1)
+Button/colors/font_disabled_color = Color(0.87451, 0.870588, 0.815686, 0.313726)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/colors/icon_disabled_color = Color(0, 0, 0, 1)
+Button/colors/icon_focus_color = Color(0, 0, 0, 1)
+Button/colors/icon_hover_color = Color(0, 0, 0, 1)
+Button/colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/icon_normal_color = Color(0.564706, 0.603922, 0.592157, 1)
+Button/colors/icon_pressed_color = Color(0, 0, 0, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 0
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_tei74")
+Button/styles/normal = ExtResource("2_cwubt")
+CheckBox/styles/normal = SubResource("StyleBoxFlat_cwubt")
+MarginContainer/constants/margin_bottom = 10
+MarginContainer/constants/margin_left = 20
+MarginContainer/constants/margin_right = 20
+MarginContainer/constants/margin_top = 10
+Panel/styles/panel = ExtResource("3_cwubt")
+PanelContainer/styles/panel = ExtResource("3_cwubt")
+RichTextLabel/colors/default_color = Color(0.305882, 0.337255, 0.329412, 1)
+RichTextLabel/colors/selection_color = Color(0.684488, 0.566388, 0.104951, 0.8)
+RichTextLabel/font_sizes/bold_font_size = 14
+RichTextLabel/font_sizes/normal_font_size = 14
+RichTextLabel/fonts/bold_font = SubResource("FontVariation_cwubt")
+RichTextLabel/fonts/normal_font = SubResource("FontVariation_3wc2m")
+VBoxContainer/constants/separation = 1
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_3wc2m")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_vlsko")

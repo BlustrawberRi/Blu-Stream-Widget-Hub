@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bfhuhyljeey84"]
 
 [ext_resource type="Script" uid="uid://dgy0uwa7yolv5" path="res://scripts/DragableWindowContainer.cs" id="1_fv6x5"]
-[ext_resource type="StyleBox" uid="uid://blgcfg3mg4g51" path="res://ui/WindowHeaderStyle.tres" id="5_o777s"]
+[ext_resource type="StyleBox" uid="uid://blgcfg3mg4g51" path="res://ui/productivity/productivity_window_header_style.tres" id="5_o777s"]
 [ext_resource type="StyleBox" uid="uid://cvl06e74ebd01" path="res://ui/WindowBackgroundStyle_Yellow.tres" id="6_5fsay"]
 
 [node name="Dragable Window" type="Control"]
@@ -10,12 +10,13 @@ anchors_preset = 0
 offset_right = 253.0
 offset_bottom = 43.0
 
-[node name="Dragable Window Container" type="VBoxContainer" parent="."]
+[node name="Dragable Window Container" type="VBoxContainer" parent="." node_paths=PackedStringArray("handle")]
 layout_mode = 2
 offset_right = 253.0
 offset_bottom = 43.0
 theme_override_constants/separation = 0
 script = ExtResource("1_fv6x5")
+handle = NodePath("WindowContent/Header")
 
 [node name="WindowDecoration" type="Control" parent="Dragable Window Container"]
 layout_mode = 2
@@ -44,6 +45,3 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
-
-[connection signal="button_up" from="Dragable Window Container/WindowContent/Header" to="Dragable Window Container" method="OnHeaderReleased"]
-[connection signal="pressed" from="Dragable Window Container/WindowContent/Header" to="Dragable Window Container" method="OnHeaderPressed"]

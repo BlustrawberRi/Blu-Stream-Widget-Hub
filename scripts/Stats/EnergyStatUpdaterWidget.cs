@@ -51,8 +51,6 @@ public partial class EnergyStatUpdaterWidget : StreamerWidget
 
             EnergyStat.Value--;
             ResourceSaver.Save(EnergyStat);
-
-            GD.Print("Timer ran out!");
         }
     }
 }

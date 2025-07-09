@@ -5,7 +5,10 @@ using System.Collections.Generic;
 public partial class TodoDataMapper : Node
 {
 	[Export] public PackedScene todoItemContainer;
-	[Export] public Container todoListContainer;
+    //[Export] public Container todoListContainer;
+
+    [Signal]
+    public delegate void TodoNodeCreatedEventHandler(Node todoNode);
 
 	private List<TodoItemContainer> todoItems = new List<TodoItemContainer>();
 
@@ -16,18 +19,18 @@ public partial class TodoDataMapper : Node
 		var existingTodo = FindOpenTodoItemByUser(user);
 		if (existingTodo != null)
 		{
-			existingTodo.SetTodo(todoText);
+			existingTodo.UpdateText(user.Display, todoText);
 			return;
 		}
 		
 
 		TodoItemContainer instance = todoItemContainer.Instantiate<TodoItemContainer>();
-		todoListContainer.AddChild(instance);
+        //todoListContainer.AddChild(instance);
+        EmitSignal(SignalName.TodoNodeCreated, instance);
 
-		todoItems.Add(instance);
+        todoItems.Add(instance);
 
-		instance.SetUserName(user.Display);
-		instance.SetTodo(todoText);
+		instance.UpdateText(user.Display,todoText);
 
 	}
 

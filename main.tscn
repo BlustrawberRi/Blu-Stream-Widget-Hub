@@ -1,15 +1,20 @@
-[gd_scene load_steps=11 format=3 uid="uid://bmrvwqy1pc50k"]
+[gd_scene load_steps=16 format=3 uid="uid://bmrvwqy1pc50k"]
 
 [ext_resource type="Script" uid="uid://c5scwyhflblo6" path="res://scripts/Main.cs" id="1_86vev"]
 [ext_resource type="Script" uid="uid://62smx8eui7eu" path="res://scripts/ConnectionButton.cs" id="2_i2btq"]
-[ext_resource type="Script" uid="uid://d0aju1fflv1e" path="res://scripts/StreamerbotClient.cs" id="2_yulal"]
-[ext_resource type="Script" uid="uid://kxcpvedqwfr4" path="res://ProductivityStatUpdaterWidget.cs" id="6_7mycd"]
+[ext_resource type="Script" uid="uid://d0aju1fflv1e" path="res://scripts/StreamerBot/StreamerbotClient.cs" id="2_yulal"]
+[ext_resource type="PackedScene" uid="uid://c2rdpl27dpmdu" path="res://ui/productivity/base_dragable_window.tscn" id="4_dg77c"]
+[ext_resource type="Script" uid="uid://kxcpvedqwfr4" path="res://scripts/Stats/ProductivityStatUpdaterWidget.cs" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://ccwf651efih01" path="res://ui/chat_todo_window.tscn" id="6_uodij"]
-[ext_resource type="Resource" path="res://stats/Energy Stat.tres" id="7_5vw27"]
-[ext_resource type="Resource" uid="uid://ciaynrg3h5w47" path="res://stats/Productivity_Stat.tres" id="7_272bh"]
+[ext_resource type="Script" uid="uid://bc2x05ul3jlla" path="res://scripts/ChatTodo/TodoDataMapper.cs" id="6_w48qg"]
+[ext_resource type="Resource" uid="uid://5q5ccx2ywk0h" path="res://stats/Energy Stat.tres" id="7_5vw27"]
+[ext_resource type="Resource" uid="uid://dk4r8f2yn0klb" path="res://stats/Productivity_Stat.tres" id="7_272bh"]
 [ext_resource type="PackedScene" uid="uid://ct3k6bteic4m7" path="res://ui/stats_window.tscn" id="7_bhtsn"]
-[ext_resource type="Script" uid="uid://fmcqa4gde4wu" path="res://EnergyStatUpdaterWidget.cs" id="9_kek77"]
-[ext_resource type="Script" uid="uid://d34pmiql6abn3" path="res://scripts/StreamerWidget.cs" id="10_4c57u"]
+[ext_resource type="PackedScene" uid="uid://bn4dpk6jstlbq" path="res://ui/todo_container.tscn" id="7_vivmo"]
+[ext_resource type="Resource" uid="uid://ckviisfbie8vg" path="res://stats/Hydration Stat.tres" id="8_4c57u"]
+[ext_resource type="Script" uid="uid://fmcqa4gde4wu" path="res://scripts/Stats/EnergyStatUpdaterWidget.cs" id="9_kek77"]
+[ext_resource type="Script" uid="uid://bno4hhcbm7g6p" path="res://scripts/Stats/HydrationStatUpdaterWidget.cs" id="11_efxa6"]
+[ext_resource type="Script" uid="uid://chjabn386tk4a" path="res://scripts/ChatTodo/ChatTodoWidget.cs" id="14_w48qg"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_86vev")
@@ -45,37 +50,61 @@ text = "CONNECT"
 script = ExtResource("2_i2btq")
 StreamerBotConnection = NodePath("../../../Streamer Bot Connection")
 
-[node name="Chat Todo Widget" parent="." node_paths=PackedStringArray("StreamerbotClient") instance=ExtResource("6_uodij")]
+[node name="ProductivityWindow" parent="UI" instance=ExtResource("4_dg77c")]
+layout_mode = 1
+offset_right = -750.0
+offset_bottom = -419.0
+windowTitleString = "productivity"
+
+[node name="TodoStreamerWidget" type="Node" parent="UI/ProductivityWindow" node_paths=PackedStringArray("StreamerbotClient")]
+script = ExtResource("14_w48qg")
+StreamerbotClient = NodePath("../../../Streamer Bot Connection")
+metadata/_custom_type_script = "uid://d34pmiql6abn3"
+
+[node name="TodoCreator" type="Node" parent="UI/ProductivityWindow"]
+script = ExtResource("6_w48qg")
+todoItemContainer = ExtResource("7_vivmo")
+
+[node name="Chat Todo Widget" parent="UI" node_paths=PackedStringArray("StreamerbotClient") instance=ExtResource("6_uodij")]
+layout_mode = 0
 offset_left = 869.0
 offset_top = 229.0
 offset_right = 1122.0
 offset_bottom = 672.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-StreamerbotClient = NodePath("../Streamer Bot Connection")
+StreamerbotClient = NodePath("../../Streamer Bot Connection")
 
-[node name="Stats Window" parent="." instance=ExtResource("7_bhtsn")]
+[node name="Stats Window" parent="UI" instance=ExtResource("7_bhtsn")]
 offset_left = 869.0
 offset_top = 31.0
 offset_right = 1122.0
-offset_bottom = 152.0
+offset_bottom = 85.0
 size_flags_vertical = 2
-stats = Array[Resource]([ExtResource("7_272bh"), ExtResource("7_5vw27")])
+stats = Array[Resource]([ExtResource("7_272bh"), ExtResource("7_5vw27"), ExtResource("8_4c57u")])
 
-[node name="ProductivityStatUpdater" type="Node" parent="." node_paths=PackedStringArray("StreamerbotClient")]
+[node name="ProductivityStatUpdater" type="Node" parent="UI/Stats Window" node_paths=PackedStringArray("StreamerbotClient")]
 script = ExtResource("6_7mycd")
 productivityStat = ExtResource("7_272bh")
-StreamerbotClient = NodePath("../Streamer Bot Connection")
+StreamerbotClient = NodePath("../../../Streamer Bot Connection")
 metadata/_custom_type_script = "uid://d34pmiql6abn3"
 
-[node name="EnergyStatUpdater" type="Node" parent="."]
+[node name="EnergyStatUpdater" type="Node" parent="UI/Stats Window" node_paths=PackedStringArray("StreamerbotClient")]
 script = ExtResource("9_kek77")
 EnergyStat = ExtResource("7_5vw27")
 streamLength = 10
+StreamerbotClient = NodePath("../../../Streamer Bot Connection")
 metadata/_custom_type_script = "uid://d34pmiql6abn3"
 
-[node name="StreamerWidget" type="Node" parent="."]
-script = ExtResource("10_4c57u")
+[node name="HydrationStatUpdater" type="Node" parent="UI/Stats Window" node_paths=PackedStringArray("StreamerbotClient")]
+script = ExtResource("11_efxa6")
+HydrationStat = ExtResource("8_4c57u")
+intervall = 2
+hydrationIncreasePerSip = 20
+StreamerbotClient = NodePath("../../../Streamer Bot Connection")
 metadata/_custom_type_script = "uid://d34pmiql6abn3"
 
 [connection signal="button_up" from="UI/VBoxContainer/RequestBtn" to="Streamer Bot Connection" method="SendRequest"]
+[connection signal="TodoDone" from="UI/ProductivityWindow/TodoStreamerWidget" to="UI/ProductivityWindow/TodoCreator" method="ToggleDone"]
+[connection signal="TodoReceived" from="UI/ProductivityWindow/TodoStreamerWidget" to="UI/ProductivityWindow/TodoCreator" method="GenerateTodoItem"]
+[connection signal="TodoNodeCreated" from="UI/ProductivityWindow/TodoCreator" to="UI/ProductivityWindow" method="AddWindowContent"]
