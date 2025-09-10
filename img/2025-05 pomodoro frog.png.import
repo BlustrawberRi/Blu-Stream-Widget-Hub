@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpmeyb6g5tbj2"
-path="res://.godot/imported/StreamerbotClient.svg-365888a961c2d90cd8205691644d29d5.ctex"
+uid="uid://ckdfqpkvhbxth"
+path="res://.godot/imported/2025-05 pomodoro frog.png-9a06ef0a72a7ad247db76af92f84b33f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://editor/icons/StreamerbotClient.svg"
-dest_files=["res://.godot/imported/StreamerbotClient.svg-365888a961c2d90cd8205691644d29d5.ctex"]
+source_file="res://img/2025-05 pomodoro frog.png"
+dest_files=["res://.godot/imported/2025-05 pomodoro frog.png-9a06ef0a72a7ad247db76af92f84b33f.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

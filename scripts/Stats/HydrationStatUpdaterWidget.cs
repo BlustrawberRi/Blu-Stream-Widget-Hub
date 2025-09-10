@@ -1,15 +1,13 @@
 using Godot;
 using System;
-using System.ComponentModel;
 
 public partial class HydrationStatUpdaterWidget : StreamerWidget
 {
     [Export]
     public StreamStat HydrationStat;
 
-    [Export] [Description("Time until this stat increases per millisecond.")]
+    [Export] 
     public int intervall = 30;
-
     [Export]
     public int hydrationIncreasePerSip = 10;
 
@@ -17,8 +15,10 @@ public partial class HydrationStatUpdaterWidget : StreamerWidget
         get =>  new Enum[]{
                     StreamerbotEventTypes.Command.Triggered
         };
-        }
+        set{}
+    }
 
+/*
 
     public override void _Ready()
     {
@@ -52,5 +52,5 @@ public partial class HydrationStatUpdaterWidget : StreamerWidget
             HydrationStat.Value--;
         }
     }
-
+*/
 }

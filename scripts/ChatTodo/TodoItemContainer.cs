@@ -6,8 +6,9 @@ public partial class TodoItemContainer : Container
 {
 	[Export] public CheckBox todoToggle;
 	[Export] public RichTextLabel todoTextLabel;
+    [Export] public Color todoDisabledTextColor;
 
-	public string userName;
+    public string userName;
     public string todo;
     public bool isDone = false;
 
@@ -31,5 +32,6 @@ public partial class TodoItemContainer : Container
 
 		isDone = true;
 		todoToggle.ButtonPressed = true;
-	}
+        todoTextLabel.AddThemeColorOverride("default_color", todoDisabledTextColor);
+    }
 }

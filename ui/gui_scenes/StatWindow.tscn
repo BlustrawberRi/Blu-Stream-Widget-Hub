@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://1n5mk6jgse5l"]
+
+[ext_resource type="PackedScene" uid="uid://c2rdpl27dpmdu" path="res://ui/gui_scenes/base_dragable_window.tscn" id="1_hmvkc"]
+[ext_resource type="PackedScene" uid="uid://d0s1khrgscwuu" path="res://ui/gui_scenes/stat_container.tscn" id="2_wlpgd"]
+[ext_resource type="Resource" uid="uid://br5dnyymh3wmo" path="res://stats/Energy Stat.tres" id="3_luse6"]
+[ext_resource type="Resource" uid="uid://ckviisfbie8vg" path="res://stats/Hydration Stat.tres" id="4_y658t"]
+[ext_resource type="Resource" uid="uid://dk4r8f2yn0klb" path="res://stats/Productivity_Stat.tres" id="5_cefc8"]
+
+[node name="StatWindow" instance=ExtResource("1_hmvkc")]
+
+[node name="WindowContentContainer" parent="WindowContainer/WindowContent/MarginContainer/ScrollContainer" index="0"]
+theme_override_constants/separation = 16
+
+[node name="StatContainer" parent="WindowContainer/WindowContent/MarginContainer/ScrollContainer/WindowContentContainer" index="0" instance=ExtResource("2_wlpgd")]
+layout_mode = 2
+Stat = ExtResource("3_luse6")
+
+[node name="StatContainer2" parent="WindowContainer/WindowContent/MarginContainer/ScrollContainer/WindowContentContainer" index="1" instance=ExtResource("2_wlpgd")]
+layout_mode = 2
+Stat = ExtResource("4_y658t")
+
+[node name="StatContainer3" parent="WindowContainer/WindowContent/MarginContainer/ScrollContainer/WindowContentContainer" index="2" instance=ExtResource("2_wlpgd")]
+layout_mode = 2
+Stat = ExtResource("5_cefc8")

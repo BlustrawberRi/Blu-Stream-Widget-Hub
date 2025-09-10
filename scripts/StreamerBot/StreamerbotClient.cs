@@ -5,7 +5,6 @@ using Godot.Collections;
 /// <summary>
 /// A websocket client to connect to a streamer.bot instance. 
 /// </summary>
-[GlobalClass] [Icon("res://editor/icons/StreamerBotClient.svg")]
 public partial class StreamerbotClient : WebsocketClient
 {
     [Export]
@@ -39,6 +38,7 @@ public partial class StreamerbotClient : WebsocketClient
     public void AddEventRequests(Enum[] eventTypes, StreamerWidget widget)
     {
         GD.PrintRich("[b]" + widget.Name + " added Requests [/b]:");
+        GD.Print(widget.Name+": "+ eventTypes);
         //var eventTypeList = new Godot.Collections.Array();
         foreach (var et in eventTypes)
         {

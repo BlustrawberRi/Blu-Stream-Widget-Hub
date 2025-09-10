@@ -1,19 +1,33 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://blwjr54f6akyw"]
+[gd_resource type="Theme" load_steps=17 format=3 uid="uid://blwjr54f6akyw"]
 
-[ext_resource type="FontFile" uid="uid://bcxwvxum1m5ov" path="res://ui/MADE Tommy Soft Regular PERSONAL USE.otf" id="1_tei74"]
+[ext_resource type="FontFile" uid="uid://bcxwvxum1m5ov" path="res://ui/font/MADE Tommy Soft Regular PERSONAL USE.otf" id="1_cwubt"]
 [ext_resource type="StyleBox" uid="uid://bpppsws15uphp" path="res://ui/productivity/productivity_window_button_style.tres" id="2_cwubt"]
 [ext_resource type="StyleBox" uid="uid://chqp7qwpqoxpe" path="res://ui/productivity/productivity_window_panel_style.tres" id="3_cwubt"]
-[ext_resource type="FontFile" uid="uid://cd733hmafgxp4" path="res://ui/MADE Tommy Soft Medium PERSONAL USE.otf" id="4_cwubt"]
+[ext_resource type="Texture2D" uid="uid://blnb2ojefs5hl" path="res://img/2025-05 todo window toggle toggled.png" id="3_qt358"]
+[ext_resource type="Texture2D" uid="uid://ba82aidhu5mj3" path="res://img/2025-05 todo window toggle.png" id="3_vlsko"]
+[ext_resource type="FontFile" uid="uid://cd733hmafgxp4" path="res://ui/font/MADE Tommy Soft Medium PERSONAL USE.otf" id="4_3wc2m"]
+[ext_resource type="StyleBox" uid="uid://bw7atxwpucmx5" path="res://ui/productivity/productivity_window_background_gradient_style.tres" id="4_vlsko"]
+[ext_resource type="Texture2D" uid="uid://qcs0ranbw515" path="res://img/2025-05 pomodoro bar empty.png" id="7_57lls"]
+[ext_resource type="Texture2D" uid="uid://dwyi0xujkyyh6" path="res://img/2025-05 pomodoro bar inner.png" id="8_or0id"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwubt"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_57lls"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d1w4d"]
+texture = ExtResource("7_57lls")
+texture_margin_left = 15.0
+texture_margin_right = 15.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ud1f4"]
+texture = ExtResource("8_or0id")
+texture_margin_left = 15.0
+texture_margin_right = 15.0
 
 [sub_resource type="FontVariation" id="FontVariation_cwubt"]
-base_font = ExtResource("4_cwubt")
+base_font = ExtResource("4_3wc2m")
 spacing_glyph = 2
 
 [sub_resource type="FontVariation" id="FontVariation_3wc2m"]
-base_font = ExtResource("1_tei74")
+base_font = ExtResource("1_cwubt")
 spacing_glyph = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3wc2m"]
@@ -53,19 +67,24 @@ Button/constants/h_separation = 0
 Button/constants/icon_max_width = 0
 Button/constants/outline_size = 0
 Button/font_sizes/font_size = 24
-Button/fonts/font = ExtResource("1_tei74")
+Button/fonts/font = ExtResource("1_cwubt")
 Button/styles/normal = ExtResource("2_cwubt")
-CheckBox/styles/normal = SubResource("StyleBoxFlat_cwubt")
+CheckBox/icons/checked = ExtResource("3_qt358")
+CheckBox/icons/checked_disabled = null
+CheckBox/icons/unchecked = ExtResource("3_vlsko")
+CheckBox/styles/normal = SubResource("StyleBoxEmpty_57lls")
 MarginContainer/constants/margin_bottom = 10
 MarginContainer/constants/margin_left = 20
 MarginContainer/constants/margin_right = 20
 MarginContainer/constants/margin_top = 10
 Panel/styles/panel = ExtResource("3_cwubt")
-PanelContainer/styles/panel = ExtResource("3_cwubt")
+PanelContainer/styles/panel = ExtResource("4_vlsko")
+ProgressBar/styles/background = SubResource("StyleBoxTexture_d1w4d")
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_ud1f4")
 RichTextLabel/colors/default_color = Color(0.305882, 0.337255, 0.329412, 1)
 RichTextLabel/colors/selection_color = Color(0.684488, 0.566388, 0.104951, 0.8)
-RichTextLabel/font_sizes/bold_font_size = 14
-RichTextLabel/font_sizes/normal_font_size = 14
+RichTextLabel/font_sizes/bold_font_size = 20
+RichTextLabel/font_sizes/normal_font_size = 20
 RichTextLabel/fonts/bold_font = SubResource("FontVariation_cwubt")
 RichTextLabel/fonts/normal_font = SubResource("FontVariation_3wc2m")
 VBoxContainer/constants/separation = 1

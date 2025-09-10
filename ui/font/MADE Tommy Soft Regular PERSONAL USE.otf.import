@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bcxwvxum1m5ov"
-path="res://.godot/imported/MADE Tommy Soft Regular PERSONAL USE.otf-be0ed14406105016b7cf30ec4f521ae2.fontdata"
+path="res://.godot/imported/MADE Tommy Soft Regular PERSONAL USE.otf-2dc3e05367198cd2f2110bad4763cc3a.fontdata"
 
 [deps]
 
-source_file="res://ui/MADE Tommy Soft Regular PERSONAL USE.otf"
-dest_files=["res://.godot/imported/MADE Tommy Soft Regular PERSONAL USE.otf-be0ed14406105016b7cf30ec4f521ae2.fontdata"]
+source_file="res://ui/font/MADE Tommy Soft Regular PERSONAL USE.otf"
+dest_files=["res://.godot/imported/MADE Tommy Soft Regular PERSONAL USE.otf-2dc3e05367198cd2f2110bad4763cc3a.fontdata"]
 
 [params]
 

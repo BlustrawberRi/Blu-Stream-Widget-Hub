@@ -13,13 +13,15 @@ size_flags_vertical = 2
 script = ExtResource("1_qaa6s")
 todoToggle = NodePath("UserTodo")
 todoTextLabel = NodePath("TodoText")
+todoDisabledTextColor = Color(0.564706, 0.603922, 0.592157, 1)
 
 [node name="UserTodo" type="CheckBox" parent="."]
+clip_contents = true
 layout_mode = 2
-size_flags_horizontal = 0
 size_flags_vertical = 0
-text = "User Name"
-text_overrun_behavior = 3
+text_overrun_behavior = 4
+autowrap_mode = 3
+icon_alignment = 1
 
 [node name="TodoText" type="RichTextLabel" parent="."]
 custom_minimum_size = Vector2(0, 24.895)
@@ -28,6 +30,7 @@ size_flags_horizontal = 3
 focus_mode = 2
 bbcode_enabled = true
 text = "[b]user[/b]: This is my task ERGHAREGLJGRELGRliergdli gireoegri "
+fit_content = true
 scroll_active = false
 context_menu_enabled = true
 justification_flags = 75

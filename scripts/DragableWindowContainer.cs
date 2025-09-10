@@ -1,11 +1,11 @@
 using Godot;
 using System.Collections.Generic;
 
-
+[Tool] 
 public partial class DragableWindowContainer : Container
 {
     [Export] 
-    public string windowTitleString = "";
+    public string windowTitleString = ""; 
 
     [Export]
     public Button Handle;
@@ -22,7 +22,7 @@ public partial class DragableWindowContainer : Container
 
         if (Handle != null)
         {
-            Handle.Pressed += OnHandlePressed;
+            Handle.Pressed += OnHandlePressed; 
             Handle.ButtonUp += OnHandleReleased;            
             GD.Print("Subscribed to drag Handle");
         }
@@ -86,7 +86,7 @@ public partial class DragableWindowContainer : Container
             warnings.Add("A reference to a button that will act as a handle for dragging is still missing. Dragging will not work without it.");
 
         return warnings.ToArray();
-        return base._GetConfigurationWarnings();
+        //return base._GetConfigurationWarnings();
     }
 
 	

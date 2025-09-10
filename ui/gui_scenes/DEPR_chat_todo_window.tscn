@@ -8,8 +8,8 @@
 [ext_resource type="StyleBox" uid="uid://blgcfg3mg4g51" path="res://ui/productivity/productivity_window_header_style.tres" id="5_eot23"]
 [ext_resource type="Texture2D" uid="uid://dbyctbwurbcsh" path="res://img/2025-01 window blätter bg 1.png" id="5_kc125"]
 [ext_resource type="Texture2D" uid="uid://d6jrtett040e" path="res://img/greenl-grid.png" id="6_q2ljj"]
-[ext_resource type="Script" uid="uid://bc2x05ul3jlla" path="res://scripts/ChatTodo/TodoDataMapper.cs" id="7_bks1y"]
-[ext_resource type="PackedScene" uid="uid://bn4dpk6jstlbq" path="res://ui/todo_container.tscn" id="8_5x634"]
+[ext_resource type="Script" uid="uid://bc2x05ul3jlla" path="res://scripts/ChatTodo/TodoItemGenerator.cs" id="7_bks1y"]
+[ext_resource type="PackedScene" uid="uid://bn4dpk6jstlbq" path="res://ui/gui_scenes/todo_container.tscn" id="8_5x634"]
 
 [sub_resource type="Animation" id="Animation_26b40"]
 length = 0.001

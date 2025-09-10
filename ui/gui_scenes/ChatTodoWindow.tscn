@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3fsdrndp2sf8"]
+
+[ext_resource type="PackedScene" uid="uid://c2rdpl27dpmdu" path="res://ui/gui_scenes/base_dragable_window.tscn" id="1_dpoxb"]
+[ext_resource type="Script" uid="uid://chjabn386tk4a" path="res://scripts/ChatTodo/ChatTodoWidget.cs" id="2_dpoxb"]
+[ext_resource type="Script" uid="uid://bc2x05ul3jlla" path="res://scripts/ChatTodo/TodoItemGenerator.cs" id="3_u4f5m"]
+[ext_resource type="PackedScene" uid="uid://bn4dpk6jstlbq" path="res://ui/gui_scenes/todo_container.tscn" id="4_8cvxf"]
+
+[node name="ChatTodoWindow" instance=ExtResource("1_dpoxb")]
+
+[node name="StreamerWidget" type="Node" parent="." index="0"]
+script = ExtResource("2_dpoxb")
+metadata/_custom_type_script = "uid://d34pmiql6abn3"
+
+[node name="TodoGenerator" type="Node" parent="WindowContainer/WindowContent/MarginContainer/ScrollContainer/WindowContentContainer" index="0"]
+script = ExtResource("3_u4f5m")
+todoItemContainer = ExtResource("4_8cvxf")
+
+[connection signal="TodoDone" from="StreamerWidget" to="WindowContainer/WindowContent/MarginContainer/ScrollContainer/WindowContentContainer/TodoGenerator" method="ToggleDone"]
+[connection signal="TodoReceived" from="StreamerWidget" to="WindowContainer/WindowContent/MarginContainer/ScrollContainer/WindowContentContainer/TodoGenerator" method="UpdateTodoList"]

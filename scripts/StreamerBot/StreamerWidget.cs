@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 /// Baseclass for widgets who respond to <see cref="StreamerbotClient"/> event answers.
 /// </summary>
 [GlobalClass] [GodotClassName("StreamerWidget")]  [Icon("res://editor/icons/StreamerWidget.svg")]
-public partial class StreamerWidget : Node
+public abstract partial class StreamerWidget : Node
 {
     /// <summary>
     /// The client connected to the streamer.bot instance to receive event data from.
@@ -24,11 +24,16 @@ public partial class StreamerWidget : Node
     /// The streamer.bot events whose data is needed.
     /// </summary>
     /// <value>Use the enums in <see cref="StreamerbotEventTypes"/>.</value>
-    public virtual Enum[] StreamerbotEventRequests { get; set; }
+    public virtual Enum[] StreamerbotEventRequests { get ; set; }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+
+        if (StreamerbotClient == null) {
+            StreamerbotClient = GetNode<StreamerbotClient>("../%StreamerbotClient");
+        }
+
         RequestEvents();
     }
 

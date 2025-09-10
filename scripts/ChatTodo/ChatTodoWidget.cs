@@ -7,13 +7,11 @@ using System.ComponentModel;
 
 
 /// <summary>
-/// Displays Todo's received by the !todo command as a list.
+/// Receives the Todo and Finish Todo command from Streamer.Bot over commands.
 /// </summary>
 /// <remarks>
 /// Data needed:
 /// - <b>Command/Triggered</b>: command, message, user.display, user.id, user.type
-/// 
-/// 
 /// </remarks>
 public partial class ChatTodoWidget : StreamerWidget
 {
@@ -41,14 +39,14 @@ public partial class ChatTodoWidget : StreamerWidget
         GD.Print(command.Name);
         if (command.Name == "Todo")
         {
-            AddNewTodo(command);
+            OnNewTodoArrived(command);
         }
         else if (command.Name == "Finish Todo")
             MarkTodoDone(command);
 
     }
 
-    private void AddNewTodo ( CommandData command)
+    private void OnNewTodoArrived ( CommandData command)
     {
         var todo = command.Message;
         if (todo == "") return;
@@ -57,9 +55,10 @@ public partial class ChatTodoWidget : StreamerWidget
 
         AddNewTodo(todo, user);
     }
+    
     public void AddNewTodo(String todo, ChatUser user)
     {
-        GD.PrintRich("[wave]New Todo from [b]"+user.Display+"[/b]: "+todo+"[/wave]");
+        GD.PrintRich("Chat Todo Widget: [wave]New Todo from [b]"+user.Display+"[/b]: "+todo+"[/wave]");
         EmitSignal(SignalName.TodoReceived, todo, user, Time.GetDatetimeStringFromSystem());
     }
 

@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0s1khrgscwuu"]
+
+[ext_resource type="Script" uid="uid://d14d470nky62s" path="res://scripts/Stats/StatContainer.cs" id="1_dtqq1"]
+
+[node name="StatContainer" type="HBoxContainer" node_paths=PackedStringArray("StatNameLabel", "StatProgressBar")]
+custom_minimum_size = Vector2(0, 40)
+script = ExtResource("1_dtqq1")
+StatNameLabel = NodePath("StatNameLabel")
+StatProgressBar = NodePath("StatProgressBar")
+
+[node name="StatNameLabel" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Stat"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+allow_greater = true
+show_percentage = false

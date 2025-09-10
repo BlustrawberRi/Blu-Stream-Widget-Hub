@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://c2rdpl27dpmdu"]
+[gd_scene load_steps=11 format=3 uid="uid://c2rdpl27dpmdu"]
 
 [ext_resource type="Theme" uid="uid://blwjr54f6akyw" path="res://ui/productivity/productivity_window_theme.tres" id="1_vwmmo"]
 [ext_resource type="StyleBox" uid="uid://c7dohr20cy37b" path="res://ui/productivity/productivity_window_background_style.tres" id="2_jl46k"]
 [ext_resource type="StyleBox" uid="uid://blgcfg3mg4g51" path="res://ui/productivity/productivity_window_header_style.tres" id="2_pycb5"]
 [ext_resource type="Script" uid="uid://dgy0uwa7yolv5" path="res://scripts/DragableWindowContainer.cs" id="3_4bbqx"]
-[ext_resource type="FontFile" uid="uid://bcxwvxum1m5ov" path="res://ui/MADE Tommy Soft Regular PERSONAL USE.otf" id="4_ft3af"]
-[ext_resource type="FontFile" uid="uid://cd733hmafgxp4" path="res://ui/MADE Tommy Soft Medium PERSONAL USE.otf" id="5_4bbqx"]
+[ext_resource type="FontFile" uid="uid://bcxwvxum1m5ov" path="res://ui/font/MADE Tommy Soft Regular PERSONAL USE.otf" id="4_ft3af"]
+[ext_resource type="FontFile" uid="uid://cd733hmafgxp4" path="res://ui/font/MADE Tommy Soft Medium PERSONAL USE.otf" id="5_4bbqx"]
+[ext_resource type="StyleBox" uid="uid://pofj46y1kqb4" path="res://ui/productivity/productivity_window_background_texture_style.tres" id="7_wqhhs"]
 
 [sub_resource type="FontVariation" id="FontVariation_4uhbc"]
 base_font = ExtResource("4_ft3af")
@@ -83,7 +84,6 @@ theme_override_font_sizes/mono_font_size = 25
 theme_override_font_sizes/normal_font_size = 25
 theme_override_font_sizes/bold_font_size = 25
 bbcode_enabled = true
-text = "title"
 scroll_active = false
 vertical_alignment = 1
 
@@ -101,6 +101,10 @@ clip_text = true
 [node name="WindowContent" type="PanelContainer" parent="WindowContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="BackroundTexture" type="Panel" parent="WindowContainer/WindowContent"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("7_wqhhs")
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowContainer/WindowContent"]
 layout_mode = 2

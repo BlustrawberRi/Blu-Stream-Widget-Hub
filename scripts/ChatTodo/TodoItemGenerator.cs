@@ -2,7 +2,10 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class TodoDataMapper : Node
+/// <summary>
+/// Adds items to the todo list.
+/// </summary>
+public partial class TodoItemGenerator : Node
 {
 	[Export] public PackedScene todoItemContainer;
     //[Export] public Container todoListContainer;
@@ -13,30 +16,33 @@ public partial class TodoDataMapper : Node
 	private List<TodoItemContainer> todoItems = new List<TodoItemContainer>();
 
 	
-	public void GenerateTodoItem(string todoText, ChatUser user, string timestamp) 
+	public void UpdateTodoList(string todoText, ChatUser user, string timestamp)
 	{
-		
-		var existingTodo = FindOpenTodoItemByUser(user);
-		if (existingTodo != null)
-		{
-			existingTodo.UpdateText(user.Display, todoText);
-			return;
+        var existingTodo = FindOpenTodoItemByUser(user);
+        if (existingTodo == null) {
+            CreateTodoItem(todoText, user, timestamp);
 		}
-		
+		else {
+            existingTodo.UpdateText(user.Display, todoText);
+			//todo: Emit Signal TodoUpdated
+		}
+	}
 
+	public void CreateTodoItem(string todoText, ChatUser user, string timestamp) 
+	{
 		TodoItemContainer instance = todoItemContainer.Instantiate<TodoItemContainer>();
-        //todoListContainer.AddChild(instance);
-        EmitSignal(SignalName.TodoNodeCreated, instance);
-
-        todoItems.Add(instance);
+        GD.Print(instance.Name);
 
 		instance.UpdateText(user.Display,todoText);
-
-	}
+        EmitSignal(SignalName.TodoNodeCreated, instance);
+        todoItems.Add(instance);
+        this.GetParent().AddChild(instance);
+    }
 
 	public void ToggleDone(ChatUser user)
 	{
-		FindOpenTodoItemByUser(user)?.SetDone();
+        GD.Print("done");
+        FindOpenTodoItemByUser(user)?.SetDone();
 		// todo: check if todo is already marked done, because user might have more than one
 	}
 

@@ -7,7 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 public partial class StatsWindow : Control
 {
     [Export] public StreamStat[] stats;
-    //public Array<StreamStat> streamStats = new Array<StreamStat>();
+    //public Array<StreamStat> streamStats = new Array<StreamStat>(); 
     [Export] public PackedScene statContainer;
 
 

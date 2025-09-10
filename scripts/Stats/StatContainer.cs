@@ -2,6 +2,9 @@ using Godot;
 using System;
 using System.Data;
 
+/// <summary>
+/// Injects the Stat Container GUI with values.
+/// </summary>
 public partial class StatContainer : HBoxContainer
 {
     [Export] public StreamStat Stat {
@@ -11,6 +14,7 @@ public partial class StatContainer : HBoxContainer
             _stat = value;
             if (value == null)
                 EmptyStatInfo();
+
 
             value.ValueChanged += OnStatValueChanged;
             UpdateStatInfo();
@@ -22,25 +26,26 @@ public partial class StatContainer : HBoxContainer
     private StreamStat _stat;
 
     public string StatName { get; set; }
-    private Label StatNameLabel;
-    private ProgressBar StatProgressBar;   
+    [Export] private RichTextLabel StatNameLabel;
+    [Export] private ProgressBar StatProgressBar;   
 
 
     public override void _Ready()
     {
         base._Ready();
 
-        StatNameLabel = GetNode<Label>("StatNameLabel");
+        StatNameLabel = GetNode<RichTextLabel>("StatNameLabel");
         StatProgressBar = GetNode<ProgressBar>("StatProgressBar");
 
-        UpdateStatInfo();
+        //UpdateStatInfo();
     }
 
 
-    private void UpdateStatInfo()
+    private void UpdateStatInfo() 
     {
         if (_stat == null) {
-            GD.PrintErr("StreamStat reference is empty. Will not auto fill data.");
+            GD.PrintErr("Reference of StatContainer "+ this.Name +" is empty.");
+            EmptyStatInfo();
             return;
         }
 
@@ -61,7 +66,7 @@ public partial class StatContainer : HBoxContainer
     private void UpdateLabelText(string text) {
         if (StatNameLabel != null)
             StatNameLabel.Text = text;
-        else GD.Print(this + " has no Label yet.");
+        else GD.PushWarning(this + " has no Label yet to update text.");
     }
 
     private void UpdateProgressBar(int value, int maxValue) {
