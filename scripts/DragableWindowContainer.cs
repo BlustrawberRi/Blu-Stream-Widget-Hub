@@ -24,7 +24,7 @@ public partial class DragableWindowContainer : Container
         {
             Handle.Pressed += OnHandlePressed; 
             Handle.ButtonUp += OnHandleReleased;            
-            GD.Print("Subscribed to drag Handle");
+            //GD.Print("Subscribed to drag Handle");
         }
     }
 

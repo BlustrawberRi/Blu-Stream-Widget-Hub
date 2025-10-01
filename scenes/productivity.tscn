@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://ca4o52efp0j5g"]
+
+[ext_resource type="Script" uid="uid://d0aju1fflv1e" path="res://scripts/StreamerBot/StreamerbotClient.cs" id="1_s2cfq"]
+[ext_resource type="PackedScene" uid="uid://de5m6cjd0lnj1" path="res://ui/gui_scenes/PomodoroWindow.tscn" id="2_byvgc"]
+[ext_resource type="PackedScene" uid="uid://b3fsdrndp2sf8" path="res://ui/gui_scenes/ChatTodoWindow.tscn" id="4_byvgc"]
+[ext_resource type="PackedScene" uid="uid://1n5mk6jgse5l" path="res://ui/gui_scenes/StatWindow.tscn" id="4_u6lee"]
+[ext_resource type="Script" uid="uid://fmcqa4gde4wu" path="res://scripts/Stats/EnergyStatUpdaterWidget.cs" id="5_wuwu2"]
+[ext_resource type="Resource" path="res://stats/Energy Stat.tres" id="6_rghmn"]
+[ext_resource type="Resource" path="res://stats/Hydration Stat.tres" id="7_1ua1e"]
+[ext_resource type="Script" uid="uid://bno4hhcbm7g6p" path="res://scripts/Stats/HydrationStatUpdaterWidget.cs" id="7_rghmn"]
+[ext_resource type="Script" uid="uid://kxcpvedqwfr4" path="res://scripts/Stats/ProductivityStatUpdaterWidget.cs" id="8_hch00"]
+[ext_resource type="Resource" uid="uid://dk4r8f2yn0klb" path="res://stats/Productivity_Stat.tres" id="9_onvwf"]
+[ext_resource type="PackedScene" uid="uid://b7xinwaojw88" path="res://ui/gui_scenes/MilkMerchant.tscn" id="11_1ua1e"]
+
+[node name="Productivity" type="Node2D"]
+
+[node name="StreamerbotClient" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_s2cfq")
+metadata/_custom_type_script = "uid://d0aju1fflv1e"
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PomodoroWindow" parent="GUI" instance=ExtResource("2_byvgc")]
+visible = false
+layout_mode = 1
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 464.0
+offset_bottom = 237.0
+windowTitleString = "Pomodoro"
+
+[node name="ChatTodoWindow" parent="GUI" instance=ExtResource("4_byvgc")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1464.0
+offset_top = 32.0
+offset_right = 1880.0
+offset_bottom = 736.0
+grow_horizontal = 1
+grow_vertical = 1
+windowTitleString = "Productivity"
+
+[node name="StatWindow" parent="GUI" instance=ExtResource("4_u6lee")]
+layout_mode = 1
+offset_left = 1384.0
+offset_top = 704.0
+offset_right = 1826.0
+offset_bottom = 912.0
+windowTitleString = "Stats"
+
+[node name="MilkMerchant" parent="GUI" instance=ExtResource("11_1ua1e")]
+layout_mode = 1
+offset_left = 851.0
+offset_top = 538.0
+offset_right = 851.0
+offset_bottom = 538.0
+milkDefinitionJson = "res://milk_choices.json"
+
+[node name="EnergyWidget" type="Node" parent="."]
+script = ExtResource("5_wuwu2")
+EnergyStat = ExtResource("6_rghmn")
+
+[node name="HydrationWidget" type="Node" parent="."]
+script = ExtResource("7_rghmn")
+HydrationStat = ExtResource("7_1ua1e")
+deteriorationInterval = 5
+
+[node name="ProductivityStartUpdaterWidget" type="Node" parent="."]
+script = ExtResource("8_hch00")
+productivityStat = ExtResource("9_onvwf")

@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -26,6 +27,9 @@ public abstract partial class StreamerWidget : Node
     /// <value>Use the enums in <see cref="StreamerbotEventTypes"/>.</value>
     public virtual Enum[] StreamerbotEventRequests { get ; set; }
 
+    //[Export] public Array<StreamerBotTrigger> StreamerbotEventRequest = new Array<StreamerBotTrigger>();
+    //todo: if this is changed, resub to more streamer bot events
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -43,12 +47,20 @@ public abstract partial class StreamerWidget : Node
     /// </summary>
     protected void RequestEvents()
     {
+        /*foreach(var req in StreamerbotEventRequests) {
+            RequestEvent(req);
+        }*/
+        StreamerbotClient.AddEventRequests(StreamerbotEventRequests, this);
+    }
+
+    public void RequestEvent(Enum request) {
         if (StreamerbotClient == null)
         {
             GD.PushWarning("Widget missing reference to Streamerbot client.");
             return;
         }
-        StreamerbotClient.AddEventRequests(StreamerbotEventRequests, this);
+
+        StreamerbotClient.AddEventRequest(request, this);
     }
 
     /// <summary>
@@ -58,7 +70,7 @@ public abstract partial class StreamerWidget : Node
     /// This method is triggered when <see cref="StreamerbotClient"/> receives the event data requested over <see cref="RequestEvents"/>.
     /// </remarks>
     /// <param name="message">A JSON string that has the event data.</param>
-    public virtual void OnEventDataReceived(string answer) {}
+    public virtual void OnEventDataReceived(string source, string type, Dictionary data) {}
 
 
 }

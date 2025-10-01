@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Reflection;
 
@@ -31,7 +32,7 @@ public partial class EnergyStatUpdaterWidget : StreamerWidget
         _WaitUntilDecreaseEnergy();
     }
 
-    public override void OnEventDataReceived(string message)
+    public override void OnEventDataReceived(string source, string type, Dictionary data)
     {
         ResetEnergy();
     }
@@ -39,7 +40,7 @@ public partial class EnergyStatUpdaterWidget : StreamerWidget
     public void ResetEnergy()
     {
         EnergyStat.Value = EnergyStat.MaxValue;
-        ResourceSaver.Save(EnergyStat);
+        //ResourceSaver.Save(EnergyStat);
     }
 
     private async void _WaitUntilDecreaseEnergy()
@@ -50,7 +51,7 @@ public partial class EnergyStatUpdaterWidget : StreamerWidget
             await ToSignal(timer, Timer.SignalName.Timeout);
 
             EnergyStat.Value--;
-            ResourceSaver.Save(EnergyStat);
+            //ResourceSaver.Save(EnergyStat);
         }
     }
 }

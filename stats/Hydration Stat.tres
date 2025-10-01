@@ -1,9 +1,9 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c84smt5yumlx5"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://huwfjcw6whg3"]
 
 [ext_resource type="Script" uid="uid://b7k2brp34c2st" path="res://scripts/Stats/StreamStat.cs" id="1_7xx5d"]
 
 [resource]
 script = ExtResource("1_7xx5d")
 StatName = "Hydration"
-Value = 94
+Value = -59
 MaxValue = 100

@@ -3,12 +3,12 @@
 [ext_resource type="FontFile" uid="uid://bcxwvxum1m5ov" path="res://ui/font/MADE Tommy Soft Regular PERSONAL USE.otf" id="1_cwubt"]
 [ext_resource type="StyleBox" uid="uid://bpppsws15uphp" path="res://ui/productivity/productivity_window_button_style.tres" id="2_cwubt"]
 [ext_resource type="StyleBox" uid="uid://chqp7qwpqoxpe" path="res://ui/productivity/productivity_window_panel_style.tres" id="3_cwubt"]
-[ext_resource type="Texture2D" uid="uid://blnb2ojefs5hl" path="res://img/2025-05 todo window toggle toggled.png" id="3_qt358"]
-[ext_resource type="Texture2D" uid="uid://ba82aidhu5mj3" path="res://img/2025-05 todo window toggle.png" id="3_vlsko"]
+[ext_resource type="Texture2D" uid="uid://blnb2ojefs5hl" path="res://img/GUI/2025-05 todo window toggle toggled.png" id="3_qt358"]
+[ext_resource type="Texture2D" uid="uid://ba82aidhu5mj3" path="res://img/GUI/2025-05 todo window toggle.png" id="3_vlsko"]
 [ext_resource type="FontFile" uid="uid://cd733hmafgxp4" path="res://ui/font/MADE Tommy Soft Medium PERSONAL USE.otf" id="4_3wc2m"]
 [ext_resource type="StyleBox" uid="uid://bw7atxwpucmx5" path="res://ui/productivity/productivity_window_background_gradient_style.tres" id="4_vlsko"]
-[ext_resource type="Texture2D" uid="uid://qcs0ranbw515" path="res://img/2025-05 pomodoro bar empty.png" id="7_57lls"]
-[ext_resource type="Texture2D" uid="uid://dwyi0xujkyyh6" path="res://img/2025-05 pomodoro bar inner.png" id="8_or0id"]
+[ext_resource type="Texture2D" uid="uid://qcs0ranbw515" path="res://img/GUI/2025-05 pomodoro bar empty.png" id="7_57lls"]
+[ext_resource type="Texture2D" uid="uid://dwyi0xujkyyh6" path="res://img/GUI/2025-05 pomodoro bar inner.png" id="8_or0id"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_57lls"]
 

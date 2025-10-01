@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 
 public partial class HydrationStatUpdaterWidget : StreamerWidget
@@ -6,19 +7,21 @@ public partial class HydrationStatUpdaterWidget : StreamerWidget
     [Export]
     public StreamStat HydrationStat;
 
-    [Export] 
-    public int intervall = 30;
     [Export]
-    public int hydrationIncreasePerSip = 10;
+    public int deteriorationInterval = 60;
+    [Export]
+    public int hydrationIncreasePerSip = 20;
 
-    public override Enum[] StreamerbotEventRequests { 
-        get =>  new Enum[]{
-                    StreamerbotEventTypes.Command.Triggered
+    public override Enum[] StreamerbotEventRequests
+    {
+        get => new Enum[]{
+                    StreamerbotEventTypes.Command.Triggered,
+                    StreamerbotEventTypes.Twitch.RewardRedemption
         };
-        set{}
+        set { }
     }
 
-/*
+
 
     public override void _Ready()
     {
@@ -26,14 +29,24 @@ public partial class HydrationStatUpdaterWidget : StreamerWidget
         _DecreaseHydration();
     }
 
-    public override void OnEventDataReceived(string answer)
+    public override void OnEventDataReceived(string source, string type, Dictionary data)
     {
-        CommandData command = new();
-        command.GetDataFromAnswer(answer);
-
-        if (command.Name == "Hydrate")
+        if (type == "RewardRedemption")
         {
-            IncreaseHydration();
+            RewardRedemption reward = new(data);
+            if (reward.RewardName == "Hydrate")
+            {
+                IncreaseHydration();
+            }
+        }
+
+        if (type == "RewardRedemption")
+        {
+            CommandData command = new(data);
+            if (command.Name == "Hydrate")
+            {
+                IncreaseHydration();
+            }
         }
     }
 
@@ -46,11 +59,13 @@ public partial class HydrationStatUpdaterWidget : StreamerWidget
     {
         while (true)
         {
-            var timer = GetTree().CreateTimer(intervall);
+            GD.Print("waiting");
+            var timer = GetTree().CreateTimer(deteriorationInterval);
             await ToSignal(timer, Timer.SignalName.Timeout);
+            GD.Print("THURSTY");
 
             HydrationStat.Value--;
         }
     }
-*/
+
 }

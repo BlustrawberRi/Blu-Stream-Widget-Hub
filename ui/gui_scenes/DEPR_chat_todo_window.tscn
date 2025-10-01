@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://chjabn386tk4a" path="res://scripts/ChatTodo/ChatTodoWidget.cs" id="1_1cska"]
 [ext_resource type="Script" uid="uid://dgy0uwa7yolv5" path="res://scripts/DragableWindowContainer.cs" id="1_vdu8d"]
-[ext_resource type="Texture2D" uid="uid://47k06k7rt8uv" path="res://img/2025-01 window blätter 1.png" id="2_yxwb5"]
-[ext_resource type="Texture2D" uid="uid://fgdj157ask3r" path="res://img/2025-01 window blätter 2.png" id="3_hena6"]
-[ext_resource type="Texture2D" uid="uid://boro5fhkuv2lg" path="res://img/2025-01 window blätter 3.png" id="4_ciuj5"]
+[ext_resource type="Texture2D" uid="uid://47k06k7rt8uv" path="res://img/decoration/2025-01 window blätter 1.png" id="2_yxwb5"]
+[ext_resource type="Texture2D" uid="uid://fgdj157ask3r" path="res://img/decoration/2025-01 window blätter 2.png" id="3_hena6"]
+[ext_resource type="Texture2D" uid="uid://boro5fhkuv2lg" path="res://img/decoration/2025-01 window blätter 3.png" id="4_ciuj5"]
 [ext_resource type="StyleBox" uid="uid://blgcfg3mg4g51" path="res://ui/productivity/productivity_window_header_style.tres" id="5_eot23"]
-[ext_resource type="Texture2D" uid="uid://dbyctbwurbcsh" path="res://img/2025-01 window blätter bg 1.png" id="5_kc125"]
-[ext_resource type="Texture2D" uid="uid://d6jrtett040e" path="res://img/greenl-grid.png" id="6_q2ljj"]
+[ext_resource type="Texture2D" uid="uid://dbyctbwurbcsh" path="res://img/decoration/2025-01 window blätter bg 1.png" id="5_kc125"]
+[ext_resource type="Texture2D" uid="uid://d6jrtett040e" path="res://img/GUI/greenl-grid.png" id="6_q2ljj"]
 [ext_resource type="Script" uid="uid://bc2x05ul3jlla" path="res://scripts/ChatTodo/TodoItemGenerator.cs" id="7_bks1y"]
 [ext_resource type="PackedScene" uid="uid://bn4dpk6jstlbq" path="res://ui/gui_scenes/todo_container.tscn" id="8_5x634"]
 

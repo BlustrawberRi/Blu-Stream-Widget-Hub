@@ -119,7 +119,7 @@ public abstract partial class WebsocketClient : Node
     {
         if (answer == "") return;
 
-        GD.PrintRich("\n- " + Json.Stringify(Json.ParseString(answer), "\t"));
+        //GD.PrintRich("\n- " + Json.Stringify(Json.ParseString(answer), "\t"));
 		EmitSignal(SignalName.AnswerReceived, answer);
 
         lastMessage = "";

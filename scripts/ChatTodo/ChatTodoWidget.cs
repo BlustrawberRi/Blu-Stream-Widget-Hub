@@ -29,12 +29,10 @@ public partial class ChatTodoWidget : StreamerWidget
     [Signal]
     public delegate void TodoDoneEventHandler(ChatUser user, string timestamp);
 
-    public override void OnEventDataReceived(string answer)
+    public override void OnEventDataReceived(string source, string type, Dictionary data)
     {
-
-        CommandData command = new CommandData();
-        command.GetDataFromAnswer(answer);
-
+        if (source != "Command") return;
+        CommandData command = new CommandData(data);
 
         GD.Print(command.Name);
         if (command.Name == "Todo")

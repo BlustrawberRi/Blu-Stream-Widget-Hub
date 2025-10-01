@@ -9,6 +9,7 @@ public partial class StreamStat : Resource
         set
         {
             _value = value;
+            if ( this != null) ResourceSaver.Save(this);
             EmitSignal(SignalName.ValueChanged, _value);
             if ( _value >= MaxValue)
                 EmitSignal(SignalName.StatMaxAchieved);

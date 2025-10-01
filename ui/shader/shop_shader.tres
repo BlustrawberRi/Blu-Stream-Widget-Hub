@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://debwktxvnuhke"]
+
+[ext_resource type="Shader" uid="uid://s7brasrtkah2" path="res://ui/shader/pixel_shader.gdshader" id="1_ajn13"]
+
+[resource]
+shader = ExtResource("1_ajn13")
+shader_parameter/pixel_size = 5

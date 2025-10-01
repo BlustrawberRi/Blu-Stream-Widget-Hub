@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 
 public partial class ProductivityStatUpdaterWidget : StreamerWidget
@@ -21,10 +22,9 @@ public partial class ProductivityStatUpdaterWidget : StreamerWidget
     }
 
 
-    public override void OnEventDataReceived(string message)
+    public override void OnEventDataReceived(string source, string type, Dictionary data)
     {
-        CommandData command = new();
-        command.GetDataFromAnswer(message);
+        CommandData command = new(data);
 
         if (command.Name == "Finish Todo")
         {
