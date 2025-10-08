@@ -24,6 +24,7 @@ window/size/viewport_height=1080
 window/size/transparent=true
 window/size/extend_to_title=true
 window/subwindows/embed_subwindows=false
+window/stretch/mode="canvas_items"
 window/per_pixel_transparency/allowed=true
 
 [dotnet]
@@ -39,6 +40,18 @@ naming/scene_name_casing=1
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/sprite-shader-mixer/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://addons/": "gray",
+"res://config/": "gray",
+"res://editor/": "gray",
+"res://img/": "pink",
+"res://scenes/": "teal",
+"res://scripts/": "purple",
+"res://ui/": "teal"
+}
 
 [rendering]
 

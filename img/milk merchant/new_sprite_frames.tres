@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://b3vmjmyx3gqxf"]
+
+[ext_resource type="Texture2D" uid="uid://d0c1ktvtyvjs4" path="res://img/milk merchant/2025 milkmerchant millet angry pour.png" id="1_udpr4"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_udpr4")
+}],
+"loop": true,
+"name": &"upset_milk",
+"speed": 5.0
+}]

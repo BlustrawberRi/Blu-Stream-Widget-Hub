@@ -59,7 +59,7 @@ public partial class StatContainer : HBoxContainer
         UpdateLabelText("Empty");
         if (StatProgressBar != null)
         {
-            StatProgressBar.Indeterminate = true;
+            //StatProgressBar.Indeterminate = true;
         }
     }
 

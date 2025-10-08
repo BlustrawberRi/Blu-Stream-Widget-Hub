@@ -59,11 +59,8 @@ public partial class HydrationStatUpdaterWidget : StreamerWidget
     {
         while (true)
         {
-            GD.Print("waiting");
             var timer = GetTree().CreateTimer(deteriorationInterval);
             await ToSignal(timer, Timer.SignalName.Timeout);
-            GD.Print("THURSTY");
-
             HydrationStat.Value--;
         }
     }
