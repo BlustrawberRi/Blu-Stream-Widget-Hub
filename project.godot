@@ -17,6 +17,10 @@ boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 0)
 boot_splash/fullsize=false
 config/icon="res://icon.svg"
 
+[autoload]
+
+SBClient="*res://scripts/StreamerBot/StreamerbotClient.cs"
+
 [display]
 
 window/size/viewport_width=1920
@@ -39,12 +43,11 @@ naming/scene_name_casing=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/sprite-shader-mixer/plugin.cfg")
+enabled=PackedStringArray()
 
 [file_customization]
 
 folder_colors={
-"res://addons/": "gray",
 "res://config/": "gray",
 "res://editor/": "gray",
 "res://img/": "pink",

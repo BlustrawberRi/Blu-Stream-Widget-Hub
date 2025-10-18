@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 public partial class MilkMerchantWidget : StreamerWidget
 {
     [Export] AnimationPlayer animationPlayer;
+    [Export] Container milkChoicesContainer;
     [Export(PropertyHint.File, "*.json")] string milkDefinitionJson;
 
     public bool IsActive = false;
@@ -41,6 +42,14 @@ public partial class MilkMerchantWidget : StreamerWidget
 
     public override async void _Ready()
     {
+        await LoadMilkChoices();
+        FillMenu();
+
+        base._Ready();
+    }
+
+    private async Task LoadMilkChoices()
+    {
         if (milkDefinitionJson == null)
         {
             GD.PushWarning("No Definition file for the milk merchant was selected.");
@@ -56,13 +65,39 @@ public partial class MilkMerchantWidget : StreamerWidget
             GD.PushWarning("Milk Definition File was empty.");
             await PlayIntro(null, "Sorry, we are currently out of Milk.");
         }
+    }
+    private void FillMenu()
+    {
+        if (milkChoicesContainer == null) {
+            GD.PushWarning("Milk choices can't be displayed, due to missing reference to a GUI container.");
+            return;
+        }
 
-        base._Ready();
+        int i = 1;
+        foreach (var choice in choices){
+            RichTextLabel label = new();
+            label.Text = i +" - "+ choice.Key.ToString();
+            label.Name = choice.Key.ToString() + "Label";
+            label.FitContent = true;
+            label.BbcodeEnabled = true;
+
+            milkChoicesContainer.AddChild(label);
+            i++;
+        }
     }
 
-    public override void OnEventDataReceived(string source, string type, Dictionary data)
+    public override async void OnEventDataReceived(string source, string type, Dictionary data)
     {
-        if (type == "RewardRedemption")
+        if (type == "Raid") 
+        {
+            string userName = data.GetValueOrDefault("from_broadcaster_user_login").ToString();
+            if (userName=="") return;
+            customers.Add(userName);
+
+            if (!IsActive)
+                await Activate();
+        }
+        if (type == "RewardRedemption" )
         {
             RewardRedemption rr = new(data);
             if (rr.RewardName == "Get some Milk")
@@ -70,7 +105,7 @@ public partial class MilkMerchantWidget : StreamerWidget
                 customers.Add(rr.UserLogin);
 
                 if (!IsActive)
-                    PlayIntro(rr.UserLogin);
+                    await Activate();
             }
         }
         if (waitForChoice && type == "ChatMessage")
@@ -84,33 +119,16 @@ public partial class MilkMerchantWidget : StreamerWidget
                 string message = msg_data.GetValueOrDefault("message").ToString();
 
                 OnMilkChoice(message);
-
             }
         }
     }
 
-
-    public async void Deactivate()
-    {
-        Talk("CU :3");
-        await ToSignal(GetTree().CreateTimer(3), SceneTreeTimer.SignalName.Timeout);
-        customers.RemoveAt(0);
-
-        if (customers.Count == 0) {
-            animationPlayer?.Play("turn_off");
-            await ToSignal(animationPlayer, AnimationPlayer.SignalName.AnimationFinished);
-            animationPlayer?.Play("RESET");
-            IsActive = false;
+    public async Task Activate(bool activate = true) {
+        if (!activate)
+        {
+            await Deactivate();
             return;
         }
-
-        await PlayIntro(customers[0]);
-    }
-
-    private async Task PlayIntro(string userName, string alternateGreeting = null)
-    {
-        string greeting = alternateGreeting ?? "Hello " + userName + "! What type of milk would you like?";
-        Talk( greeting);
 
         if (!IsActive)
         {
@@ -119,24 +137,55 @@ public partial class MilkMerchantWidget : StreamerWidget
             animationPlayer?.Play("turn_on");
             await ToSignal(animationPlayer, AnimationPlayer.SignalName.AnimationFinished);
         }
+
+        string customer = customers[0]??"";
+        await PlayIntro(customer);
+    }
+
+    public async Task Deactivate()
+    {
+        animationPlayer?.Play("turn_off");
+        await ToSignal(animationPlayer, AnimationPlayer.SignalName.AnimationFinished);
+        animationPlayer?.Play("RESET");
+        IsActive = false;
+    }
+
+    private async Task PlayIntro(string userName, string alternateGreeting = null)
+    {
+        string greeting = alternateGreeting ?? "Hello " + userName + "! What type of milk would you like?";
+        Talk(greeting);
+        
         animationPlayer?.Play("dialogue_on");
         await ToSignal(animationPlayer, AnimationPlayer.SignalName.AnimationFinished);
 
         waitForChoice = true;
     }
 
+    public async Task PlayOutro()
+    {
+        Talk("CU :3", 2);
+        customers.RemoveAt(0);
+
+        if (customers.Count == 0)
+        {
+            await Deactivate();
+            return;
+        }
+
+        await PlayIntro(customers[0]);
+    }
+
+
     private async void OnMilkChoice(string message)
     {
-
         foreach (var choice in choices)
         {
             GD.Print(choice);
             if (choice.Key.AsString() == message)
             {
                 waitForChoice = false;
-                Talk(choice.Value.AsString());
-                await ToSignal(GetTree().CreateTimer(5), SceneTreeTimer.SignalName.Timeout);
-                Deactivate();
+                await Talk(choice.Value.AsString());
+                PlayOutro();
                 return;
             }
         }
@@ -146,9 +195,10 @@ public partial class MilkMerchantWidget : StreamerWidget
     }
 
 
-    private void Talk(string dialogue)
+    private async Task Talk(string dialogue, int talkTime = 3)
     {
         EmitSignal(SignalName.DialogueChanged, dialogue);
+        await ToSignal(GetTree().CreateTimer(talkTime),SceneTreeTimer.SignalName.Timeout);
         //todo: await text change
     }
 

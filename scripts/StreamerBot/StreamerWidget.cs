@@ -34,8 +34,10 @@ public abstract partial class StreamerWidget : Node
     public override void _Ready()
     {
 
-        if (StreamerbotClient == null) {
-            StreamerbotClient = GetNode<StreamerbotClient>("../%StreamerbotClient");
+        if (StreamerbotClient == null) 
+        {
+            StreamerbotClient = GetNode<StreamerbotClient>("/root/SBClient");
+            //StreamerbotClient = GetNode<StreamerbotClient>("../%StreamerbotClient");
         }
 
         RequestEvents();

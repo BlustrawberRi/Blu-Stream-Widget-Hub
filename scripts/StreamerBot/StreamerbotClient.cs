@@ -4,6 +4,8 @@ using Godot.Collections;
 using System.Linq;
 //using System.Collections.Generic;
 
+
+[GlobalClass, Icon("res://editor/icons/StreamerbotClient.svg")]
 /// <summary>
 /// A websocket client to connect to a streamer.bot instance. 
 /// </summary>

@@ -1,9 +1,14 @@
 {
 	"choices": {
+		"oat": "Nice and earthy :3",
+		"soy": "Solid choice.",
+		"coconut": "Mhhh maybe we should add some cut fruit too...",
 		"strawberry": "A fan favourite!",
 		"vanilla": "Classic but regal.",
 		"chocolate": "Pleasure in liquid form.",
 		"blue": "Blue ice cream has to come from somewhere?",
-		"coffee": "Hope you aren't trying to go to bed anytime soon..."
+		"coffee": "Yeah... it's not a latte.",
+		"tennis ball": "It has chewwy bits, like boba :3",
+		"banana" : "A little bit thicker and sweeter than the other options."
 	}
 }

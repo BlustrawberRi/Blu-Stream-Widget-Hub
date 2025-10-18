@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b7xinwaojw88"]
+[gd_scene load_steps=24 format=3 uid="uid://b7xinwaojw88"]
 
 [ext_resource type="Script" uid="uid://bfi42uj0x3xnu" path="res://scripts/MilkMerchantWidget.cs" id="1_rbg7s"]
 [ext_resource type="Texture2D" uid="uid://dnnjrxr7rmd7d" path="res://img/milk merchant/2025 milkmerchant shop.webp" id="2_ldxjm"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dthvi83dtalih" path="res://scripts/SpeechBubble.cs" id="4_ldxjm"]
 [ext_resource type="Texture2D" uid="uid://dhdpjy5yfehvq" path="res://img/milk merchant/Bubble bg_.png" id="4_rs8qg"]
 [ext_resource type="Texture2D" uid="uid://dcrbp4m63a78y" path="res://img/milk merchant/Bubble border.png" id="5_b233o"]
+[ext_resource type="Script" uid="uid://dp8ie5fb4u0wo" path="res://ui/font/replacer.gd" id="5_plfm7"]
 [ext_resource type="FontFile" uid="uid://bcxwvxum1m5ov" path="res://ui/font/MADE Tommy Soft Regular PERSONAL USE.otf" id="6_plfm7"]
 
 [sub_resource type="Animation" id="Animation_cbqkg"]
@@ -34,7 +35,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -84,7 +85,7 @@ tracks/5/keys = {
 }
 tracks/6/type = "value"
 tracks/6/imported = false
-tracks/6/enabled = false
+tracks/6/enabled = true
 tracks/6/path = NodePath("PanelContainer:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
@@ -242,7 +243,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(960, 540), Vector2(960, 900)]
+"values": [Vector2(0, 0), Vector2(0, 400)]
 }
 
 [sub_resource type="Animation" id="Animation_ldxjm"]
@@ -268,7 +269,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(960, 540), Vector2(960, 540)]
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -306,32 +307,36 @@ _data = {
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rs8qg"]
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_plfm7"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_b233o"]
+script = ExtResource("5_plfm7")
+metadata/_custom_type_script = "uid://dp8ie5fb4u0wo"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b37ef"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b233o"]
 
 [sub_resource type="Animation" id="Animation_l5114"]
 length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale:x")
+tracks/0/path = NodePath("PanelContainer:custom_minimum_size:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(1000, -0.2, 0, 0.2, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale:y")
+tracks/1/path = NodePath("PanelContainer:custom_minimum_size:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(200, -0.2, 0, 0.2, 0),
 "times": PackedFloat32Array(0)
 }
 
@@ -342,23 +347,23 @@ loop_mode = 1
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale:x")
+tracks/0/path = NodePath("PanelContainer:custom_minimum_size:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.1, 0, 0.1, 0, 0.98, -0.1, 0, 0.1, 0, 1, -0.1, 0, 0.1, 0),
+"points": PackedFloat32Array(1000, -0.1, 0, 0.1, 0, 990, -0.1, 0, 0.1, 0, 1000, -0.1, 0, 0.1, 0),
 "times": PackedFloat32Array(0, 0.2, 0.4)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale:y")
+tracks/1/path = NodePath("PanelContainer:custom_minimum_size:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(0.98, -0.1, 0, 0.1, 0, 1, -0.1, 0, 0.1, 0, 0.95, -0.1, 0, 0.1, 0, 1, -0.1, 0, 0.1, 0),
+"points": PackedFloat32Array(198, -0.1, 0, 0.1, 0, 200, -0.1, 0, 0.1, 0, 190, -0.1, 0, 0.1, 0, 198, -0.1, 0, 0.1, 0),
 "times": PackedFloat32Array(0, 0.1, 0.3, 0.466667)
 }
 
@@ -368,7 +373,7 @@ _data = {
 &"wobble": SubResource("Animation_plfm7")
 }
 
-[node name="MilkMerchant" type="Control" node_paths=PackedStringArray("animationPlayer")]
+[node name="MilkMerchant" type="Control" node_paths=PackedStringArray("animationPlayer", "milkChoicesContainer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -379,6 +384,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_rbg7s")
 animationPlayer = NodePath("AnimationPlayer")
+milkChoicesContainer = NodePath("PanelContainer/Choices/VBoxContainer/Panel/MarginContainer/MilkListContainer")
 milkDefinitionJson = "res://config/milk_choices.json"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -410,14 +416,14 @@ texture = ExtResource("3_mcktd")
 centered = false
 
 [node name="Choices" type="PanelContainer" parent="PanelContainer"]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 1251.0
 offset_top = 221.0
-offset_right = 1551.0
-offset_bottom = 670.0
+offset_right = 1501.0
+offset_bottom = 661.0
 pivot_offset = Vector2(150, 200)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_rs8qg")
 
@@ -438,28 +444,17 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/Choices/VBoxContainer/Panel/MarginContainer/MilkListContainer"]
-layout_mode = 2
-bbcode_enabled = true
-text = "1 - strawberry"
-fit_content = true
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="PanelContainer/Choices/VBoxContainer/Panel/MarginContainer/MilkListContainer"]
-layout_mode = 2
-bbcode_enabled = true
-text = "2 - oat"
-fit_content = true
-
 [node name="FuckedUpMilkLabel" type="RichTextLabel" parent="PanelContainer/Choices/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_b233o")
 theme_override_colors/default_color = Color(0.890196, 0.890196, 0.835294, 1)
 bbcode_enabled = true
-text = "[fade length=20][shake level=30]? - ʞ̴̮̈́l̵͓͘ĭ̴̪m̵͆ͅ [/shake] [/fade]"
+text = "[fade length=20][shake level=30][replacer prim_repl=?? speed=0.6]13[/replacer] - [replacer]ʞ̴̮̈́l̵͓͘ĭ̴̪m̵͆ͅ[/replacer] [/shake] [/fade]"
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_plfm7")]
+custom_effects = [SubResource("RichTextEffect_b233o")]
 
-[node name="SpeechBubble" type="PanelContainer" parent="PanelContainer"]
+[node name="SpeechBubble" type="PanelContainer" parent="PanelContainer" node_paths=PackedStringArray("textLabel")]
+visible = false
 custom_minimum_size = Vector2(1000, 200)
 layout_mode = 2
 offset_left = 470.0
@@ -470,17 +465,25 @@ scale = Vector2(0.996664, 0.997973)
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxEmpty_b37ef")
 script = ExtResource("4_ldxjm")
+textLabel = NodePath("MarginContainer/RichTextLabel")
 
-[node name="BubbleSpout" type="Sprite2D" parent="PanelContainer/SpeechBubble"]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/SpeechBubble"]
+custom_minimum_size = Vector2(999.176, 198.343)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_b233o")
+
+[node name="BubbleSpout" type="Sprite2D" parent="PanelContainer/SpeechBubble/PanelContainer"]
 position = Vector2(516.724, 112.227)
 texture = ExtResource("3_ldxjm")
 
-[node name="Bubble BG" type="NinePatchRect" parent="PanelContainer/SpeechBubble"]
+[node name="Bubble BG" type="NinePatchRect" parent="PanelContainer/SpeechBubble/PanelContainer"]
 layout_mode = 2
 texture = ExtResource("4_rs8qg")
 region_rect = Rect2(-0.254185, -0.101532, 977.627, 218.051)
 
-[node name="Bubble Lines" type="NinePatchRect" parent="PanelContainer/SpeechBubble"]
+[node name="Bubble Lines" type="NinePatchRect" parent="PanelContainer/SpeechBubble/PanelContainer"]
 layout_mode = 2
 texture = ExtResource("5_b233o")
 region_rect = Rect2(-0.254185, -0.101532, 977.627, 218.051)
@@ -508,6 +511,8 @@ reset_on_save = false
 libraries = {
 &"": SubResource("AnimationLibrary_d7lki")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="DialogueChanged" from="." to="PanelContainer/SpeechBubble/MarginContainer/RichTextLabel" method="set_text"]
 [connection signal="ready" from="PanelContainer/SpeechBubble" to="PanelContainer/SpeechBubble/BubbleAnimator" method="play" binds= ["wobble"]]
