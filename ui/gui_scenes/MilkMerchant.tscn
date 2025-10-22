@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b7xinwaojw88"]
+[gd_scene load_steps=25 format=3 uid="uid://b7xinwaojw88"]
 
 [ext_resource type="Script" uid="uid://bfi42uj0x3xnu" path="res://scripts/MilkMerchantWidget.cs" id="1_rbg7s"]
 [ext_resource type="Texture2D" uid="uid://dnnjrxr7rmd7d" path="res://img/milk merchant/2025 milkmerchant shop.webp" id="2_ldxjm"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dcrbp4m63a78y" path="res://img/milk merchant/Bubble border.png" id="5_b233o"]
 [ext_resource type="Script" uid="uid://dp8ie5fb4u0wo" path="res://ui/font/replacer.gd" id="5_plfm7"]
 [ext_resource type="FontFile" uid="uid://bcxwvxum1m5ov" path="res://ui/font/MADE Tommy Soft Regular PERSONAL USE.otf" id="6_plfm7"]
+[ext_resource type="AudioStream" uid="uid://c0pp6i2doxkv7" path="res://audio/2025-09 stream milk merchant song v0.2b.ogg" id="11_plfm7"]
 
 [sub_resource type="Animation" id="Animation_cbqkg"]
 length = 0.01
@@ -375,7 +376,6 @@ _data = {
 
 [node name="MilkMerchant" type="Control" node_paths=PackedStringArray("animationPlayer", "milkChoicesContainer")]
 layout_mode = 3
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -401,7 +401,6 @@ offset_right = -2270.0
 offset_bottom = -1080.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(960, 540)
 
 [node name="Shop" type="Sprite2D" parent="PanelContainer"]
 position = Vector2(495, 141)
@@ -445,6 +444,7 @@ layout_mode = 2
 size_flags_vertical = 0
 
 [node name="FuckedUpMilkLabel" type="RichTextLabel" parent="PanelContainer/Choices/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("4_b233o")
 theme_override_colors/default_color = Color(0.890196, 0.890196, 0.835294, 1)
@@ -468,7 +468,7 @@ script = ExtResource("4_ldxjm")
 textLabel = NodePath("MarginContainer/RichTextLabel")
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/SpeechBubble"]
-custom_minimum_size = Vector2(999.176, 198.343)
+custom_minimum_size = Vector2(999.624, 198.105)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -513,6 +513,7 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_plfm7")
 
 [connection signal="DialogueChanged" from="." to="PanelContainer/SpeechBubble/MarginContainer/RichTextLabel" method="set_text"]
 [connection signal="ready" from="PanelContainer/SpeechBubble" to="PanelContainer/SpeechBubble/BubbleAnimator" method="play" binds= ["wobble"]]

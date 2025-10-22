@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c0pp6i2doxkv7"
+path="res://.godot/imported/2025-09 stream milk merchant song v0.2b.ogg-bf93a167b4eb46afac96cd48f84a19bf.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/2025-09 stream milk merchant song v0.2b.ogg"
+dest_files=["res://.godot/imported/2025-09 stream milk merchant song v0.2b.ogg-bf93a167b4eb46afac96cd48f84a19bf.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=120.0
+beat_count=0
+bar_beats=4

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=17 format=3 uid="uid://blwjr54f6akyw"]
+[gd_resource type="Theme" load_steps=19 format=3 uid="uid://blwjr54f6akyw"]
 
 [ext_resource type="FontFile" uid="uid://bcxwvxum1m5ov" path="res://ui/font/MADE Tommy Soft Regular PERSONAL USE.otf" id="1_cwubt"]
 [ext_resource type="StyleBox" uid="uid://bpppsws15uphp" path="res://ui/productivity/productivity_window_button_style.tres" id="2_cwubt"]
@@ -7,20 +7,24 @@
 [ext_resource type="Texture2D" uid="uid://ba82aidhu5mj3" path="res://img/GUI/2025-05 todo window toggle.png" id="3_vlsko"]
 [ext_resource type="FontFile" uid="uid://cd733hmafgxp4" path="res://ui/font/MADE Tommy Soft Medium PERSONAL USE.otf" id="4_3wc2m"]
 [ext_resource type="StyleBox" uid="uid://bw7atxwpucmx5" path="res://ui/productivity/productivity_window_background_gradient_style.tres" id="4_vlsko"]
-[ext_resource type="Texture2D" uid="uid://qcs0ranbw515" path="res://img/GUI/2025-05 pomodoro bar empty.png" id="7_57lls"]
-[ext_resource type="Texture2D" uid="uid://dwyi0xujkyyh6" path="res://img/GUI/2025-05 pomodoro bar inner.png" id="8_or0id"]
+[ext_resource type="Texture2D" uid="uid://cfccxkumy0bck" path="res://img/GUI/2025-05 pomodoro progress bar.png" id="7_d1w4d"]
+[ext_resource type="Texture2D" uid="uid://cq4v6rpn27hc6" path="res://img/GUI/2025-05 pomodoro progress bar fill.png" id="8_ud1f4"]
+[ext_resource type="StyleBox" uid="uid://c0jbdmbvg5633" path="res://ui/productivity/productivity_progressbar_bg.tres" id="9_d1w4d"]
+[ext_resource type="StyleBox" uid="uid://cylr3u7k26v7a" path="res://ui/productivity/productivity_progressbar_fill.tres" id="10_ud1f4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_57lls"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d1w4d"]
-texture = ExtResource("7_57lls")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nhfn6"]
+texture = ExtResource("7_d1w4d")
 texture_margin_left = 15.0
 texture_margin_right = 15.0
+modulate_color = Color(0.996078, 0.8, 0.705882, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ud1f4"]
-texture = ExtResource("8_or0id")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fypqh"]
+texture = ExtResource("8_ud1f4")
 texture_margin_left = 15.0
 texture_margin_right = 15.0
+modulate_color = Color(1, 0.596078, 0.415686, 1)
 
 [sub_resource type="FontVariation" id="FontVariation_cwubt"]
 base_font = ExtResource("4_3wc2m")
@@ -79,8 +83,11 @@ MarginContainer/constants/margin_right = 20
 MarginContainer/constants/margin_top = 10
 Panel/styles/panel = ExtResource("3_cwubt")
 PanelContainer/styles/panel = ExtResource("4_vlsko")
-ProgressBar/styles/background = SubResource("StyleBoxTexture_d1w4d")
-ProgressBar/styles/fill = SubResource("StyleBoxTexture_ud1f4")
+PomodoroProgressBar/base_type = &"ProgressBar"
+PomodoroProgressBar/styles/background = SubResource("StyleBoxTexture_nhfn6")
+PomodoroProgressBar/styles/fill = SubResource("StyleBoxTexture_fypqh")
+ProgressBar/styles/background = ExtResource("9_d1w4d")
+ProgressBar/styles/fill = ExtResource("10_ud1f4")
 RichTextLabel/colors/default_color = Color(0.305882, 0.337255, 0.329412, 1)
 RichTextLabel/colors/selection_color = Color(0.684488, 0.566388, 0.104951, 0.8)
 RichTextLabel/font_sizes/bold_font_size = 20

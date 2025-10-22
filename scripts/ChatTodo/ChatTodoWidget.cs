@@ -15,13 +15,15 @@ using System.ComponentModel;
 /// </remarks>
 public partial class ChatTodoWidget : StreamerWidget
 {
-    public override Enum[] StreamerbotEventRequests {
+    public override Enum[] StreamerbotEventRequests
+    {
         get
         {
             return new Enum[]{
-                    StreamerbotEventTypes.Command.Triggered};
+                    StreamerbotEventTypes.Command.Triggered,
+                    StreamerbotEventTypes.Twitch.RewardRedemption};
         }
-        set{}
+        set { }
     }
 
     [Signal]
@@ -31,41 +33,54 @@ public partial class ChatTodoWidget : StreamerWidget
 
     public override void OnEventDataReceived(string source, string type, Dictionary data)
     {
-        if (source != "Command") return;
-        CommandData command = new CommandData(data);
+        ChatUser user = new();
+        string cmd = "";
+        string msg = "";
 
-        GD.Print(command.Name);
-        if (command.Name == "Todo")
+        if (source == "Command")
         {
-            OnNewTodoArrived(command);
+            CommandData command = new CommandData(data);
+            msg = command.Message;
+            cmd = command.Name;
+            user = command.User;
+
         }
-        else if (command.Name == "Finish Todo")
-            MarkTodoDone(command);
+        else if (type == "RewardRedemption")
+        {
+            RewardRedemption red = new RewardRedemption(data);
+            cmd = red.RewardName;
+            msg = red.RawImput;
+            user.Display = red.UserName;
+            user.Id = red.UserId;
+        }
 
-    }
 
-    private void OnNewTodoArrived ( CommandData command)
-    {
-        var todo = command.Message;
-        if (todo == "") return;
 
-        var user = command.User;
-
-        AddNewTodo(todo, user);
-    }
+        if (cmd == "Add Todo") 
+            OnNewTodoArrived(msg, user);
     
-    public void AddNewTodo(String todo, ChatUser user)
-    {
-        GD.PrintRich("Chat Todo Widget: [wave]New Todo from [b]"+user.Display+"[/b]: "+todo+"[/wave]");
-        EmitSignal(SignalName.TodoReceived, todo, user, Time.GetDatetimeStringFromSystem());
-    }
+        else if (cmd == "Finish Todo")
+            MarkTodoDone(user);
 
-    private void MarkTodoDone(CommandData command)
-    {
-        var user = command.User;
-        if (user == null) return;
-        EmitSignal(SignalName.TodoDone, user);
-        GD.PrintRich("[rainbow]TODO DONE[/rainbow]");
-    }
+}
+
+private void OnNewTodoArrived(String todo, ChatUser user)
+{
+    if (todo == "") return;
+    AddNewTodo(todo, user);
+}
+
+public void AddNewTodo(String todo, ChatUser user)
+{
+    GD.PrintRich("Chat Todo Widget: [wave]New Todo from [b]" + user.Display + "[/b]: " + todo + "[/wave]");
+    EmitSignal(SignalName.TodoReceived, todo, user, Time.GetDatetimeStringFromSystem());
+}
+
+private void MarkTodoDone(ChatUser user)
+{
+    if (user == null) return;
+    EmitSignal(SignalName.TodoDone, user);
+    GD.PrintRich("[rainbow]TODO DONE[/rainbow]");
+}
 
 }

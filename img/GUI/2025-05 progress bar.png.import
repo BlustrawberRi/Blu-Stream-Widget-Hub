@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwyi0xujkyyh6"
-path="res://.godot/imported/2025-05 pomodoro bar inner.png-6b06388b98bf1d9a2888bd9f6dff7510.ctex"
+uid="uid://dtrfl5rjmbcml"
+path="res://.godot/imported/2025-05 progress bar.png-08d8f2763e3368aaa9d1d08fa6870496.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://img/GUI/2025-05 pomodoro bar inner.png"
-dest_files=["res://.godot/imported/2025-05 pomodoro bar inner.png-6b06388b98bf1d9a2888bd9f6dff7510.ctex"]
+source_file="res://img/GUI/2025-05 progress bar.png"
+dest_files=["res://.godot/imported/2025-05 progress bar.png-08d8f2763e3368aaa9d1d08fa6870496.ctex"]
 
 [params]
 
