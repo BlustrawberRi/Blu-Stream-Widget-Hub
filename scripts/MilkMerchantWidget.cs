@@ -4,8 +4,10 @@ using Godot.NativeInterop;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -178,19 +180,32 @@ public partial class MilkMerchantWidget : StreamerWidget
 
     private async void OnMilkChoice(string message)
     {
+        string user_choice = "";
+        // numbers to right choice
         foreach (var choice in choices)
         {
-            GD.Print(choice);
-            if (choice.Key.AsString() == message)
+            if (Regex.Match(message, choice.Key.AsString()).Success)
             {
-                waitForChoice = false;
-                await Talk(choice.Value.AsString());
-                PlayOutro();
-                return;
+                user_choice = choice.Key.AsString();
+                break;
             }
         }
+        if (message.IsValidInt())
+        {
+            int choice_num = message.ToInt();
+            user_choice = choices.Keys.ElementAt(choice_num - 1).AsString();
+        }
 
-        Talk("Wasn't a choice, buddy, please select from the menu...");
+        try
+        {
+            string answer = choices[user_choice].AsString();
+            await Talk(answer);
+            PlayOutro();
+            return;
+        } catch (Exception)
+        {
+            Talk("Wasn't a choice, buddy, please select from the menu...");
+        }
 
     }
 

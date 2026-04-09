@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://b3fsdrndp2sf8" path="res://ui/gui_scenes/ChatTodoWindow.tscn" id="4_byvgc"]
 [ext_resource type="PackedScene" uid="uid://1n5mk6jgse5l" path="res://ui/gui_scenes/StatWindow.tscn" id="4_u6lee"]
 [ext_resource type="Script" uid="uid://fmcqa4gde4wu" path="res://scripts/Stats/EnergyStatUpdaterWidget.cs" id="5_wuwu2"]
-[ext_resource type="Resource" path="res://stats/Energy Stat.tres" id="6_rghmn"]
-[ext_resource type="Resource" uid="uid://kui4scw2yyjx" path="res://stats/Hydration Stat.tres" id="7_1ua1e"]
+[ext_resource type="Resource" uid="uid://d0svdrbvis8cr" path="res://stats/Energy Stat.tres" id="6_rghmn"]
+[ext_resource type="Resource" uid="uid://c0xh5rd6k1qfc" path="res://stats/Hydration Stat.tres" id="7_1ua1e"]
 [ext_resource type="Script" uid="uid://bno4hhcbm7g6p" path="res://scripts/Stats/HydrationStatUpdaterWidget.cs" id="7_rghmn"]
 [ext_resource type="Script" uid="uid://kxcpvedqwfr4" path="res://scripts/Stats/ProductivityStatUpdaterWidget.cs" id="8_hch00"]
 [ext_resource type="Resource" uid="uid://dk4r8f2yn0klb" path="res://stats/Productivity_Stat.tres" id="9_onvwf"]
@@ -48,7 +48,7 @@ visible = false
 z_index = 100
 z_as_relative = false
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 15
 
 [node name="PomodoroWindow" parent="GUI" instance=ExtResource("2_byvgc")]
 visible = false
