@@ -163,7 +163,7 @@ public partial class MilkMerchantWidget : StreamerWidget
         waitForChoice = true;
     }
 
-    public async Task PlayOutro()
+    public async void PlayOutro()
     {
         Talk("CU :3", 2);
         customers.RemoveAt(0);

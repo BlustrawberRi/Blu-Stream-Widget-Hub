@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_1msgp")
 StatName = "Energy"
-Value = 99
+Value = 100
 MinValue = 0
 MaxValue = 100
 StopAtMaxValue = false
