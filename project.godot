@@ -11,6 +11,8 @@ config_version=5
 [application]
 
 config/name="Stream Widget Hub"
+config/description="Interactive Widgets that interact with streamer.bot events."
+config/version="0.1.0"
 run/main_scene="uid://ca4o52efp0j5g"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 0)

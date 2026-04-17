@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dk4r8f2yn0klb"]
+[gd_resource type="Resource" script_class="StreamStat" load_steps=2 format=3 uid="uid://b45bc1v6qurdj"]
 
 [ext_resource type="Script" uid="uid://b7k2brp34c2st" path="res://scripts/Stats/StreamStat.cs" id="1_8cmjo"]
 
@@ -6,5 +6,8 @@
 resource_name = "Productivity"
 script = ExtResource("1_8cmjo")
 StatName = "Productivity"
-Value = 0
-MaxValue = 10
+Value = 10
+MinValue = 0
+MaxValue = 20
+StopAtMaxValue = false
+saveAcrossSessions = true

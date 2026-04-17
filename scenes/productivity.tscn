@@ -1,20 +1,24 @@
-[gd_scene load_steps=12 format=3 uid="uid://ca4o52efp0j5g"]
+[gd_scene load_steps=15 format=3 uid="uid://ca4o52efp0j5g"]
 
+[ext_resource type="Script" uid="uid://cq5u3p6i0tspt" path="res://scenes/StatLoader.cs" id="1_ap5u5"]
+[ext_resource type="Script" uid="uid://cxpj825dy4rxw" path="res://scenes/Productivity.cs" id="1_dgpwa"]
 [ext_resource type="Script" uid="uid://d0aju1fflv1e" path="res://scripts/StreamerBot/StreamerbotClient.cs" id="1_s2cfq"]
 [ext_resource type="PackedScene" uid="uid://de5m6cjd0lnj1" path="res://ui/gui_scenes/PomodoroWindow.tscn" id="2_byvgc"]
 [ext_resource type="PackedScene" uid="uid://b3fsdrndp2sf8" path="res://ui/gui_scenes/ChatTodoWindow.tscn" id="4_byvgc"]
 [ext_resource type="PackedScene" uid="uid://1n5mk6jgse5l" path="res://ui/gui_scenes/StatWindow.tscn" id="4_u6lee"]
 [ext_resource type="Script" uid="uid://fmcqa4gde4wu" path="res://scripts/Stats/EnergyStatUpdaterWidget.cs" id="5_wuwu2"]
-[ext_resource type="Resource" uid="uid://csu1c4x7yhik5" path="res://stats/Energy Stat.tres" id="6_rghmn"]
-[ext_resource type="Resource" uid="uid://s6wuoj05blqh" path="res://stats/Hydration Stat.tres" id="7_1ua1e"]
+[ext_resource type="Resource" uid="uid://bla3mfkbxd5og" path="res://stats/Energy Stat.tres" id="6_rghmn"]
+[ext_resource type="Resource" uid="uid://cl3r3lcos0oo2" path="res://stats/Hydration Stat.tres" id="7_1ua1e"]
 [ext_resource type="Script" uid="uid://bno4hhcbm7g6p" path="res://scripts/Stats/HydrationStatUpdaterWidget.cs" id="7_rghmn"]
+[ext_resource type="Script" uid="uid://ixswpc1blcxt" path="res://scenes/StatManager.cs" id="7_wd3be"]
 [ext_resource type="Script" uid="uid://kxcpvedqwfr4" path="res://scripts/Stats/ProductivityStatUpdaterWidget.cs" id="8_hch00"]
-[ext_resource type="Resource" uid="uid://dk4r8f2yn0klb" path="res://stats/Productivity_Stat.tres" id="9_onvwf"]
+[ext_resource type="Resource" uid="uid://b45bc1v6qurdj" path="res://stats/Productivity_Stat.tres" id="9_onvwf"]
 [ext_resource type="PackedScene" uid="uid://b7xinwaojw88" path="res://ui/gui_scenes/MilkMerchant.tscn" id="11_1ua1e"]
 
 [node name="Productivity" type="Node2D"]
+script = ExtResource("1_dgpwa")
 
-[node name="Control" type="Control" parent="."]
+[node name="StatLoader" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,9 +29,13 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_ap5u5")
 
 [node name="StreamerbotClient" type="Node" parent="."]
 unique_name_in_owner = true
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 1
 script = ExtResource("1_s2cfq")
 metadata/_custom_type_script = "uid://d0aju1fflv1e"
 
@@ -44,11 +52,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MilkMerchant" parent="GUI" instance=ExtResource("11_1ua1e")]
-visible = false
 z_index = 100
 z_as_relative = false
 layout_mode = 1
-anchors_preset = 15
 
 [node name="PomodoroWindow" parent="GUI" instance=ExtResource("2_byvgc")]
 visible = false
@@ -90,14 +96,21 @@ grow_horizontal = 1
 grow_vertical = 1
 windowTitleString = "Stats"
 
-[node name="EnergyWidget" type="Node" parent="."]
+[node name="Stat Manager" type="Node" parent="."]
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 1
+script = ExtResource("7_wd3be")
+Stats = Array[Object]([ExtResource("6_rghmn"), ExtResource("7_1ua1e"), ExtResource("9_onvwf")])
+
+[node name="EnergyWidget" type="Node" parent="Stat Manager"]
 script = ExtResource("5_wuwu2")
 EnergyStat = ExtResource("6_rghmn")
 
-[node name="HydrationWidget" type="Node" parent="."]
+[node name="HydrationWidget" type="Node" parent="Stat Manager"]
 script = ExtResource("7_rghmn")
 HydrationStat = ExtResource("7_1ua1e")
 
-[node name="ProductivityStartUpdaterWidget" type="Node" parent="."]
+[node name="ProductivityStartUpdaterWidget" type="Node" parent="Stat Manager"]
 script = ExtResource("8_hch00")
 productivityStat = ExtResource("9_onvwf")
