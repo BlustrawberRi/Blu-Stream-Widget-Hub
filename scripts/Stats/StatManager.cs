@@ -16,7 +16,7 @@ public partial class StatManager : Node
 
 	public override void _ExitTree()
 	{
-		SaveStats();
+		//SaveStats();
 		base._ExitTree();
 	}
 
@@ -37,6 +37,8 @@ public partial class StatManager : Node
 		{
 			if (!Stat.saveAcrossSessions) continue;
 
+
+			GD.Print("Loading " + Stat.StatName);
 			string statSavePath = StatSaveDir + Stat.StatName + ".tres";
 			if (!ResourceLoader.Exists(statSavePath, "StreamStat"))
 			{
@@ -60,6 +62,7 @@ public partial class StatManager : Node
 		{
 			if (!Stat.saveAcrossSessions) continue;
 
+			GD.Print("Saving " + Stat.StatName);
 			string statSavePath = StatSaveDir + Stat.StatName + ".tres";
 			ResourceSaver.Save(Stat, statSavePath);
 		}

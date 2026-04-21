@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://c2rdpl27dpmdu" path="res://ui/gui_scenes/base_dragable_window.tscn" id="1_hmvkc"]
 [ext_resource type="PackedScene" uid="uid://d0s1khrgscwuu" path="res://ui/gui_scenes/stat_container.tscn" id="2_wlpgd"]
-[ext_resource type="Resource" uid="uid://bla3mfkbxd5og" path="res://stats/Energy Stat.tres" id="3_luse6"]
-[ext_resource type="Resource" uid="uid://cl3r3lcos0oo2" path="res://stats/Hydration Stat.tres" id="4_y658t"]
+[ext_resource type="Resource" uid="uid://cuyuuvtmgxbvk" path="res://stats/Energy Stat.tres" id="3_luse6"]
+[ext_resource type="Resource" uid="uid://ci5etqgxd7dp3" path="res://stats/Hydration Stat.tres" id="4_y658t"]
 [ext_resource type="Resource" uid="uid://b45bc1v6qurdj" path="res://stats/Productivity_Stat.tres" id="5_cefc8"]
 
 [node name="StatWindow" instance=ExtResource("1_hmvkc")]
