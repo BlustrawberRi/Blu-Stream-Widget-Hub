@@ -5,7 +5,7 @@ public partial class StatManager : Node
 {
 	[Export] public StreamStat[] Stats;
 
-	private static string StatSaveDir => "user://stats/"; //make this global
+	private static string StatSaveDir => "stats"; //make this global
 
    
     public override void _EnterTree()
@@ -38,8 +38,8 @@ public partial class StatManager : Node
 			if (!Stat.saveAcrossSessions) continue;
 
 
-			GD.Print("Loading " + Stat.StatName);
-			string statSavePath = StatSaveDir + Stat.StatName + ".tres";
+			string statSavePath = "user://" + StatSaveDir +"\\"+ Stat.StatName + ".tres";
+			GD.Print("Loading " + statSavePath);
 			if (!ResourceLoader.Exists(statSavePath, "StreamStat"))
 			{
 				GD.Print("There is no data for Stat " + Stat.StatName + " saved.");
@@ -57,13 +57,20 @@ public partial class StatManager : Node
 	}
 	public void SaveStats()
 	{
+		
+		var dir = DirAccess.Open("user://");
+		if (!dir.DirExists(StatSaveDir))
+        {
+			dir.MakeDir(StatSaveDir);
+        }
+        
 		GD.Print("Saving Stats...");
 		foreach (var Stat in Stats)
 		{
 			if (!Stat.saveAcrossSessions) continue;
 
 			GD.Print("Saving " + Stat.StatName);
-			string statSavePath = StatSaveDir + Stat.StatName + ".tres";
+			string statSavePath = "user://" + StatSaveDir + "\\"+ Stat.StatName + ".tres";
 			ResourceSaver.Save(Stat, statSavePath);
 		}
     }
