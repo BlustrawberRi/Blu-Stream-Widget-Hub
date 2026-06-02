@@ -376,7 +376,6 @@ _data = {
 }
 
 [node name="MilkMerchant" type="Control" node_paths=PackedStringArray("animationPlayer", "milkChoicesContainer")]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -479,7 +478,7 @@ script = ExtResource("4_ldxjm")
 textLabel = NodePath("MarginContainer/RichTextLabel")
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/SpeechBubble"]
-custom_minimum_size = Vector2(998.038, 199.861)
+custom_minimum_size = Vector2(991.065, 198.947)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://clcxwuwfyi2tm"]
+
+[ext_resource type="Texture2D" uid="uid://b3w6otdxx2ylx" path="res://img/productivity goal bar/2026-04 productivity bar back.webp" id="1_3bx7c"]
+[ext_resource type="Texture2D" uid="uid://b1xvs1ubyomsh" path="res://img/productivity goal bar/2026-04 productivity bar outside.webp" id="2_xeq06"]
+[ext_resource type="Texture2D" uid="uid://dn5nsl80ctjm5" path="res://img/productivity goal bar/2026-04 productivity bar inside.webp" id="3_ljn7y"]
+[ext_resource type="Texture2D" uid="uid://dcbgoowmjk1bb" path="res://img/productivity goal bar/2026-04 productivity_bar_back.png" id="4_gx7qi"]
+[ext_resource type="Texture2D" uid="uid://dsgfr1nthgp5m" path="res://img/productivity goal bar/2026-04 productivity bar inside mask.webp" id="5_4kjwo"]
+[ext_resource type="Texture2D" uid="uid://tlmxsqxb6c6k" path="res://img/productivity goal bar/2026-04 productivity_bar_indicator.png" id="6_xeq06"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 265.0
+offset_bottom = 633.0
+value = 71.0
+fill_mode = 3
+nine_patch_stretch = true
+stretch_margin_left = 58
+texture_under = ExtResource("1_3bx7c")
+texture_over = ExtResource("2_xeq06")
+texture_progress = ExtResource("3_ljn7y")
+texture_progress_offset = Vector2(114.385, 0)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 74.0
+offset_right = 56.0
+offset_bottom = 78.0
+value = 94.51
+fill_mode = 3
+show_percentage = false
+
+[node name="ProductivityBar Back" type="Sprite2D" parent="ProgressBar"]
+position = Vector2(94, 301)
+texture = ExtResource("4_gx7qi")
+
+[node name="ProductivityBar Inside" type="Sprite2D" parent="ProgressBar"]
+clip_children = 1
+position = Vector2(100, 258)
+texture = ExtResource("5_4kjwo")
+
+[node name="ProductivityBar Progress" type="Sprite2D" parent="ProgressBar/ProductivityBar Inside"]
+clip_children = 2
+position = Vector2(0, 7)
+texture = ExtResource("3_ljn7y")
+
+[node name="2026-04ProductivityBarIndicator" type="Sprite2D" parent="ProgressBar/ProductivityBar Inside"]
+position = Vector2(-59, -256)
+texture = ExtResource("6_xeq06")
+
+[node name="ProductivityBar Outside" type="Sprite2D" parent="ProgressBar"]
+position = Vector2(95, 297)
+texture = ExtResource("2_xeq06")
+
+[node name="2026-04ProductivityBarIndicator" type="Sprite2D" parent="."]
+position = Vector2(83, 74)
+texture = ExtResource("6_xeq06")
+
+[node name="2026-04ProductivityBarIndicator" type="Sprite2D" parent="2026-04ProductivityBarIndicator"]
+position = Vector2(0, 225)
+texture = ExtResource("6_xeq06")
