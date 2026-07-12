@@ -478,7 +478,7 @@ script = ExtResource("4_ldxjm")
 textLabel = NodePath("MarginContainer/RichTextLabel")
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/SpeechBubble"]
-custom_minimum_size = Vector2(991.065, 198.947)
+custom_minimum_size = Vector2(996.967, 190.132)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
