@@ -1,9 +1,27 @@
 using Godot;
 using System;
+using System.Runtime.CompilerServices;
 
 [Tool, GlobalClass]
 public partial class ShiftingTextureProgressBar : Godot.Range
 {
+	public enum FillMode
+	{
+		BottomToTop, TopToBottom, LeftToRight, RightToLeft
+	}
+	[Export]
+	public FillMode fillMode
+	{
+		get => _fillMode;
+		set
+		{
+			_fillMode = value;
+			// NotifyPropertyListChanged();
+			_UpdateProgressBar();
+		}
+	}
+
+	private FillMode _fillMode = FillMode.BottomToTop;
 	[ExportGroup("Textures")]
 	[Export] public Texture2D TextureProgressMask
     {
@@ -14,7 +32,6 @@ public partial class ShiftingTextureProgressBar : Godot.Range
 			_OnTextureSet(_progressMaskNode, value);
 		}
     }
-
     [Export] public Texture2D TextureProgressFill
     {
 		get => _textureProgressFill;
@@ -25,51 +42,80 @@ public partial class ShiftingTextureProgressBar : Godot.Range
 		}
 	}
 
-
     [Export] public Texture2D TextureUnder;
 	[Export] public Texture2D TextureOver;
 
     private Texture2D _textureProgressMask;
     private Texture2D _textureProgressFill;
-	private Sprite2D _progressMaskNode = new();
-	private Sprite2D _progressNode = new();
+	private NinePatchRect _progressMaskNode = new();
+	private NinePatchRect _progressNode = new();
 
 	public override void _Ready()
 	{
-		ValueChanged += _ValueChanged;
+		
+		Changed += _UpdateProgressBar;
+		ValueChanged += _UpdateProgressBar;
 
-		_progressMaskNode.Texture = _textureProgressMask;
-		_progressMaskNode.ClipChildren = ClipChildrenMode.Only;
-		this.AddChild(_progressMaskNode);
-		_progressMaskNode.Owner = this;
-
-		_progressNode.Texture = _textureProgressFill;
-		_progressMaskNode.AddChild(_progressNode);
-
+		_CreateTextureNodes();
+		_UpdateProgressBar();
 	}
-
 	
-
-    private void _ValueChanged(double newValue)
+    public override void _ExitTree()
 	{
-		//move
-		var maskTransform = _progressMaskNode.GlobalTransform;
-		float transformDelta = (float)(_progressMaskNode.GetRect().Size.Y / (MaxValue - MinValue));
-		_progressNode.GlobalTransform = maskTransform.Translated(new Vector2(0, -(float)newValue*transformDelta + _progressMaskNode.GetRect().Size.Y)); 
+		Changed -= _UpdateProgressBar;
+		ValueChanged -= _UpdateProgressBar;
+		base._ExitTree();
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-	{
+
+    private void _CreateTextureNodes()
+    {
+        _progressMaskNode.Texture = _textureProgressMask;
+        _progressMaskNode.ClipChildren = ClipChildrenMode.Only;
+        this.AddChild(_progressMaskNode);
+		_progressMaskNode.Owner = this;
+		_progressMaskNode.SetAnchorsPreset(LayoutPreset.FullRect, true);
+
+        _progressNode.Texture = _textureProgressFill;
+        _progressMaskNode.AddChild(_progressNode);
+		_progressNode.SetAnchorsPreset(LayoutPreset.FullRect, true);
 	}
-	private void _OnTextureSet(Sprite2D _textureNode, Texture2D texture)
+
+	private void _UpdateProgressBar()
+    {
+		_UpdateProgressBar(Value);
+    }
+	private void _UpdateProgressBar(double newValue)
+	{
+		//move
+		Vector2 stepDelta = _progressMaskNode.GetRect().Size / (float)(MaxValue - MinValue);
+		Vector2 modeProduct = new();
+
+		switch (fillMode)
+		{
+			case FillMode.TopToBottom:
+				modeProduct = new Vector2(0, -1);
+				break;
+			case FillMode.BottomToTop:
+				modeProduct = new Vector2(0, 1);
+				break;
+			case FillMode.LeftToRight:
+				modeProduct = new Vector2(-1, 0);
+				break;
+			case FillMode.RightToLeft:
+				modeProduct = new Vector2(1, 0);
+				break;
+		}
+
+		_progressNode.Position = (_progressMaskNode.GetRect().Size-(float)newValue*stepDelta)*modeProduct;
+	}
+
+	private void _OnTextureSet(NinePatchRect _textureNode, Texture2D texture)
 	{
 		GD.Print(_textureNode);
 		if (texture == null)
 		{
-			// _textureNode?.Texture = null;
 			_textureNode?.Hide();
-			// _textureNode?.Dispose();
 			_textureNode = null;
 			return;
 		}
@@ -79,5 +125,6 @@ public partial class ShiftingTextureProgressBar : Godot.Range
 		_textureNode.Texture = texture;
 		_textureNode.Show();
 	}
+
 
 }

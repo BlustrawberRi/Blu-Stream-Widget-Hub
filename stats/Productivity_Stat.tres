@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StreamStat" load_steps=2 format=3 uid="uid://b503yxlbuyso7"]
+[gd_resource type="Resource" script_class="StreamStat" load_steps=2 format=3 uid="uid://3binlp2kjj6y"]
 
 [ext_resource type="Script" uid="uid://b7k2brp34c2st" path="res://scripts/Stats/StreamStat.cs" id="1_8cmjo"]
 
