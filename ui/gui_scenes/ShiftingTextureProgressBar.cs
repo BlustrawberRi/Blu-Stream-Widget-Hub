@@ -1,6 +1,4 @@
 using Godot;
-using System;
-using System.Runtime.CompilerServices;
 
 [Tool, GlobalClass]
 public partial class ShiftingTextureProgressBar : Godot.Range
@@ -9,6 +7,7 @@ public partial class ShiftingTextureProgressBar : Godot.Range
 	{
 		BottomToTop, TopToBottom, LeftToRight, RightToLeft
 	}
+
 	[Export]
 	public FillMode fillMode
 	{
@@ -42,17 +41,30 @@ public partial class ShiftingTextureProgressBar : Godot.Range
 		}
 	}
 
+
+
     [Export] public Texture2D TextureUnder;
 	[Export] public Texture2D TextureOver;
 
     private Texture2D _textureProgressMask;
-    private Texture2D _textureProgressFill;
+	private Texture2D _textureProgressFill;
+
+	[ExportGroup("Fill Options")]
+	[ExportSubgroup("StretchMargin")]
+	[Export(PropertyHint.None, "suffix:px")] public int Left { get => left; set { left = value; _UpdateProgressBar(); } }
+    [Export(PropertyHint.None, "suffix:px")] public int Top { get => top; set { top = value; _UpdateProgressBar(); } }
+	[Export(PropertyHint.None, "suffix:px")] public int Right { get => right; set { right = value; _UpdateProgressBar(); } }
+	[Export(PropertyHint.None, "suffix:px")] public int Bottom { get => bottom; set { bottom = value; _UpdateProgressBar(); } }
+	private int left = 0;
+	private int top = 0;
+	private int right = 0;
+	private int bottom = 0;
+
 	private NinePatchRect _progressMaskNode = new();
 	private NinePatchRect _progressNode = new();
 
-	public override void _Ready()
-	{
-		
+    public override void _EnterTree()
+   	{
 		Changed += _UpdateProgressBar;
 		ValueChanged += _UpdateProgressBar;
 
@@ -62,23 +74,31 @@ public partial class ShiftingTextureProgressBar : Godot.Range
 	
     public override void _ExitTree()
 	{
+		GD.Print("exiting");
 		Changed -= _UpdateProgressBar;
 		ValueChanged -= _UpdateProgressBar;
+
+		_progressMaskNode.QueueFree();
+		_progressNode = new();
+		_progressMaskNode = new();
+
 		base._ExitTree();
     }
 
 
-    private void _CreateTextureNodes()
-    {
-        _progressMaskNode.Texture = _textureProgressMask;
-        _progressMaskNode.ClipChildren = ClipChildrenMode.Only;
-        this.AddChild(_progressMaskNode);
-		_progressMaskNode.Owner = this;
-		_progressMaskNode.SetAnchorsPreset(LayoutPreset.FullRect, true);
-
-        _progressNode.Texture = _textureProgressFill;
-        _progressMaskNode.AddChild(_progressNode);
-		_progressNode.SetAnchorsPreset(LayoutPreset.FullRect, true);
+	private void _CreateTextureNodes()
+	{
+		
+			_progressMaskNode.Texture = _textureProgressMask;
+			_progressMaskNode.ClipChildren = ClipChildrenMode.Only;
+			this.AddChild(_progressMaskNode);
+			_progressMaskNode.Owner = GetTree().EditedSceneRoot;
+			_progressMaskNode.SetAnchorsPreset(LayoutPreset.FullRect, true);
+		
+			_progressNode.Texture = _textureProgressFill;
+        	_progressMaskNode.AddChild(_progressNode);
+			_progressNode.SetAnchorsPreset(LayoutPreset.FullRect, true);
+		
 	}
 
 	private void _UpdateProgressBar()
@@ -107,24 +127,31 @@ public partial class ShiftingTextureProgressBar : Godot.Range
 				break;
 		}
 
-		_progressNode.Position = (_progressMaskNode.GetRect().Size-(float)newValue*stepDelta)*modeProduct;
+		_progressNode.Position = (_progressMaskNode.GetRect().Size - (float)newValue * stepDelta) * modeProduct;
+
+		SetFillStretchMargin();
 	}
 
 	private void _OnTextureSet(NinePatchRect _textureNode, Texture2D texture)
 	{
-		GD.Print(_textureNode);
-		if (texture == null)
-		{
-			_textureNode?.Hide();
-			_textureNode = null;
-			return;
-		}
-		if (_textureNode == null)
+		if (_textureNode == null) //shouldnt happen?
 			return;
 
 		_textureNode.Texture = texture;
-		_textureNode.Show();
+		//_textureNode.Show();
 	}
 
+	private void SetFillStretchMargin()
+    {
+		_progressNode.PatchMarginLeft = Left;
+		_progressNode.PatchMarginRight = Right;
+		_progressNode.PatchMarginTop = Top;
+		_progressNode.PatchMarginBottom = Bottom;
+
+		_progressMaskNode.PatchMarginLeft = Left;
+		_progressMaskNode.PatchMarginRight = Right;
+		_progressMaskNode.PatchMarginTop = Top;
+		_progressMaskNode.PatchMarginBottom = Bottom;
+	}
 
 }
