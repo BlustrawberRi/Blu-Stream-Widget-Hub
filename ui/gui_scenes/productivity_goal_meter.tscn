@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://clcxwuwfyi2tm"]
+[gd_scene load_steps=6 format=3 uid="uid://clcxwuwfyi2tm"]
 
 [ext_resource type="Texture2D" uid="uid://b3w6otdxx2ylx" path="res://img/productivity goal bar/2026-04 productivity bar back.webp" id="1_3bx7c"]
 [ext_resource type="Texture2D" uid="uid://b1xvs1ubyomsh" path="res://img/productivity goal bar/2026-04 productivity bar outside.webp" id="2_ydp6n"]
 [ext_resource type="Script" uid="uid://c8qnn3fpo8atn" path="res://ui/gui_scenes/ShiftingTextureProgressBar.cs" id="3_liua0"]
 [ext_resource type="Texture2D" uid="uid://dn5nsl80ctjm5" path="res://img/productivity goal bar/2026-04 productivity bar inside.webp" id="3_ljn7y"]
 [ext_resource type="Texture2D" uid="uid://dsgfr1nthgp5m" path="res://img/productivity goal bar/2026-04 productivity bar inside mask.webp" id="5_4kjwo"]
-[ext_resource type="Texture2D" uid="uid://tlmxsqxb6c6k" path="res://img/productivity goal bar/2026-04 productivity_bar_indicator.png" id="6_xeq06"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -100,11 +99,3 @@ MarginTop = 2.247
 MarginRight = 38.745
 MarginBottom = 13.085
 metadata/_custom_type_script = "uid://c8qnn3fpo8atn"
-
-[node name="2026-04ProductivityBarIndicator" type="Sprite2D" parent="ProgressBar"]
-position = Vector2(82, 72)
-texture = ExtResource("6_xeq06")
-
-[node name="2026-04ProductivityBarIndicator2" type="Sprite2D" parent="ProgressBar"]
-position = Vector2(82, 297)
-texture = ExtResource("6_xeq06")

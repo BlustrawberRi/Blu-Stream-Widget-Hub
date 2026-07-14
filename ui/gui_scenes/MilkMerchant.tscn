@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b7xinwaojw88"]
+[gd_scene load_steps=26 format=3 uid="uid://b7xinwaojw88"]
 
 [ext_resource type="Script" uid="uid://bfi42uj0x3xnu" path="res://scripts/MilkMerchantWidget.cs" id="1_rbg7s"]
 [ext_resource type="Texture2D" uid="uid://dnnjrxr7rmd7d" path="res://img/milk merchant/2025 milkmerchant shop.webp" id="2_ldxjm"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dcrbp4m63a78y" path="res://img/milk merchant/Bubble border.png" id="5_b233o"]
 [ext_resource type="Script" uid="uid://dp8ie5fb4u0wo" path="res://ui/font/replacer.gd" id="5_plfm7"]
 [ext_resource type="FontFile" uid="uid://bcxwvxum1m5ov" path="res://ui/font/MADE Tommy Soft Regular PERSONAL USE.otf" id="6_plfm7"]
+[ext_resource type="AudioStream" uid="uid://bwln0b12a35b0" path="res://audio/talk1.wav" id="7_l5114"]
 [ext_resource type="AudioStream" uid="uid://c0pp6i2doxkv7" path="res://audio/2025-09 stream milk merchant song v0.2b.ogg" id="11_plfm7"]
 
 [sub_resource type="Animation" id="Animation_cbqkg"]
@@ -17,7 +18,7 @@ length = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PanelContainer/SpeechBubble:modulate")
+tracks/0/path = NodePath("Shop/SpeechBubble:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -29,7 +30,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PanelContainer/SpeechBubble:visible")
+tracks/1/path = NodePath("Shop/SpeechBubble:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -41,7 +42,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PanelContainer/SpeechBubble:scale:x")
+tracks/2/path = NodePath("Shop/SpeechBubble:scale:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -52,7 +53,7 @@ tracks/2/keys = {
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PanelContainer/SpeechBubble:scale:y")
+tracks/3/path = NodePath("Shop/SpeechBubble:scale:y")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -63,7 +64,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("PanelContainer:scale")
+tracks/4/path = NodePath("Shop:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -75,7 +76,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("PanelContainer:modulate")
+tracks/5/path = NodePath("Shop:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -87,7 +88,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("PanelContainer:position")
+tracks/6/path = NodePath("Shop:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -103,7 +104,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PanelContainer/SpeechBubble:modulate")
+tracks/0/path = NodePath("Shop/SpeechBubble:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -115,7 +116,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PanelContainer/SpeechBubble:visible")
+tracks/1/path = NodePath("Shop/SpeechBubble:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -127,7 +128,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PanelContainer/SpeechBubble:scale:x")
+tracks/2/path = NodePath("Shop/SpeechBubble:scale:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -138,7 +139,7 @@ tracks/2/keys = {
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PanelContainer/SpeechBubble:scale:y")
+tracks/3/path = NodePath("Shop/SpeechBubble:scale:y")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -152,7 +153,7 @@ length = 0.5
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PanelContainer/SpeechBubble:scale:x")
+tracks/0/path = NodePath("Shop/SpeechBubble:scale:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -163,7 +164,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PanelContainer/SpeechBubble:scale:y")
+tracks/1/path = NodePath("Shop/SpeechBubble:scale:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -174,7 +175,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PanelContainer/SpeechBubble:modulate")
+tracks/2/path = NodePath("Shop/SpeechBubble:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -186,7 +187,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PanelContainer/SpeechBubble:visible")
+tracks/3/path = NodePath("Shop/SpeechBubble:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -214,7 +215,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PanelContainer:scale")
+tracks/1/path = NodePath("Shop:scale")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -226,7 +227,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PanelContainer:modulate")
+tracks/2/path = NodePath("Shop:modulate")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -238,7 +239,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PanelContainer:position")
+tracks/3/path = NodePath("Shop:position")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -264,7 +265,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PanelContainer:position")
+tracks/1/path = NodePath("Shop:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -276,7 +277,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PanelContainer:scale")
+tracks/2/path = NodePath("Shop:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -288,7 +289,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PanelContainer:modulate")
+tracks/3/path = NodePath("Shop:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -385,16 +386,16 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_rbg7s")
-animationPlayer = NodePath("AnimationPlayer")
-milkChoicesContainer = NodePath("PanelContainer/Choices/VBoxContainer/Panel/MarginContainer/MilkListContainer")
+animationPlayer = NodePath("BubbleAnimationPlayer")
+milkChoicesContainer = NodePath("Shop/Choices/VBoxContainer/Panel/MarginContainer/MilkListContainer")
 milkDefinitionJson = "res://config/milk_choices.json"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="BubbleAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_rmvdv")
 }
 
-[node name="PanelContainer" type="Control" parent="."]
+[node name="Shop" type="Control" parent="."]
 layout_mode = 2
 anchors_preset = 0
 anchor_right = 1.18229
@@ -404,19 +405,19 @@ offset_bottom = -1080.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Shop" type="Sprite2D" parent="PanelContainer"]
+[node name="Shop" type="Sprite2D" parent="Shop"]
 position = Vector2(495, 141)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_ldxjm")
 centered = false
 
-[node name="Millet" type="Sprite2D" parent="PanelContainer"]
+[node name="Millet" type="Sprite2D" parent="Shop"]
 position = Vector2(824, 385)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("3_mcktd")
 centered = false
 
-[node name="Button" type="Button" parent="PanelContainer"]
+[node name="Button" type="Button" parent="Shop"]
 layout_mode = 0
 offset_left = 903.002
 offset_top = 310.0
@@ -424,7 +425,7 @@ offset_right = 920.002
 offset_bottom = 341.0
 text = "x"
 
-[node name="Choices" type="PanelContainer" parent="PanelContainer"]
+[node name="Choices" type="PanelContainer" parent="Shop"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 anchor_right = 1.0
@@ -436,24 +437,24 @@ offset_bottom = 661.0
 pivot_offset = Vector2(150, 200)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_rs8qg")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Choices"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/Choices"]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Panel" type="PanelContainer" parent="PanelContainer/Choices/VBoxContainer"]
+[node name="Panel" type="PanelContainer" parent="Shop/Choices/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("4_b233o")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/Choices/VBoxContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Shop/Choices/VBoxContainer/Panel"]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="MilkListContainer" type="VBoxContainer" parent="PanelContainer/Choices/VBoxContainer/Panel/MarginContainer"]
+[node name="MilkListContainer" type="VBoxContainer" parent="Shop/Choices/VBoxContainer/Panel/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="FuckedUpMilkLabel" type="RichTextLabel" parent="PanelContainer/Choices/VBoxContainer"]
+[node name="FuckedUpMilkLabel" type="RichTextLabel" parent="Shop/Choices/VBoxContainer"]
 visible = false
 layout_mode = 2
 theme = ExtResource("4_b233o")
@@ -463,7 +464,7 @@ text = "[fade length=20][shake level=30][replacer prim_repl=?? speed=0.6]13[/rep
 fit_content = true
 custom_effects = [SubResource("RichTextEffect_b233o")]
 
-[node name="SpeechBubble" type="PanelContainer" parent="PanelContainer" node_paths=PackedStringArray("textLabel")]
+[node name="SpeechBubble" type="PanelContainer" parent="Shop" node_paths=PackedStringArray("textLabel")]
 visible = false
 custom_minimum_size = Vector2(1000, 200)
 layout_mode = 2
@@ -475,48 +476,57 @@ scale = Vector2(0.996664, 0.997973)
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxEmpty_b37ef")
 script = ExtResource("4_ldxjm")
+TalkSound = ExtResource("7_l5114")
 textLabel = NodePath("MarginContainer/RichTextLabel")
+textSpeed = 25.0
+talkSpeed = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/SpeechBubble"]
-custom_minimum_size = Vector2(996.967, 190.132)
+[node name="PanelContainer" type="PanelContainer" parent="Shop/SpeechBubble"]
+custom_minimum_size = Vector2(998.927, 199.271)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_b233o")
 
-[node name="BubbleSpout" type="Sprite2D" parent="PanelContainer/SpeechBubble/PanelContainer"]
-position = Vector2(516.724, 112.227)
+[node name="BubbleSpout" type="Sprite2D" parent="Shop/SpeechBubble/PanelContainer"]
+position = Vector2(516.724, 110.113)
+scale = Vector2(1, 1.01957)
 texture = ExtResource("3_ldxjm")
 
-[node name="Bubble BG" type="NinePatchRect" parent="PanelContainer/SpeechBubble/PanelContainer"]
+[node name="Bubble BG" type="NinePatchRect" parent="Shop/SpeechBubble/PanelContainer"]
 layout_mode = 2
 texture = ExtResource("4_rs8qg")
 region_rect = Rect2(-0.254185, -0.101532, 977.627, 218.051)
+patch_margin_top = 50
+patch_margin_bottom = 50
 
-[node name="Bubble Lines" type="NinePatchRect" parent="PanelContainer/SpeechBubble/PanelContainer"]
+[node name="Bubble Lines" type="NinePatchRect" parent="Shop/SpeechBubble/PanelContainer"]
 layout_mode = 2
 texture = ExtResource("5_b233o")
 region_rect = Rect2(-0.254185, -0.101532, 977.627, 218.051)
+patch_margin_left = 50
+patch_margin_right = 50
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/SpeechBubble"]
+[node name="MarginContainer" type="MarginContainer" parent="Shop/SpeechBubble"]
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/SpeechBubble/MarginContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Shop/SpeechBubble/MarginContainer"]
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("6_plfm7")
 theme_override_font_sizes/normal_font_size = 31
 bbcode_enabled = true
-text = "ygbgrhd er agoheog awog we"
+text = "[wave]aaaaaaaaa[/wave]"
 fit_content = true
+scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
+visible_characters_behavior = 1
 
-[node name="BubbleAnimator" type="AnimationPlayer" parent="PanelContainer/SpeechBubble"]
+[node name="BubbleAnimator" type="AnimationPlayer" parent="Shop/SpeechBubble"]
 reset_on_save = false
 libraries = {
 &"": SubResource("AnimationLibrary_d7lki")
@@ -525,6 +535,9 @@ libraries = {
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_plfm7")
 
-[connection signal="DialogueChanged" from="." to="PanelContainer/SpeechBubble/MarginContainer/RichTextLabel" method="set_text"]
-[connection signal="pressed" from="PanelContainer/Button" to="." method="PlayOutro"]
-[connection signal="ready" from="PanelContainer/SpeechBubble" to="PanelContainer/SpeechBubble/BubbleAnimator" method="play" binds= ["wobble"]]
+[connection signal="DialogueChanged" from="." to="Shop/SpeechBubble" method="Talk" binds= [4.0]]
+[connection signal="Finished" from="." to="AudioStreamPlayer" method="stop"]
+[connection signal="Triggered" from="." to="AudioStreamPlayer" method="play" binds= [0.0]]
+[connection signal="pressed" from="Shop/Button" to="." method="PlayOutro"]
+[connection signal="TalkFinished" from="Shop/SpeechBubble" to="." method="OnTalkDone"]
+[connection signal="ready" from="Shop/SpeechBubble" to="Shop/SpeechBubble/BubbleAnimator" method="play" binds= ["wobble"]]

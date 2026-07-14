@@ -20,7 +20,8 @@ public partial class MilkMerchantWidget : StreamerWidget
     public bool IsActive = false;
     private Dictionary choices = new();
     private bool waitForChoice = false;
-    [Export] private Array<string> customers = new();
+    [Export] public Array<string> customers = new();
+    public string CurrentCustomer { get; set; }
     public override Enum[] StreamerbotEventRequests
     {
         get
@@ -39,7 +40,6 @@ public partial class MilkMerchantWidget : StreamerWidget
     [Signal] public delegate void DialogueChangedEventHandler(string text);
     [Signal] public delegate void TriggeredEventHandler();
     [Signal] public delegate void FinishedEventHandler();
-
     [Signal] public delegate void ChoiceMadeEventHandler();
 
     public override async void _Ready()
@@ -125,13 +125,8 @@ public partial class MilkMerchantWidget : StreamerWidget
         }
     }
 
-    public async Task Activate(bool activate = true) {
-        if (!activate)
-        {
-            await Deactivate();
-            return;
-        }
-
+    public async Task Activate()
+    {
         if (!IsActive)
         {
             IsActive = true;
@@ -140,8 +135,8 @@ public partial class MilkMerchantWidget : StreamerWidget
             await ToSignal(animationPlayer, AnimationPlayer.SignalName.AnimationFinished);
         }
 
-        string customer = customers[0]??"";
-        await PlayIntro(customer);
+        CurrentCustomer = customers[0] ?? "";
+        await PlayIntro();
     }
 
     public async Task Deactivate()
@@ -150,11 +145,19 @@ public partial class MilkMerchantWidget : StreamerWidget
         await ToSignal(animationPlayer, AnimationPlayer.SignalName.AnimationFinished);
         animationPlayer?.Play("RESET");
         IsActive = false;
+        EmitSignal(SignalName.Finished);
     }
 
-    private async Task PlayIntro(string userName, string alternateGreeting = null)
+    private async Task PlayIntro(string customer = null, string alternateGreeting = null)
     {
-        string greeting = alternateGreeting ?? "Hello " + userName + "! What type of milk would you like?";
+        if (customer == null)
+            customer = CurrentCustomer;
+        if (customer == "")
+            customer = "Blu";
+        
+        //Todo check for usernames and give custom greetings
+
+        string greeting = alternateGreeting ?? "Hello " + customer + "! What type of milk would you like?";
         Talk(greeting);
         
         animationPlayer?.Play("dialogue_on");
@@ -165,7 +168,7 @@ public partial class MilkMerchantWidget : StreamerWidget
 
     public async void PlayOutro()
     {
-        Talk("CU :3", 2);
+        Talk("See you :3", 2);
         customers.RemoveAt(0);
 
         if (customers.Count == 0)
@@ -190,7 +193,7 @@ public partial class MilkMerchantWidget : StreamerWidget
                 break;
             }
         }
-        if (message.IsValidInt())
+        if (user_choice=="" && message.IsValidInt())
         {
             int choice_num = message.ToInt();
             user_choice = choices.Keys.ElementAt(choice_num - 1).AsString();
@@ -199,21 +202,24 @@ public partial class MilkMerchantWidget : StreamerWidget
         try
         {
             string answer = choices[user_choice].AsString();
+            EmitSignal(SignalName.ChoiceMade);
             await Talk(answer);
             PlayOutro();
             return;
         } catch (Exception)
         {
-            Talk("Wasn't a choice, buddy, please select from the menu...");
+            Talk("Wasn't a choice, buddy, please select from the menu [rainbow]"+CurrentCustomer+"[/rainbow]...");
         }
 
     }
 
 
+
     private async Task Talk(string dialogue, int talkTime = 3)
     {
         EmitSignal(SignalName.DialogueChanged, dialogue);
-        await ToSignal(GetTree().CreateTimer(talkTime),SceneTreeTimer.SignalName.Timeout);
+        
+        await ToSignal(GetTree().CreateTimer(talkTime), SceneTreeTimer.SignalName.Timeout);
         //todo: await text change
     }
 
