@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://clcxwuwfyi2tm"]
+[gd_scene load_steps=7 format=3 uid="uid://clcxwuwfyi2tm"]
 
 [ext_resource type="Texture2D" uid="uid://b3w6otdxx2ylx" path="res://img/productivity goal bar/2026-04 productivity bar back.webp" id="1_3bx7c"]
+[ext_resource type="Texture2D" uid="uid://b1xvs1ubyomsh" path="res://img/productivity goal bar/2026-04 productivity bar outside.webp" id="2_ydp6n"]
 [ext_resource type="Script" uid="uid://c8qnn3fpo8atn" path="res://ui/gui_scenes/ShiftingTextureProgressBar.cs" id="3_liua0"]
 [ext_resource type="Texture2D" uid="uid://dn5nsl80ctjm5" path="res://img/productivity goal bar/2026-04 productivity bar inside.webp" id="3_ljn7y"]
 [ext_resource type="Texture2D" uid="uid://dsgfr1nthgp5m" path="res://img/productivity goal bar/2026-04 productivity bar inside mask.webp" id="5_4kjwo"]
@@ -13,25 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 16.0
-offset_right = 355.0
-offset_bottom = 902.0
-value = 78.0
-rounded = true
-allow_greater = true
-fill_mode = 3
-nine_patch_stretch = true
-stretch_margin_left = 10
-stretch_margin_top = 40
-stretch_margin_right = 10
-stretch_margin_bottom = 10
-texture_under = ExtResource("1_3bx7c")
-texture_progress = ExtResource("3_ljn7y")
-texture_progress_offset = Vector2(148.065, -111.725)
+metadata/_edit_lock_ = true
 
 [node name="ProgressBar" type="Range" parent="."]
 _import_path = NodePath("")
@@ -67,10 +50,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 1124.0
-offset_top = 177.0
-offset_right = 1180.0
-offset_bottom = 745.0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 327.0
+offset_bottom = 742.0
 grow_horizontal = 1
 grow_vertical = 1
 rotation = 0.0
@@ -106,22 +89,22 @@ allow_lesser = false
 script = ExtResource("3_liua0")
 TextureProgressMask = ExtResource("5_4kjwo")
 TextureProgressFill = ExtResource("3_ljn7y")
-Left = 11
+TextureUnder = ExtResource("1_3bx7c")
+TextureOver = ExtResource("2_ydp6n")
+Left = 10
 Top = 35
-Right = 11
+Right = 10
 Bottom = 15
+MarginLeft = 42.871
+MarginTop = 2.247
+MarginRight = 38.745
+MarginBottom = 13.085
 metadata/_custom_type_script = "uid://c8qnn3fpo8atn"
 
-[node name="2026-04ProductivityBarIndicator" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(83, 74)
+[node name="2026-04ProductivityBarIndicator" type="Sprite2D" parent="ProgressBar"]
+position = Vector2(82, 72)
 texture = ExtResource("6_xeq06")
 
-[node name="2026-04ProductivityBarIndicator" type="Sprite2D" parent="2026-04ProductivityBarIndicator"]
-visible = false
-position = Vector2(0, 225)
+[node name="2026-04ProductivityBarIndicator2" type="Sprite2D" parent="ProgressBar"]
+position = Vector2(82, 297)
 texture = ExtResource("6_xeq06")
-
-[node name="NinePatchRect" type="NinePatchRect" parent="2026-04ProductivityBarIndicator/2026-04ProductivityBarIndicator"]
-offset_right = 40.0
-offset_bottom = 40.0

@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 [Tool, GlobalClass]
@@ -16,7 +17,7 @@ public partial class ShiftingTextureProgressBar : Godot.Range
 		{
 			_fillMode = value;
 			// NotifyPropertyListChanged();
-			_UpdateProgressBar();
+			UpdateProgressBar();
 		}
 	}
 
@@ -24,63 +25,107 @@ public partial class ShiftingTextureProgressBar : Godot.Range
 	[ExportGroup("Textures")]
 	[Export] public Texture2D TextureProgressMask
     {
-		get => _textureProgressMask;
+		get => textureProgressMask;
         set
         {
-			_textureProgressMask = value;
+			textureProgressMask = value;
 			_OnTextureSet(_progressMaskNode, value);
 		}
     }
     [Export] public Texture2D TextureProgressFill
     {
-		get => _textureProgressFill;
+		get => textureProgressFill;
 		set
 		{
-			_textureProgressFill = value;
+			textureProgressFill = value;
 			_OnTextureSet(_progressNode, value);
 		}
 	}
+    [Export] public Texture2D TextureUnder
+	{
+		get => textureUnder;
+		set
+		{
+			textureUnder = value;
+			_OnTextureSet(_underNode, value);
+		}
+	}
+	[Export] public Texture2D TextureOver
+	{
+		get => textureOver;
+		set
+		{
+			textureOver = value;
+			_OnTextureSet(_overNode, value);
+		}
+	}
 
+	private Texture2D textureProgressMask;
+	private Texture2D textureProgressFill;
+	private Texture2D textureUnder;
+	private Texture2D textureOver;
 
-
-    [Export] public Texture2D TextureUnder;
-	[Export] public Texture2D TextureOver;
-
-    private Texture2D _textureProgressMask;
-	private Texture2D _textureProgressFill;
+	[ExportToolButton("Set Size To UnderTexture")] public Callable SetSizeButton => new(this, MethodName.SetSizeToTexture);
 
 	[ExportGroup("Fill Options")]
 	[ExportSubgroup("StretchMargin")]
-	[Export(PropertyHint.None, "suffix:px")] public int Left { get => left; set { left = value; _UpdateProgressBar(); } }
-    [Export(PropertyHint.None, "suffix:px")] public int Top { get => top; set { top = value; _UpdateProgressBar(); } }
-	[Export(PropertyHint.None, "suffix:px")] public int Right { get => right; set { right = value; _UpdateProgressBar(); } }
-	[Export(PropertyHint.None, "suffix:px")] public int Bottom { get => bottom; set { bottom = value; _UpdateProgressBar(); } }
+	[Export(PropertyHint.None, "suffix:px")] public int Left { get => left; set { left = value;SetFillStretchMargin(); } }
+    [Export(PropertyHint.None, "suffix:px")] public int Top { get => top; set { top = value; SetFillStretchMargin(); } }
+	[Export(PropertyHint.None, "suffix:px")] public int Right { get => right; set { right = value; SetFillStretchMargin(); } }
+	[Export(PropertyHint.None, "suffix:px")] public int Bottom { get => bottom; set { bottom = value;SetFillStretchMargin(); } }
 	private int left = 0;
 	private int top = 0;
 	private int right = 0;
 	private int bottom = 0;
 
-	private NinePatchRect _progressMaskNode = new();
-	private NinePatchRect _progressNode = new();
+	[ExportSubgroup("Margin")]
+	[Export(PropertyHint.Range, "-100,100,or_greater,or_less,suffix:%")] public float MarginLeft { get => marginLeft; set { marginLeft = value;SetMargin(); } }
+	[Export(PropertyHint.Range, "-100,100,or_greater,or_less,suffix:%")] public float MarginTop { get => marginTop; set { marginTop = value;SetMargin(); } }
+	[Export(PropertyHint.Range, "-100,100,or_greater,or_less,suffix:%")] public float MarginRight { get => marginRight; set { marginRight = value;SetMargin(); } }
+	[Export(PropertyHint.Range, "-100,100,or_greater,or_less,suffix:%")] public float MarginBottom { get => marginBottom; set { marginBottom = value; SetMargin(); } }
+	private float marginLeft = 0;
+	private float marginTop = 0;
+	private float marginRight = 0;
+	private float marginBottom = 0;
 
-    public override void _EnterTree()
-   	{
-		Changed += _UpdateProgressBar;
-		ValueChanged += _UpdateProgressBar;
+	private NinePatchRect _progressMaskNode ;
+	private NinePatchRect _progressNode;
+	private NinePatchRect _underNode;
+	private NinePatchRect _overNode;
 
+	public void SetSizeToTexture()
+    {
+		var texSize = textureUnder.GetSize();
+		Size = texSize;
+		UpdateProgressBar();
+		SetMargin();
+    }
+
+	public override void _EnterTree()
+	{
 		_CreateTextureNodes();
-		_UpdateProgressBar();
+		UpdateProgressBar();
+
+		SetFillStretchMargin(); // todo just when we change margin
+		SetMargin();
+
+		Changed += UpdateProgressBar;
+		ValueChanged += UpdateProgressBar;
+		Resized += SetMargin;
+
 	}
 	
     public override void _ExitTree()
 	{
 		GD.Print("exiting");
-		Changed -= _UpdateProgressBar;
-		ValueChanged -= _UpdateProgressBar;
+		Changed -= UpdateProgressBar;
+		ValueChanged -= UpdateProgressBar;
+		Resized -= SetMargin;
 
-		_progressMaskNode.QueueFree();
-		_progressNode = new();
-		_progressMaskNode = new();
+		foreach (var child in this.GetChildren())
+		{
+			child.QueueFree();
+		}
 
 		base._ExitTree();
     }
@@ -88,25 +133,44 @@ public partial class ShiftingTextureProgressBar : Godot.Range
 
 	private void _CreateTextureNodes()
 	{
-		
-			_progressMaskNode.Texture = _textureProgressMask;
-			_progressMaskNode.ClipChildren = ClipChildrenMode.Only;
-			this.AddChild(_progressMaskNode);
-			_progressMaskNode.Owner = GetTree().EditedSceneRoot;
-			_progressMaskNode.SetAnchorsPreset(LayoutPreset.FullRect, true);
-		
-			_progressNode.Texture = _textureProgressFill;
-        	_progressMaskNode.AddChild(_progressNode);
-			_progressNode.SetAnchorsPreset(LayoutPreset.FullRect, true);
-		
+		_progressNode = new();
+		_progressMaskNode = new();
+		_underNode = new();
+		_overNode = new();
+
+		_underNode.Texture = TextureUnder;
+		_underNode.Name = "UnderTexture";
+		this.AddChild(_underNode);
+		// _underNode.Owner = GetTree().EditedSceneRoot;
+		_underNode.SetAnchorsPreset(LayoutPreset.FullRect, true);
+
+		_progressMaskNode.Texture = TextureProgressMask;
+		_progressMaskNode.Name = "MaskTexture";
+		_progressMaskNode.ClipChildren = ClipChildrenMode.Only;
+		this.AddChild(_progressMaskNode);
+		// _progressMaskNode.Owner = GetTree().EditedSceneRoot;
+		_progressMaskNode.SetAnchorsPreset(LayoutPreset.FullRect, true);
+	
+		_progressNode.Texture = TextureProgressFill;
+		_progressMaskNode.AddChild(_progressNode);
+		_progressNode.SetAnchorsPreset(LayoutPreset.FullRect, true);
+
+		_overNode.Texture = TextureOver; 
+		_overNode.Name = "OverTexture";
+		this.AddChild(_overNode);
+		// _overNode.Owner = GetTree().EditedSceneRoot;
+		_overNode.SetAnchorsPreset(LayoutPreset.FullRect, true);
+
 	}
 
-	private void _UpdateProgressBar()
+	private void UpdateProgressBar()
     {
-		_UpdateProgressBar(Value);
+		UpdateProgressBar(Value);
     }
-	private void _UpdateProgressBar(double newValue)
+	private void UpdateProgressBar(double newValue)
 	{
+		if(_progressNode == null) 
+			return;
 		//move
 		Vector2 stepDelta = _progressMaskNode.GetRect().Size / (float)(MaxValue - MinValue);
 		Vector2 modeProduct = new();
@@ -129,10 +193,17 @@ public partial class ShiftingTextureProgressBar : Godot.Range
 
 		_progressNode.Position = (_progressMaskNode.GetRect().Size - (float)newValue * stepDelta) * modeProduct;
 
-		SetFillStretchMargin();
 	}
 
-	private void _OnTextureSet(NinePatchRect _textureNode, Texture2D texture)
+    private void SetMargin()
+	{
+		if (_progressMaskNode == null)
+			return;
+		_progressMaskNode.Size = Size - new Vector2(Size.X/100*(MarginLeft + MarginRight), Size.Y / 100 * (MarginTop + MarginBottom));
+		_progressMaskNode.Position = new Vector2(Size.X / 100 * MarginLeft, Size.Y / 100 * MarginTop);
+    }
+
+    private void _OnTextureSet(NinePatchRect _textureNode, Texture2D texture)
 	{
 		if (_textureNode == null) //shouldnt happen?
 			return;
@@ -142,7 +213,10 @@ public partial class ShiftingTextureProgressBar : Godot.Range
 	}
 
 	private void SetFillStretchMargin()
-    {
+	{
+		if (_progressMaskNode == null)
+			return;
+
 		_progressNode.PatchMarginLeft = Left;
 		_progressNode.PatchMarginRight = Right;
 		_progressNode.PatchMarginTop = Top;
