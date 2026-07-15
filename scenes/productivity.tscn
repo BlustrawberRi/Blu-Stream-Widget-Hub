@@ -6,12 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://b3fsdrndp2sf8" path="res://ui/gui_scenes/ChatTodoWindow.tscn" id="4_byvgc"]
 [ext_resource type="PackedScene" uid="uid://1n5mk6jgse5l" path="res://ui/gui_scenes/StatWindow.tscn" id="4_u6lee"]
 [ext_resource type="Script" uid="uid://fmcqa4gde4wu" path="res://scripts/Stats/EnergyStatUpdaterWidget.cs" id="5_wuwu2"]
-[ext_resource type="Resource" uid="uid://dwqy3de2rw1c" path="res://stats/Energy Stat.tres" id="6_rghmn"]
-[ext_resource type="Resource" uid="uid://b70fksfg70lmy" path="res://stats/Hydration Stat.tres" id="7_1ua1e"]
+[ext_resource type="Resource" uid="uid://co5h1i7k6htob" path="res://stats/Energy Stat.tres" id="6_rghmn"]
+[ext_resource type="Resource" uid="uid://bt526sc55dk7m" path="res://stats/Hydration Stat.tres" id="7_1ua1e"]
 [ext_resource type="Script" uid="uid://bno4hhcbm7g6p" path="res://scripts/Stats/HydrationStatUpdaterWidget.cs" id="7_rghmn"]
 [ext_resource type="Script" uid="uid://ixswpc1blcxt" path="res://scripts/Stats/StatManager.cs" id="7_wd3be"]
 [ext_resource type="Script" uid="uid://kxcpvedqwfr4" path="res://scripts/Stats/ProductivityStatUpdaterWidget.cs" id="8_hch00"]
-[ext_resource type="Resource" uid="uid://dnt4gsapbjldm" path="res://stats/Productivity_Stat.tres" id="9_onvwf"]
+[ext_resource type="Resource" uid="uid://e2kcy55q2kt6" path="res://stats/Productivity_Stat.tres" id="9_onvwf"]
 [ext_resource type="PackedScene" uid="uid://b7xinwaojw88" path="res://ui/gui_scenes/MilkMerchant.tscn" id="11_1ua1e"]
 
 [node name="Productivity" type="Node2D"]
@@ -81,7 +81,7 @@ offset_right = 1890.0
 offset_bottom = 976.0
 grow_horizontal = 1
 grow_vertical = 1
-windowTitleString = "Stats"
+windowTitleString = "VTuber Stats"
 
 [node name="Stat Manager" type="Node" parent="."]
 process_thread_group = 2
@@ -98,6 +98,6 @@ EnergyStat = ExtResource("6_rghmn")
 script = ExtResource("7_rghmn")
 HydrationStat = ExtResource("7_1ua1e")
 
-[node name="ProductivityStartUpdaterWidget" type="Node" parent="Stat Manager"]
+[node name="ProductivityStatUpdaterWidget" type="Node" parent="Stat Manager"]
 script = ExtResource("8_hch00")
 productivityStat = ExtResource("9_onvwf")

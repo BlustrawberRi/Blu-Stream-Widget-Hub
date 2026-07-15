@@ -96,7 +96,7 @@ public partial class ShiftingTextureProgressBar : Godot.Range
 	public void SetSizeToTexture()
     {
 		var texSize = textureUnder.GetSize();
-		Size = texSize;
+		SetDeferred(PropertyName.Size, texSize);
 		UpdateProgressBar();
 		SetMargin();
     }
@@ -122,10 +122,10 @@ public partial class ShiftingTextureProgressBar : Godot.Range
 		ValueChanged -= UpdateProgressBar;
 		Resized -= SetMargin;
 
-		foreach (var child in this.GetChildren())
-		{
-			child.QueueFree();
-		}
+		_overNode.QueueFree();
+		_underNode.QueueFree();
+		_progressNode.QueueFree();
+		_progressMaskNode.QueueFree();
 
 		base._ExitTree();
     }
@@ -199,7 +199,8 @@ public partial class ShiftingTextureProgressBar : Godot.Range
 	{
 		if (_progressMaskNode == null)
 			return;
-		_progressMaskNode.Size = Size - new Vector2(Size.X/100*(MarginLeft + MarginRight), Size.Y / 100 * (MarginTop + MarginBottom));
+
+		_progressMaskNode.SetDeferred(PropertyName.Size, Size - new Vector2(Size.X / 100 * (MarginLeft + MarginRight), Size.Y / 100 * (MarginTop + MarginBottom)));
 		_progressMaskNode.Position = new Vector2(Size.X / 100 * MarginLeft, Size.Y / 100 * MarginTop);
     }
 

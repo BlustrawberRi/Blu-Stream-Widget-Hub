@@ -5,7 +5,7 @@ using System.Data;
 /// <summary>
 /// Injects the Stat Container GUI with values.
 /// </summary>
-public partial class StatContainer : HBoxContainer
+public partial class StatContainer : Control
 {
     [Export] public StreamStat Stat {
         get { return _stat; }
@@ -27,17 +27,17 @@ public partial class StatContainer : HBoxContainer
 
     public string StatName { get; set; }
     [Export] private RichTextLabel StatNameLabel;
-    [Export] private ProgressBar StatProgressBar;   
+    [Export] private Godot.Range StatProgressBar;   
 
 
     public override void _Ready()
     {
         base._Ready();
 
-        StatNameLabel = GetNode<RichTextLabel>("StatNameLabel");
-        StatProgressBar = GetNode<ProgressBar>("StatProgressBar");
+        // StatNameLabel = GetNode<RichTextLabel>("StatNameLabel");
+        // StatProgressBar = GetNode<ProgressBar>("StatProgressBar");
 
-        //UpdateStatInfo();
+        UpdateStatInfo();
     }
 
 
@@ -64,19 +64,19 @@ public partial class StatContainer : HBoxContainer
     }
 
     private void UpdateLabelText(string text) {
-        if (StatNameLabel != null)
-            StatNameLabel.Text = text;
-        else GD.PushWarning(this + " has no Label yet to update text.");
+        if (StatNameLabel == null)
+            return;
+        StatNameLabel.Text = text;
+        // else GD.PushWarning(this + " has no Label yet to update text.");
     }
 
     private void UpdateProgressBar(int value, int maxValue) {
-        if (StatProgressBar != null)
-        {
-            if(StatProgressBar.Indeterminate)
-                StatProgressBar.Indeterminate = false;
-            StatProgressBar.MaxValue = maxValue;
-            StatProgressBar.Value = value;
-        }
+        if (StatProgressBar == null)
+            return;
+        
+        StatProgressBar.MaxValue = maxValue;
+        StatProgressBar.Value = value;
+        
     }
 
     private void OnStatValueChanged(int value)
