@@ -2,7 +2,7 @@ using Godot;
 using System.Collections.Generic;
 
 [Tool] 
-public partial class DragableWindowContainer : Container
+public partial class DragableWindowContainer : Control
 {
     [Export] 
     public string windowTitleString = ""; 
@@ -23,8 +23,7 @@ public partial class DragableWindowContainer : Container
         if (Handle != null)
         {
             Handle.Pressed += OnHandlePressed; 
-            Handle.ButtonUp += OnHandleReleased;            
-            //GD.Print("Subscribed to drag Handle");
+            Handle.ButtonUp += OnHandleReleased;  
         }
     }
 
@@ -67,7 +66,7 @@ public partial class DragableWindowContainer : Container
 	
 	public void OnHandlePressed()
 	{
-		GD.Print("Pressed");
+		// GD.Print("Pressed");
 		isDragged = true;
 		initialMousePos = GetGlobalMousePosition();
 	}

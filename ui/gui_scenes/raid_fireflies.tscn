@@ -22,11 +22,8 @@ colors = PackedColorArray(0.757, 0.73, 1, 0.886275, 1, 0.801833, 0.59, 0.803922,
 
 [node name="Control" type="Control" node_paths=PackedStringArray("RaidEffect")]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+mouse_filter = 2
 script = ExtResource("1_hu7yt")
 RaidEffect = NodePath("FireflyEffect")
 

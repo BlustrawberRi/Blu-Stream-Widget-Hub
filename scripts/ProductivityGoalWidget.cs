@@ -43,7 +43,8 @@ public partial class ProductivityGoalWidget : StatContainer
 			await ToSignal(GetTree().CreateTimer(0.1), SceneTreeTimer.SignalName.Timeout);
 		}
 		Visible = false;
-    }
+		Modulate = new Color(Modulate, a: 1);
+	}
 
 	public async Task CelebrateStatChanged()
 	{
@@ -53,6 +54,7 @@ public partial class ProductivityGoalWidget : StatContainer
 		MaxEffect.Amount = Stat.Value;
 		MaxEffect.Emitting = true;
 		await new SignalAwaiter(MaxEffect, CpuParticles2D.SignalName.Finished, this);
-		await Hide();
+		await ToSignal(GetTree().CreateTimer(5), SceneTreeTimer.SignalName.Timeout);
+		Hide();
 	}
 }
