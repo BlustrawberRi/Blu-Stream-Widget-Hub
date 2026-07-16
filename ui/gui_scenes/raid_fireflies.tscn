@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://dnodyq4kusxpf"]
+
+[ext_resource type="Script" uid="uid://0r6dfe5ck2v3" path="res://scripts/RaidParticleWidget.cs" id="1_hu7yt"]
+
+[sub_resource type="Curve" id="Curve_ikr8a"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, -0.0114021), 0.0, 0.0, 0, 0, Vector2(0.49711, 0.962372), 0.0, 0.0, 0, 0, Vector2(1, -0.401368), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_fnpw5"]
+_limits = [-2.0, 2.00028, 0.0, 1.0]
+_data = [Vector2(0, 0.0138252), 0.0, 0.0, 0, 0, Vector2(0.34104, 1.08118), 0.0, 0.0, 0, 0, Vector2(1, 0.488203), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_q2iut"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0606936, 1), 0.0, 0.0, 0, 0, Vector2(0.739884, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_i0mn8"]
+offsets = PackedFloat32Array(0, 0.6625, 1)
+colors = PackedColorArray(0.757, 0.73, 1, 0.886275, 1, 0.801833, 0.59, 0.803922, 1, 0.801833, 0.59, 0)
+
+[node name="Control" type="Control" node_paths=PackedStringArray("RaidEffect")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hu7yt")
+RaidEffect = NodePath("FireflyEffect")
+
+[node name="FireflyEffect" type="CPUParticles2D" parent="."]
+position = Vector2(268, 531)
+emitting = false
+amount = 20
+lifetime = 13.51
+one_shot = true
+explosiveness = 0.35
+randomness = 0.21
+emission_shape = 3
+emission_rect_extents = Vector2(300, 500)
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.53
+initial_velocity_max = 31.4
+linear_accel_min = 1.0
+linear_accel_max = 2.0
+linear_accel_curve = SubResource("Curve_ikr8a")
+radial_accel_min = -10.22
+radial_accel_max = -3.7
+radial_accel_curve = SubResource("Curve_fnpw5")
+angle_min = -342.6
+angle_max = 596.0
+scale_amount_min = 3.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_q2iut")
+color_ramp = SubResource("Gradient_i0mn8")

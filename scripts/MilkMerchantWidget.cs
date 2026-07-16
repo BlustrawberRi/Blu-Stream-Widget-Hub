@@ -177,7 +177,7 @@ public partial class MilkMerchantWidget : StreamerWidget
             return;
         }
 
-        await PlayIntro(customers[0]);
+        PlayIntro(customers[0]);
     }
 
 

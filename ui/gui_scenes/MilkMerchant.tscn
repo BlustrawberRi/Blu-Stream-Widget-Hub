@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b7xinwaojw88"]
+[gd_scene load_steps=27 format=3 uid="uid://b7xinwaojw88"]
 
 [ext_resource type="Script" uid="uid://bfi42uj0x3xnu" path="res://scripts/MilkMerchantWidget.cs" id="1_rbg7s"]
 [ext_resource type="Texture2D" uid="uid://dnnjrxr7rmd7d" path="res://img/milk merchant/2025 milkmerchant shop.webp" id="2_ldxjm"]
@@ -308,6 +308,8 @@ _data = {
 &"turn_on": SubResource("Animation_ldxjm")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l5114"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rs8qg"]
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_b233o"]
@@ -400,6 +402,7 @@ layout_mode = 2
 anchors_preset = 0
 anchor_right = 1.18229
 anchor_bottom = 1.0
+offset_left = -0.00167847
 offset_right = -2270.0
 offset_bottom = -1080.0
 grow_horizontal = 2
@@ -419,11 +422,12 @@ centered = false
 
 [node name="Button" type="Button" parent="Shop"]
 layout_mode = 0
-offset_left = 903.002
+offset_left = 898.0
 offset_top = 310.0
-offset_right = 920.002
+offset_right = 924.0
 offset_bottom = 341.0
-text = "x"
+theme_override_constants/outline_size = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_l5114")
 
 [node name="Choices" type="PanelContainer" parent="Shop"]
 custom_minimum_size = Vector2(250, 0)
@@ -482,7 +486,7 @@ textSpeed = 28.684
 talkSpeed = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="Shop/SpeechBubble"]
-custom_minimum_size = Vector2(990, 194.879)
+custom_minimum_size = Vector2(990.247, 192.617)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_b233o")

@@ -6,7 +6,7 @@
 resource_name = "Productivity"
 script = ExtResource("1_8cmjo")
 StatName = "Productivity"
-Value = 16
+Value = 23
 MinValue = 0
 MaxValue = 20
 StopAtMaxValue = false

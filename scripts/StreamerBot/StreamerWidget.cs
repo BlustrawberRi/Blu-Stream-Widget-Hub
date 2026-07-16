@@ -24,8 +24,24 @@ public abstract partial class StreamerWidget : Node
     /// <summary>
     /// The streamer.bot events whose data is needed.
     /// </summary>
+    /// <remarks>
+    /// Example:
+    /// <code>
+    /// public override Enum[] StreamerbotEventRequests
+    /// {
+    ///     get
+    ///     {
+    ///         return new Enum[]{
+    ///             StreamerbotEventTypes.Twitch.Raid,
+    ///             StreamerbotEventTypes.Twitch.RewardRedemption,
+    ///             StreamerbotEventTypes.Twitch.ChatMessage 
+    ///         };
+    ///     }
+    ///     set { }
+    /// } </code>
+    /// </remarks>
     /// <value>Use the enums in <see cref="StreamerbotEventTypes"/>.</value>
-    public virtual Enum[] StreamerbotEventRequests { get ; set; }
+    public abstract Enum[] StreamerbotEventRequests { get ; set; }
 
     //[Export] public Array<StreamerBotTrigger> StreamerbotEventRequest = new Array<StreamerBotTrigger>();
     //todo: if this is changed, resub to more streamer bot events
@@ -34,11 +50,13 @@ public abstract partial class StreamerWidget : Node
     public override void _Ready()
     {
 
-        if (StreamerbotClient == null) 
+        if (StreamerbotClient == null)
         {
             StreamerbotClient = GetNode<StreamerbotClient>("/root/SBClient");
+            GD.Print("SB? "+ StreamerbotClient);
             //StreamerbotClient = GetNode<StreamerbotClient>("../%StreamerbotClient");
         }
+        GD.Print("SB? " + StreamerbotClient);
 
         RequestEvents();
     }
@@ -49,9 +67,6 @@ public abstract partial class StreamerWidget : Node
     /// </summary>
     protected void RequestEvents()
     {
-        /*foreach(var req in StreamerbotEventRequests) {
-            RequestEvent(req);
-        }*/
         StreamerbotClient.AddEventRequests(StreamerbotEventRequests, this);
     }
 
@@ -72,7 +87,7 @@ public abstract partial class StreamerWidget : Node
     /// This method is triggered when <see cref="StreamerbotClient"/> receives the event data requested over <see cref="RequestEvents"/>.
     /// </remarks>
     /// <param name="message">A JSON string that has the event data.</param>
-    public virtual void OnEventDataReceived(string source, string type, Dictionary data) {}
+    public abstract void OnEventDataReceived(string source, string type, Dictionary data);
 
 
 }

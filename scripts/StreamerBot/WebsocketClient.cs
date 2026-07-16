@@ -91,7 +91,7 @@ public abstract partial class WebsocketClient : Node
 
     protected virtual void _OnConnectionRequested() 
 	{
-        GD.Print("Connecting to StreamerBot...");
+        GD.Print(this.Name + " connecting to StreamerBot...");
         waitingForConnection = true;
         SetProcess(true);
         EmitSignal(SignalName.ConnectionRequested);

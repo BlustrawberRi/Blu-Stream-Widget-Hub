@@ -34,11 +34,25 @@ public partial class ProductivityGoalWidget : StatContainer
 		}
 
 	}
+
+	new public async Task Hide()
+	{
+		for (float i = 1; i >= 0; i -= 0.1f)
+		{
+			Modulate = new Color(Modulate, a: i);
+			await ToSignal(GetTree().CreateTimer(0.1), SceneTreeTimer.SignalName.Timeout);
+		}
+		Visible = false;
+    }
+
 	public async Task CelebrateStatChanged()
-    {
-		await Show();
+	{
+		var showTask = Show();
+		await showTask;
 		MaxEffect.Visible = true;
 		MaxEffect.Amount = Stat.Value;
 		MaxEffect.Emitting = true;
-    }
+		await new SignalAwaiter(MaxEffect, CpuParticles2D.SignalName.Finished, this);
+		await Hide();
+	}
 }
