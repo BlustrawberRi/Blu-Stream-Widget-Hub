@@ -2,6 +2,7 @@ using Godot;
 using System;
 using Godot.Collections;
 using System.Linq;
+using System.Diagnostics.Tracing;
 //using System.Collections.Generic;
 
 
@@ -100,8 +101,13 @@ public partial class StreamerbotClient : WebsocketClient
         {
             foreach (var eventType in widget.StreamerbotEventRequests)
             {
-                if ((answerDic["event"].AsGodotDictionary())?["source"].AsString() != eventType.GetType().Name)
+                // GD.Print("-> Widget:"+ widget.Name +":"+ eventType.GetType().Name+" "+ eventType.ToString());
+                if (eventSourceStr != eventType.GetType().Name)
                     continue;
+                if (eventTypeStr != eventType.ToString())
+                    continue;
+
+                GD.PrintRich("[b]Sending data to " + widget.Name + ".[/b]");
 
                 Variant data = new Variant();
                 answerDic.TryGetValue("data", out data);

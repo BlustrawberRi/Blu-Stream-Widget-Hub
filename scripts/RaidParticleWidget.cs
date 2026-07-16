@@ -24,7 +24,7 @@ public partial class RaidParticleWidget : StreamerWidget
     }
 
     public override void OnEventDataReceived(string source, string type, Dictionary data)
-    {
+	{
 		var raid = new TwitchRaid(data);
 		RaidEffect.Amount = raid.viewers;
 		RaidEffect.Emitting = true;

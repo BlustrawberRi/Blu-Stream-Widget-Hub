@@ -141,6 +141,7 @@ public partial class ShiftingTextureProgressBar : Godot.Range
 		_underNode.Texture = TextureUnder;
 		_underNode.Name = "UnderTexture";
 		this.AddChild(_underNode);
+		_underNode.ShowBehindParent = true;
 		// _underNode.Owner = GetTree().EditedSceneRoot;
 		_underNode.SetAnchorsPreset(LayoutPreset.FullRect, true);
 
@@ -148,16 +149,19 @@ public partial class ShiftingTextureProgressBar : Godot.Range
 		_progressMaskNode.Name = "MaskTexture";
 		_progressMaskNode.ClipChildren = ClipChildrenMode.Only;
 		this.AddChild(_progressMaskNode);
+		_progressMaskNode.ShowBehindParent = true;
 		// _progressMaskNode.Owner = GetTree().EditedSceneRoot;
 		_progressMaskNode.SetAnchorsPreset(LayoutPreset.FullRect, true);
 	
 		_progressNode.Texture = TextureProgressFill;
 		_progressMaskNode.AddChild(_progressNode);
+		// _progressMaskNode.ShowBehindParent = true;
 		_progressNode.SetAnchorsPreset(LayoutPreset.FullRect, true);
 
 		_overNode.Texture = TextureOver; 
 		_overNode.Name = "OverTexture";
 		this.AddChild(_overNode);
+		_overNode.ShowBehindParent = true;
 		// _overNode.Owner = GetTree().EditedSceneRoot;
 		_overNode.SetAnchorsPreset(LayoutPreset.FullRect, true);
 

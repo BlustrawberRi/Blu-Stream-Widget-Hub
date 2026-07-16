@@ -93,8 +93,10 @@ public partial class MilkMerchantWidget : StreamerWidget
 
     public override async void OnEventDataReceived(string source, string type, Dictionary data)
     {
-        if (waitForChoice && type == "ChatMessage")
+        if (type == "ChatMessage")
         {
+            if (!waitForChoice)
+                return;
             //GD.Print(data.ToString().Replace(",", ",\n").Replace("{", "{\n\t"));
             var msg_data = data.GetValueOrDefault("message").AsGodotDictionary();
             string user = msg_data.GetValueOrDefault("username").ToString();
@@ -164,10 +166,10 @@ public partial class MilkMerchantWidget : StreamerWidget
         //Todo check for usernames and give custom greetings
 
         string greeting = alternateGreeting ?? "Hello " + customer + "! What type of milk would you like?";
-        Talk(greeting);
         
         animationPlayer?.Play("dialogue_on");
         await ToSignal(animationPlayer, AnimationPlayer.SignalName.AnimationFinished);
+        Talk(greeting);
 
         waitForChoice = true;
     }

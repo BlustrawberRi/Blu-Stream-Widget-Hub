@@ -390,14 +390,14 @@ libraries = {
 &"": SubResource("AnimationLibrary_rmvdv")
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="ThemeMusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_plfm7")
 
 [node name="Shop" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchor_right = 1.18229
 anchor_bottom = 1.0
-offset_left = -0.00244093
 offset_right = -2270.0
 offset_bottom = -1080.0
 grow_horizontal = 2
@@ -481,7 +481,7 @@ textSpeed = 28.684
 talkSpeed = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="Shop/SpeechBubble"]
-custom_minimum_size = Vector2(991.334, 190.821)
+custom_minimum_size = Vector2(990.115, 196.717)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_b233o")
@@ -532,7 +532,7 @@ libraries = {
 }
 
 [connection signal="DialogueChanged" from="." to="Shop/SpeechBubble" method="Talk" binds= [4.0]]
-[connection signal="Finished" from="." to="AudioStreamPlayer" method="stop"]
-[connection signal="Triggered" from="." to="AudioStreamPlayer" method="play" binds= [0.0]]
+[connection signal="Finished" from="." to="ThemeMusicPlayer" method="stop"]
+[connection signal="Triggered" from="." to="ThemeMusicPlayer" method="play" binds= [0.0]]
 [connection signal="pressed" from="Shop/Button" to="." method="PlayOutro"]
 [connection signal="ready" from="Shop/SpeechBubble" to="Shop/SpeechBubble/BubbleAnimator" method="play" binds= ["wobble"]]
