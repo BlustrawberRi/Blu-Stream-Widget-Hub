@@ -378,16 +378,9 @@ _data = {
 &"wobble": SubResource("Animation_plfm7")
 }
 
-[node name="MilkMerchant" type="Control" node_paths=PackedStringArray("animationPlayer", "milkChoicesContainer")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+[node name="MilkMerchant" type="Node" node_paths=PackedStringArray("animationPlayer", "milkChoicesContainer")]
 script = ExtResource("1_rbg7s")
+RaidWaitTime = 30
 animationPlayer = NodePath("BubbleAnimationPlayer")
 milkChoicesContainer = NodePath("Shop/Choices/VBoxContainer/Panel/MarginContainer/MilkListContainer")
 milkDefinitionJson = "res://config/milk_choices.json"
@@ -397,12 +390,14 @@ libraries = {
 &"": SubResource("AnimationLibrary_rmvdv")
 }
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_plfm7")
+
 [node name="Shop" type="Control" parent="."]
-layout_mode = 2
-anchors_preset = 0
+layout_mode = 3
 anchor_right = 1.18229
 anchor_bottom = 1.0
-offset_left = -0.00167847
+offset_left = -0.00244093
 offset_right = -2270.0
 offset_bottom = -1080.0
 grow_horizontal = 2
@@ -486,7 +481,7 @@ textSpeed = 28.684
 talkSpeed = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="Shop/SpeechBubble"]
-custom_minimum_size = Vector2(990.247, 192.617)
+custom_minimum_size = Vector2(991.334, 190.821)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_b233o")
@@ -536,12 +531,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_d7lki")
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_plfm7")
-
 [connection signal="DialogueChanged" from="." to="Shop/SpeechBubble" method="Talk" binds= [4.0]]
 [connection signal="Finished" from="." to="AudioStreamPlayer" method="stop"]
 [connection signal="Triggered" from="." to="AudioStreamPlayer" method="play" binds= [0.0]]
 [connection signal="pressed" from="Shop/Button" to="." method="PlayOutro"]
-[connection signal="TalkFinished" from="Shop/SpeechBubble" to="." method="OnTalkDone"]
 [connection signal="ready" from="Shop/SpeechBubble" to="Shop/SpeechBubble/BubbleAnimator" method="play" binds= ["wobble"]]

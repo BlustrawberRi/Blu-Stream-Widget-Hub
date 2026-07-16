@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 public partial class MilkMerchantWidget : StreamerWidget
 {
+    [Export(PropertyHint.Range, "0,60,suffix:s")] int RaidWaitTime = 5;
     [Export] AnimationPlayer animationPlayer;
     [Export] Container milkChoicesContainer;
     [Export(PropertyHint.File, "*.json")] string milkDefinitionJson;
@@ -44,6 +45,8 @@ public partial class MilkMerchantWidget : StreamerWidget
 
     public override async void _Ready()
     {
+        var shop = this.GetNode<Control>("Shop");
+        shop.Visible = false;
         await LoadMilkChoices();
         FillMenu();
 
@@ -90,26 +93,6 @@ public partial class MilkMerchantWidget : StreamerWidget
 
     public override async void OnEventDataReceived(string source, string type, Dictionary data)
     {
-        if (type == "Raid") 
-        {
-            string userName = data.GetValueOrDefault("from_broadcaster_user_login").ToString();
-            if (userName=="") return;
-            customers.Add(userName);
-
-            if (!IsActive)
-                await Activate();
-        }
-        if (type == "RewardRedemption" )
-        {
-            RewardRedemption rr = new(data);
-            if (rr.RewardName == "Get some Milk")
-            {
-                customers.Add(rr.UserLogin);
-
-                if (!IsActive)
-                    await Activate();
-            }
-        }
         if (waitForChoice && type == "ChatMessage")
         {
             //GD.Print(data.ToString().Replace(",", ",\n").Replace("{", "{\n\t"));
@@ -122,7 +105,30 @@ public partial class MilkMerchantWidget : StreamerWidget
 
                 OnMilkChoice(message);
             }
+            return;
         }
+
+        if (type == "Raid") 
+        {
+            string userName = data.GetValueOrDefault("from_broadcaster_user_login").ToString();
+            if (userName=="") return;
+            await ToSignal(GetTree().CreateTimer(RaidWaitTime), SceneTreeTimer.SignalName.Timeout);
+            customers.Add(userName);
+
+        }
+        if (type == "RewardRedemption")
+        {
+            RewardRedemption rr = new(data);
+            if (rr.RewardName == "Get some Milk")
+            {
+                customers.Add(rr.UserLogin);
+
+
+            }
+        }
+
+        if (!IsActive)
+            Activate();
     }
 
     public async Task Activate()
