@@ -139,6 +139,7 @@ public partial class MilkMerchantWidget : StreamerWidget
         {
             IsActive = true;
             EmitSignal(SignalName.Triggered);
+            Talk("");
             animationPlayer?.Play("turn_on");
             await ToSignal(animationPlayer, AnimationPlayer.SignalName.AnimationFinished);
         }

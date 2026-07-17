@@ -97,6 +97,30 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Shop:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ThemeMusicPlayer:volume_db")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_mcktd"]
 resource_name = "dialogue_off"
@@ -203,100 +227,112 @@ length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
+tracks/0/path = NodePath("Shop:scale")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0.5, 2),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.44, 0.44)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Shop:scale")
+tracks/1/path = NodePath("Shop:modulate")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0.5, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.44, 0.44)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Shop:modulate")
+tracks/2/path = NodePath("Shop:position")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0.5, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Vector2(0, 0), Vector2(0, 400)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Shop:position")
-tracks/3/interp = 2
+tracks/3/path = NodePath("Shop:visible")
+tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.5, 2),
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ThemeMusicPlayer:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 400)]
+"values": [0.0, -40.0]
 }
 
 [sub_resource type="Animation" id="Animation_ldxjm"]
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
+tracks/0/path = NodePath("Shop:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Shop:position")
+tracks/1/path = NodePath("Shop:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0)]
+"values": [Vector2(0.44, 0.44), Vector2(1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Shop:scale")
+tracks/2/path = NodePath("Shop:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0.44, 0.44), Vector2(1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Shop:modulate")
+tracks/3/path = NodePath("Shop:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rmvdv"]
@@ -463,7 +499,7 @@ text = "[fade length=20][shake level=30][replacer prim_repl=?? speed=0.6]13[/rep
 fit_content = true
 custom_effects = [SubResource("RichTextEffect_b233o")]
 
-[node name="SpeechBubble" type="PanelContainer" parent="Shop" node_paths=PackedStringArray("textLabel")]
+[node name="SpeechBubble" type="PanelContainer" parent="Shop" node_paths=PackedStringArray("TalkSoundPlayer", "textLabel")]
 visible = false
 custom_minimum_size = Vector2(1000, 200)
 layout_mode = 2
@@ -475,13 +511,13 @@ scale = Vector2(0.996664, 0.997973)
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxEmpty_b37ef")
 script = ExtResource("4_ldxjm")
-TalkSound = ExtResource("7_l5114")
+TalkSoundPlayer = NodePath("TalkSoundPlayer")
 textLabel = NodePath("MarginContainer/RichTextLabel")
 textSpeed = 28.684
 talkSpeed = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="Shop/SpeechBubble"]
-custom_minimum_size = Vector2(990.115, 196.717)
+custom_minimum_size = Vector2(990.163, 197.001)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_b233o")
@@ -531,7 +567,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_d7lki")
 }
 
-[connection signal="DialogueChanged" from="." to="Shop/SpeechBubble" method="Talk" binds= [4.0]]
+[node name="TalkSoundPlayer" type="AudioStreamPlayer" parent="Shop/SpeechBubble"]
+stream = ExtResource("7_l5114")
+volume_db = -5.306
+
+[connection signal="DialogueChanged" from="." to="Shop/SpeechBubble" method="Talk" binds= [4.0, true]]
 [connection signal="Finished" from="." to="ThemeMusicPlayer" method="stop"]
 [connection signal="Triggered" from="." to="ThemeMusicPlayer" method="play" binds= [0.0]]
 [connection signal="pressed" from="Shop/Button" to="." method="PlayOutro"]

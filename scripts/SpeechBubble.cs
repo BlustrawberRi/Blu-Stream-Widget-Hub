@@ -4,12 +4,11 @@ using System.Threading.Tasks;
 
 public partial class SpeechBubble : PanelContainer
 {
-    [Export] AudioStream TalkSound;
+    [Export] AudioStreamPlayer TalkSoundPlayer;
     [Export] RichTextLabel textLabel;
     [Export(PropertyHint.Range, "0,100,suffix:chars/s")] float textSpeed;
     [Export(PropertyHint.Range, "0,100,suffix:chars")] int talkSpeed;
 
-    private AudioStreamPlayer player;
 
     [Signal] private delegate void TalkFinishedEventHandler();
 
@@ -20,9 +19,6 @@ public partial class SpeechBubble : PanelContainer
         {
             GD.PushWarning("Speech Bubble Text label has not been set for " + this);
         }
-        player = new();
-        AddChild(player);
-        player.Stream = TalkSound;
     }
 
     
@@ -32,7 +28,7 @@ public partial class SpeechBubble : PanelContainer
     /// </summary>
     /// <param name="dialogueText">What should be said in the bubble. Can be RichText.</param>
     /// <param name="delay">In seconds. How long textbubble should wait for next bubble.</param>
-    public async void Talk(string dialogueText, float delay)
+    public async void Talk(string dialogueText, float delay, bool withSound = true)
     {
         textLabel.Text = dialogueText;
         if (textSpeed != 0)
@@ -40,10 +36,10 @@ public partial class SpeechBubble : PanelContainer
             {
                 textLabel.VisibleCharacters = i;
                 await ToSignal(GetTree().CreateTimer(1 / textSpeed), SceneTreeTimer.SignalName.Timeout);
-                if (i%talkSpeed==0)
+                if (i%talkSpeed==1 && withSound)
                 {
-                    player.PitchScale = (float)GD.RandRange(0.7f, 1.3f);
-                    player.Play();
+                    TalkSoundPlayer.PitchScale = (float)GD.RandRange(0.7f, 1.3f);
+                    TalkSoundPlayer.Play();
                 }
             }
             

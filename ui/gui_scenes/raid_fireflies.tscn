@@ -30,10 +30,10 @@ RaidEffect = NodePath("FireflyEffect")
 [node name="FireflyEffect" type="CPUParticles2D" parent="."]
 position = Vector2(268, 531)
 emitting = false
-amount = 20
+amount = 15
 lifetime = 13.51
 one_shot = true
-explosiveness = 0.35
+explosiveness = 0.5
 randomness = 0.21
 emission_shape = 3
 emission_rect_extents = Vector2(300, 500)
