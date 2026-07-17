@@ -1,6 +1,202 @@
 
 using System;
+using System.Reflection.Metadata;
+using System.Reflection.Metadata.Ecma335;
+using System.Threading;
 using Godot;
+
+namespace SB
+{
+    public abstract class EventSource
+    {
+        public abstract string Name { get; }
+        public static EventSource Instance => instance;
+        private static EventSource instance;
+        protected EventSource()
+        {
+            if (instance != null)
+                return;
+            instance = this;
+        }
+        public static string ToStr()
+        {
+            return instance.Name;
+        }
+    }
+    public partial class EventType : GodotObject
+    {
+        public string Name { get; private set; }
+        public EventSource source;
+        private EventType(){ }
+        public EventType(string name, EventSource source)
+        {
+            this.source = source;
+            this.Name = name;
+        }
+
+        public string ToStr()
+        {
+            return source.Name+"/"+Name;
+        }
+    }
+
+    public class Command : EventSource
+    {
+        override public string Name => "Command";
+        public static EventType Triggered => new("Triggered", Command.Instance);
+        public static EventType Cooldown => new("Cooldown", Command.Instance);
+
+    }
+    //regex:
+    // Twitch\.(.*)\n
+    //public static EventType $1 =>new("$1", Twitch.Instance);\n
+    public class Twitch : EventSource
+    {
+        public override string Name => "Twitch";
+        public static EventType AdRun =>new("AdRun", Twitch.Instance);
+        public static EventType Announcement =>new("Announcement", Twitch.Instance);
+        public static EventType AutomaticRewardRedemption =>new("AutomaticRewardRedemption", Twitch.Instance);
+        public static EventType AutoModMessageHeld =>new("AutoModMessageHeld", Twitch.Instance);
+        public static EventType AutoModMessageUpdate =>new("AutoModMessageUpdate", Twitch.Instance);
+        public static EventType BetterTTVEmoteAdded =>new("BetterTTVEmoteAdded", Twitch.Instance);
+        public static EventType BetterTTVEmoteRemoved =>new("BetterTTVEmoteRemoved", Twitch.Instance);
+        public static EventType BitsBadgeTier =>new("BitsBadgeTier", Twitch.Instance);
+        public static EventType BlockedTermsAdded =>new("BlockedTermsAdded", Twitch.Instance);
+        public static EventType BlockedTermsDeleted =>new("BlockedTermsDeleted", Twitch.Instance);
+        public static EventType BotEventSubConnected =>new("BotEventSubConnected", Twitch.Instance);
+        public static EventType BotEventSubDisconnected =>new("BotEventSubDisconnected", Twitch.Instance);
+        public static EventType BotWhisper =>new("BotWhisper", Twitch.Instance);
+        public static EventType BroadcasterAuthenticated =>new("BroadcasterAuthenticated", Twitch.Instance);
+        public static EventType BroadcasterChatConnected =>new("BroadcasterChatConnected", Twitch.Instance);
+        public static EventType BroadcasterChatDisconnected =>new("BroadcasterChatDisconnected", Twitch.Instance);
+        public static EventType BroadcasterEventSubConnected =>new("BroadcasterEventSubConnected", Twitch.Instance);
+        public static EventType BroadcasterEventSubDisconnected =>new("BroadcasterEventSubDisconnected", Twitch.Instance);
+        public static EventType CharityCompleted =>new("CharityCompleted", Twitch.Instance);
+        public static EventType CharityDonation =>new("CharityDonation", Twitch.Instance);
+        public static EventType CharityProgress =>new("CharityProgress", Twitch.Instance);
+        public static EventType CharityStarted =>new("CharityStarted", Twitch.Instance);
+        public static EventType ChatCleared =>new("ChatCleared", Twitch.Instance);
+        public static EventType ChatEmoteModeOff =>new("ChatEmoteModeOff", Twitch.Instance);
+        public static EventType ChatEmoteModeOn =>new("ChatEmoteModeOn", Twitch.Instance);
+        public static EventType ChatFollowerModeChanged =>new("ChatFollowerModeChanged", Twitch.Instance);
+        public static EventType ChatFollowerModeOff =>new("ChatFollowerModeOff", Twitch.Instance);
+        public static EventType ChatFollowerModeOn =>new("ChatFollowerModeOn", Twitch.Instance);
+        public static EventType ChatMessage =>new("ChatMessage", Twitch.Instance);
+        public static EventType ChatMessageDeleted =>new("ChatMessageDeleted", Twitch.Instance);
+        public static EventType ChatSlowModeChanged =>new("ChatSlowModeChanged", Twitch.Instance);
+        public static EventType ChatSlowModeOff =>new("ChatSlowModeOff", Twitch.Instance);
+        public static EventType ChatSlowModeOn =>new("ChatSlowModeOn", Twitch.Instance);
+        public static EventType ChatSubscriberModeOff =>new("ChatSubscriberModeOff", Twitch.Instance);
+        public static EventType ChatSubscriberModeOn =>new("ChatSubscriberModeOn", Twitch.Instance);
+        public static EventType ChatUniqueModeOff =>new("ChatUniqueModeOff", Twitch.Instance);
+        public static EventType ChatUniqueModeOn =>new("ChatUniqueModeOn", Twitch.Instance);
+        public static EventType Cheer =>new("Cheer", Twitch.Instance);
+        public static EventType CoinCheer =>new("CoinCheer", Twitch.Instance);
+        public static EventType CommunityGoalContribution =>new("CommunityGoalContribution", Twitch.Instance);
+        public static EventType CommunityGoalEnded =>new("CommunityGoalEnded", Twitch.Instance);
+        public static EventType CustomPowerUpRedemption =>new("CustomPowerUpRedemption", Twitch.Instance);
+        public static EventType FirstWord =>new("FirstWord", Twitch.Instance);
+        public static EventType Follow =>new("Follow", Twitch.Instance);
+        public static EventType GiftBomb =>new("GiftBomb", Twitch.Instance);
+        public static EventType GiftPaidUpgrade =>new("GiftPaidUpgrade", Twitch.Instance);
+        public static EventType GiftSub =>new("GiftSub", Twitch.Instance);
+        public static EventType GoalBegin =>new("GoalBegin", Twitch.Instance);
+        public static EventType GoalEnd =>new("GoalEnd", Twitch.Instance);
+        public static EventType GoalProgress =>new("GoalProgress", Twitch.Instance);
+        public static EventType GuestStarGuestUpdate =>new("GuestStarGuestUpdate", Twitch.Instance);
+        public static EventType GuestStarSessionBegin =>new("GuestStarSessionBegin", Twitch.Instance);
+        public static EventType GuestStarSessionEnd =>new("GuestStarSessionEnd", Twitch.Instance);
+        public static EventType GuestStarSettingsUpdate =>new("GuestStarSettingsUpdate", Twitch.Instance);
+        public static EventType GuestStarSlotUpdate =>new("GuestStarSlotUpdate", Twitch.Instance);
+        public static EventType HypeChat =>new("HypeChat", Twitch.Instance);
+        public static EventType HypeChatLevel =>new("HypeChatLevel", Twitch.Instance);
+        public static EventType HypeTrainEnd =>new("HypeTrainEnd", Twitch.Instance);
+        public static EventType HypeTrainLevelUp =>new("HypeTrainLevelUp", Twitch.Instance);
+        public static EventType HypeTrainStart =>new("HypeTrainStart", Twitch.Instance);
+        public static EventType HypeTrainUpdate =>new("HypeTrainUpdate", Twitch.Instance);
+        public static EventType ModeratorAdded =>new("ModeratorAdded", Twitch.Instance);
+        public static EventType ModeratorRemoved =>new("ModeratorRemoved", Twitch.Instance);
+        public static EventType Modiversary =>new("Modiversary", Twitch.Instance);
+        public static EventType PayItForward =>new("PayItForward", Twitch.Instance);
+        public static EventType PermittedTermsAdded =>new("PermittedTermsAdded", Twitch.Instance);
+        public static EventType PermittedTermsDeleted =>new("PermittedTermsDeleted", Twitch.Instance);
+        public static EventType PollArchived =>new("PollArchived", Twitch.Instance);
+        public static EventType PollCompleted =>new("PollCompleted", Twitch.Instance);
+        public static EventType PollCreated =>new("PollCreated", Twitch.Instance);
+        public static EventType PollTerminated =>new("PollTerminated", Twitch.Instance);
+        public static EventType PollUpdated =>new("PollUpdated", Twitch.Instance);
+        public static EventType PowerUpRedemption =>new("PowerUpRedemption", Twitch.Instance);
+        public static EventType PredictionCanceled =>new("PredictionCanceled", Twitch.Instance);
+        public static EventType PredictionCompleted =>new("PredictionCompleted", Twitch.Instance);
+        public static EventType PredictionCreated =>new("PredictionCreated", Twitch.Instance);
+        public static EventType PredictionLocked =>new("PredictionLocked", Twitch.Instance);
+        public static EventType PredictionUpdated =>new("PredictionUpdated", Twitch.Instance);
+        public static EventType PresentViewers =>new("PresentViewers", Twitch.Instance);
+        public static EventType PrimePaidUpgrade =>new("PrimePaidUpgrade", Twitch.Instance);
+        public static EventType PyramidBroken =>new("PyramidBroken", Twitch.Instance);
+        public static EventType PyramidSuccess =>new("PyramidSuccess", Twitch.Instance);
+        public static EventType Raid =>new("Raid", Twitch.Instance);
+        public static EventType RaidCancelled =>new("RaidCancelled", Twitch.Instance);
+        public static EventType RaidSend =>new("RaidSend", Twitch.Instance);
+        public static EventType RaidStart =>new("RaidStart", Twitch.Instance);
+        public static EventType ReSub =>new("ReSub", Twitch.Instance);
+        public static EventType RewardCreated =>new("RewardCreated", Twitch.Instance);
+        public static EventType RewardDeleted =>new("RewardDeleted", Twitch.Instance);
+        public static EventType RewardRedemption =>new("RewardRedemption", Twitch.Instance);
+        public static EventType RewardRedemptionUpdated =>new("RewardRedemptionUpdated", Twitch.Instance);
+        public static EventType RewardUpdated =>new("RewardUpdated", Twitch.Instance);
+        public static EventType SevenTVEmoteAdded =>new("SevenTVEmoteAdded", Twitch.Instance);
+        public static EventType SevenTVEmoteRemoved =>new("SevenTVEmoteRemoved", Twitch.Instance);
+        public static EventType SharedChatAnnouncement =>new("SharedChatAnnouncement", Twitch.Instance);
+        public static EventType SharedChatCommunitySubGift =>new("SharedChatCommunitySubGift", Twitch.Instance);
+        public static EventType SharedChatGiftPaidUpgrade =>new("SharedChatGiftPaidUpgrade", Twitch.Instance);
+        public static EventType SharedChatMessageDeleted =>new("SharedChatMessageDeleted", Twitch.Instance);
+        public static EventType SharedChatPayItForward =>new("SharedChatPayItForward", Twitch.Instance);
+        public static EventType SharedChatPrimePaidUpgrade =>new("SharedChatPrimePaidUpgrade", Twitch.Instance);
+        public static EventType SharedChatRaid =>new("SharedChatRaid", Twitch.Instance);
+        public static EventType SharedChatResub =>new("SharedChatResub", Twitch.Instance);
+        public static EventType SharedChatSessionBegin =>new("SharedChatSessionBegin", Twitch.Instance);
+        public static EventType SharedChatSessionEnd =>new("SharedChatSessionEnd", Twitch.Instance);
+        public static EventType SharedChatSessionUpdate =>new("SharedChatSessionUpdate", Twitch.Instance);
+        public static EventType SharedChatSub =>new("SharedChatSub", Twitch.Instance);
+        public static EventType SharedChatSubGift =>new("SharedChatSubGift", Twitch.Instance);
+        public static EventType SharedChatUserBanned =>new("SharedChatUserBanned", Twitch.Instance);
+        public static EventType SharedChatUserTimedout =>new("SharedChatUserTimedout", Twitch.Instance);
+        public static EventType SharedChatUserUnbanned =>new("SharedChatUserUnbanned", Twitch.Instance);
+        public static EventType SharedChatUserUntimedout =>new("SharedChatUserUntimedout", Twitch.Instance);
+        public static EventType SharedModiversary =>new("SharedModiversary", Twitch.Instance);
+        public static EventType ShieldModeBegin =>new("ShieldModeBegin", Twitch.Instance);
+        public static EventType ShieldModeEnd =>new("ShieldModeEnd", Twitch.Instance);
+        public static EventType ShoutoutCreated =>new("ShoutoutCreated", Twitch.Instance);
+        public static EventType ShoutoutReceived =>new("ShoutoutReceived", Twitch.Instance);
+        public static EventType StreamOffline =>new("StreamOffline", Twitch.Instance);
+        public static EventType StreamOnline =>new("StreamOnline", Twitch.Instance);
+        public static EventType StreamUpdate =>new("StreamUpdate", Twitch.Instance);
+        public static EventType StreamUpdateGameOnConnect =>new("StreamUpdateGameOnConnect", Twitch.Instance);
+        public static EventType Sub =>new("Sub", Twitch.Instance);
+        public static EventType SubCounterRollover =>new("SubCounterRollover", Twitch.Instance);
+        public static EventType SuspiciousUserMessage =>new("SuspiciousUserMessage", Twitch.Instance);
+        public static EventType SuspiciousUserUpdate =>new("SuspiciousUserUpdate", Twitch.Instance);
+        public static EventType UnbanRequestApproved =>new("UnbanRequestApproved", Twitch.Instance);
+        public static EventType UnbanRequestCreated =>new("UnbanRequestCreated", Twitch.Instance);
+        public static EventType UnbanRequestDenied =>new("UnbanRequestDenied", Twitch.Instance);
+        public static EventType UpcomingAd =>new("UpcomingAd", Twitch.Instance);
+        public static EventType UserBanned =>new("UserBanned", Twitch.Instance);
+        public static EventType UserTimedOut =>new("UserTimedOut", Twitch.Instance);
+        public static EventType UserUnbanned =>new("UserUnbanned", Twitch.Instance);
+        public static EventType UserUntimedOut =>new("UserUntimedOut", Twitch.Instance);
+        public static EventType ViewerCountUpdate =>new("ViewerCountUpdate", Twitch.Instance);
+        public static EventType VipAdded =>new("VipAdded", Twitch.Instance);
+        public static EventType VipRemoved =>new("VipRemoved", Twitch.Instance);
+        public static EventType WarnedUser =>new("WarnedUser", Twitch.Instance);
+        public static EventType WarningAcknowledged =>new("WarningAcknowledged", Twitch.Instance);
+        public static EventType WatchStreak =>new("WatchStreak", Twitch.Instance);
+        public static EventType Whisper => new("Whisper", Twitch.Instance);
+
+    }
+
+}
+
 
 // regex: 
 //\t*(\w*),
@@ -13,7 +209,7 @@ public partial class StreamerBotTrigger : GodotObject
 
     public struct Command
     {
-        public static string Triggered = "Triggered";
+        public const string Triggered = "Triggered";
         public static string Cooldown = "Cooldown";
 
         public override string ToString() => "Command";
