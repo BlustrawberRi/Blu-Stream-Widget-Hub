@@ -15,7 +15,8 @@ public partial class StreamerbotClient : WebsocketClient
 
     //private Dictionary<StreamerWidget, Dictionary<String, Array<String>>> WidgetEventRequests ;
     private Array<StreamerWidget> ConnectedWidgets = new Array<StreamerWidget>();
-
+    private const string SUBSCRIBE_ID = "godot-subEvent-BluWiHu";
+    private const string GET_EVENTS_ID = "godot-getEvents-BluWiHu";
 
     /// <summary>
     /// Subscribe to a set of events from the connected Streamer.bot instance. The events are picked by <see cref="StreamerWidget"/> instances and requested over <see cref="AddEventRequests"/>.
@@ -23,14 +24,26 @@ public partial class StreamerbotClient : WebsocketClient
     public void Subscribe()
     {
         var getEventsDic = new Dictionary
-    {
-        {"id", "godot-subEvent-BluWiHu"},
-        {"request", "Subscribe"},
-        {"events", eventRequestList}
-    };
+        {
+            {"id", SUBSCRIBE_ID},
+            {"request", "Subscribe"},
+            {"events", eventRequestList}
+        };
 
         if (!SendToServer(Json.Stringify(getEventsDic, "\t")))
             GD.Print("Event Request could not be sent.");
+    }
+
+    public void GetEvents()
+    {
+        var getEventsDic = new Dictionary
+        {
+            {"id", GET_EVENTS_ID},
+            {"request", "GetEvents"}
+        };
+
+        if (!SendToServer(Json.Stringify(getEventsDic, "\t")))
+            GD.Print("GetEvents Request could not be sent.");
     }
 
     /// <summary>
@@ -74,6 +87,7 @@ public partial class StreamerbotClient : WebsocketClient
     {
         base._OnConnectionEstablished();
         Subscribe();
+        // GetEvents();
     }
 
     protected override void _OnAnswerReceived(string answer)
@@ -90,6 +104,28 @@ public partial class StreamerbotClient : WebsocketClient
     private void _FilterAnswer(string answer)
     {
         var answerDic = Json.ParseString(answer).AsGodotDictionary();
+        if (!answerDic.ContainsKey("id")) return;
+        switch (answerDic["id"].ToString())
+        {
+            case SUBSCRIBE_ID:
+                _ProcessEventData(answerDic);
+                break;
+            case GET_EVENTS_ID:
+                _GetStreamerbotEvents(answerDic);
+                break;
+        }
+
+    }
+
+    private void _GetStreamerbotEvents(Dictionary answerDic)
+    {
+        GD.PrintT(answerDic);
+        // throw new NotImplementedException();
+    }
+
+
+    private void _ProcessEventData(Dictionary answerDic)
+    {
         if (!answerDic.ContainsKey("event")) return;
 
         string eventSourceStr = (answerDic["event"].AsGodotDictionary())?["source"].AsString();
@@ -105,28 +141,9 @@ public partial class StreamerbotClient : WebsocketClient
                 GD.PrintRich("[b]Sending data to " + widget.Name + ".[/b]");
                 widget.OnEventDataReceived(eventType, data.AsGodotDictionary());
             }
-            // continue;
-            // foreach (var reqType in widget.StreamerbotEventRequests)
-            // {
-
-            //     // GD.Print("-> Widget:"+ widget.Name +":"+ eventType.GetType().Name+" "+ eventType.ToString());
-            //     if (eventSourceStr != reqType.GetType().Name)
-            //         continue;
-            //     if (eventTypeStr != reqType.ToString())
-            //         continue;
-
-            //     GD.PrintRich("[b]Sending data to " + widget.Name + ".[/b]");
-
-            //     Variant data = new Variant();
-            //     answerDic.TryGetValue("data", out data);
-            //     //GD.Print(data);
-
-            //     widget.OnEventDataReceived(eventSourceStr, eventTypeStr, data.AsGodotDictionary());
-            //     break;
-            // }
         }
-
     }
+
 
     private bool _GetWidgetEventRequests(StreamerWidget widget, string eventSourceStr, string eventTypeStr, out EventType eventType)
     {

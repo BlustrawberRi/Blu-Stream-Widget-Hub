@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do750qlcwef72"
-path="res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+uid="uid://1r5qpuca0ylf"
+path="res://.godot/imported/2026-07-18 BluWidgetHub Icon.svg-37f8c2245254b8376fa02828e2d549fd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icon.svg"
-dest_files=["res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"]
+source_file="res://editor/icons/2026-07-18 BluWidgetHub Icon.svg"
+dest_files=["res://.godot/imported/2026-07-18 BluWidgetHub Icon.svg-37f8c2245254b8376fa02828e2d549fd.ctex"]
 
 [params]
 

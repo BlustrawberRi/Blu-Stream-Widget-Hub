@@ -16,8 +16,10 @@ config/version="0.1.0"
 run/main_scene="uid://ca4o52efp0j5g"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 0)
-boot_splash/fullsize=false
-config/icon="res://icon.svg"
+boot_splash/image="uid://d0c1ktvtyvjs4"
+config/icon="uid://c1nxe6f0vux12"
+config/windows_native_icon="res://editor/icons/2026-07-18 BluWiHu icon small.ico"
+boot_splash/minimum_display_time=200
 
 [autoload]
 
