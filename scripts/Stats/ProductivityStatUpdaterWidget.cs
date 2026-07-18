@@ -1,18 +1,15 @@
 using Godot;
 using Godot.Collections;
+using SB.Events;
 using System;
 
 public partial class ProductivityStatUpdaterWidget : StreamerWidget
 {
     [Export] public StreamStat productivityStat;
 
-    public override Enum[] StreamerbotEventRequests
+    public override EventType[] StreamerBotEventRequests
     {
-        get
-        {
-            return new Enum[]{
-                    StreamerbotEventTypes.Command.Triggered};
-        }
+        get => new[]{ Command.Triggered };
         set { }
     }
 
@@ -22,10 +19,9 @@ public partial class ProductivityStatUpdaterWidget : StreamerWidget
     }
 
 
-    public override void OnEventDataReceived(string source, string type, Dictionary data)
+    public override void OnEventDataReceived(EventType type, Dictionary data)
     {
         CommandData command = new(data);
-
         if (command.Name == "Finish Todo")
         {
             // Todo: create scripts for each stat (looking for a specific command or whatever)

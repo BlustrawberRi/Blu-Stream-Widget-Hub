@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using Godot.NativeInterop;
+using SB.Events;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,18 +24,10 @@ public partial class MilkMerchantWidget : StreamerWidget
     private bool waitForChoice = false;
     [Export] public Array<string> customers = new();
     public string CurrentCustomer { get; set; }
-    public override Enum[] StreamerbotEventRequests
-    {
-        get
-        {
-            return new Enum[]{
-                //StreamerbotEventTypes.Command.Triggered,
-                StreamerbotEventTypes.Twitch.Raid,
-                StreamerbotEventTypes.Twitch.RewardRedemption,
-                StreamerbotEventTypes.Twitch.ChatMessage //todo: subscribe dynamically
-            };
 
-        }
+    public override EventType[] StreamerBotEventRequests
+    {
+        get => new[] { Twitch.Raid, Twitch.RewardRedemption, Twitch.ChatMessage };// TODO: subscribe dynamically 
         set { }
     }
 
@@ -91,42 +84,43 @@ public partial class MilkMerchantWidget : StreamerWidget
         }
     }
 
-    public override async void OnEventDataReceived(string source, string type, Dictionary data)
+    public override async void OnEventDataReceived(EventType type, Dictionary data)
     {
-        if (type == "ChatMessage")
+        switch (type.Name) 
         {
-            if (!waitForChoice)
+            case "ChatMessage":
+                if (!waitForChoice)
+                    return;
+                //GD.Print(data.ToString().Replace(",", ",\n").Replace("{", "{\n\t"));
+                var msg_data = data.GetValueOrDefault("message").AsGodotDictionary();
+                string user = msg_data.GetValueOrDefault("username").ToString();
+
+                if (customers.Count != 0 && user == customers[0])
+                {
+                    string message = msg_data.GetValueOrDefault("message").ToString();
+
+                    OnMilkChoice(message);
+                }
                 return;
-            //GD.Print(data.ToString().Replace(",", ",\n").Replace("{", "{\n\t"));
-            var msg_data = data.GetValueOrDefault("message").AsGodotDictionary();
-            string user = msg_data.GetValueOrDefault("username").ToString();
 
-            if (customers.Count != 0 && user == customers[0])
-            {
-                string message = msg_data.GetValueOrDefault("message").ToString();
+            case "Raid":
+                string userName = data.GetValueOrDefault("from_broadcaster_user_login").ToString();
+                if (userName == "") return;
+                await ToSignal(GetTree().CreateTimer(RaidWaitTime), SceneTreeTimer.SignalName.Timeout);
+                customers.Add(userName);
+                break;
 
-                OnMilkChoice(message);
-            }
-            return;
-        }
-
-        if (type == "Raid") 
-        {
-            string userName = data.GetValueOrDefault("from_broadcaster_user_login").ToString();
-            if (userName=="") return;
-            await ToSignal(GetTree().CreateTimer(RaidWaitTime), SceneTreeTimer.SignalName.Timeout);
-            customers.Add(userName);
-
-        }
-        if (type == "RewardRedemption")
-        {
-            RewardRedemption rr = new(data);
-            if (rr.RewardName == "Get some Milk")
-            {
-                customers.Add(rr.UserLogin);
-
-
-            }
+            case "RewardRedemption":
+                RewardRedemption rr = new(data);
+                if (rr.RewardName == "Get some Milk")
+                {
+                    customers.Add(rr.UserLogin);
+                }
+                break;
+                
+            default:
+                return;
+        
         }
 
         if (!IsActive)

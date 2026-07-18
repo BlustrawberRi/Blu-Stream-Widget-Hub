@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using SB.Events;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,14 +16,9 @@ using System.ComponentModel;
 /// </remarks>
 public partial class ChatTodoWidget : StreamerWidget
 {
-    public override Enum[] StreamerbotEventRequests
+    public override EventType[] StreamerBotEventRequests
     {
-        get
-        {
-            return new Enum[]{
-                    StreamerbotEventTypes.Command.Triggered,
-                    StreamerbotEventTypes.Twitch.RewardRedemption};
-        }
+        get => new[] { Twitch.RewardRedemption, Command.Triggered };
         set { }
     }
 
@@ -31,27 +27,28 @@ public partial class ChatTodoWidget : StreamerWidget
     [Signal]
     public delegate void TodoDoneEventHandler(ChatUser user, string timestamp);
 
-    public override void OnEventDataReceived(string source, string type, Dictionary data)
+    public override void OnEventDataReceived(EventType type, Dictionary data)
     {
         ChatUser user = new();
         string cmd = "";
         string msg = "";
 
-        if (source == "Command")
+        switch (type.Name)
         {
-            CommandData command = new CommandData(data);
-            msg = command.Message;
-            cmd = command.Name;
-            user = command.User;
-
-        }
-        else if (type == "RewardRedemption")
-        {
-            RewardRedemption red = new RewardRedemption(data);
-            cmd = red.RewardName;
-            msg = red.RawImput;
-            user.Display = red.UserName;
-            user.Id = red.UserId;
+            case "Triggered":
+                CommandData command = new CommandData(data);
+                msg = command.Message;
+                cmd = command.Name;
+                user = command.User;
+                break;
+        
+            case "RewardRedemption":
+                RewardRedemption red = new RewardRedemption(data);
+                cmd = red.RewardName;
+                msg = red.RawImput;
+                user.Display = red.UserName;
+                    user.Id = red.UserId;
+                break;
         }
 
 

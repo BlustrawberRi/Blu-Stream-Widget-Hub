@@ -1,9 +1,7 @@
 using Godot;
 using System;
 using Godot.Collections;
-using System.Linq;
-using System.Diagnostics.Tracing;
-//using System.Collections.Generic;
+using SB.Events;
 
 
 [GlobalClass, Icon("res://editor/icons/StreamerbotClient.svg")]
@@ -26,7 +24,7 @@ public partial class StreamerbotClient : WebsocketClient
     {
         var getEventsDic = new Dictionary
     {
-        {"id", "godot-subEvent"},
+        {"id", "godot-subEvent-BluWiHu"},
         {"request", "Subscribe"},
         {"events", eventRequestList}
     };
@@ -40,35 +38,36 @@ public partial class StreamerbotClient : WebsocketClient
     /// </summary>
     /// <param name="eventTypes">The events the widget wants data from. Choose from <see cref="StreamerBotEventTypes"/></param>
     /// <param name="widget">The widget requesting the event data. StreamerbotClient will send the answer to that widget.</param>
-    public void AddEventRequests(Enum[] eventTypes, StreamerWidget widget)
+    public void AddEventRequests(EventType[] eventTypes, StreamerWidget widget)
     {
         GD.PrintRich("[b]" + widget.Name + " added Requests [/b]:");
-        //var eventTypeList = new Godot.Collections.Array();
+        if (eventTypes == null) return;
         foreach (var et in eventTypes)
         {
             AddEventRequest(et, widget);
         }
 
-        if (!ConnectedWidgets.Contains(widget))
-            ConnectedWidgets.Add(widget);
     }
 
-    public void AddEventRequest(Enum eventType, StreamerWidget widget)
+    public void AddEventRequest(EventType eventType, StreamerWidget widget)
     {
-        GD.PrintRich("[rainbow]+[/rainbow] " + eventType.GetType().Name + " " + new Array<String>() { eventType.ToString() });
+        GD.PrintRich("\t[rainbow]+[/rainbow] " + eventType.FullName );
 
-        bool hasEventSource = eventRequestList.ContainsKey(eventType.GetType().Name);
-        bool hasEventType = hasEventSource && eventRequestList[eventType.GetType().Name].Contains(eventType.ToString());
+        bool hasEventSource = eventRequestList.ContainsKey(eventType.SourceName);
+        bool hasEventType = hasEventSource && eventRequestList[eventType.SourceName].Contains(eventType.Name);
         if (hasEventSource)
         {
             if (!hasEventType)
-                eventRequestList[eventType.GetType().Name].Add(eventType.ToString());
+                eventRequestList[eventType.SourceName].Add(eventType.Name); // add another event item to the List with the Source key
         }
         else
         {
             if (!hasEventType)
-                eventRequestList.Add(eventType.GetType().Name, new Array<String>() { eventType.ToString() });
+                eventRequestList.Add(eventType.SourceName, new Array<String>() { eventType.Name });
         }
+
+        if (!ConnectedWidgets.Contains(widget))
+            ConnectedWidgets.Add(widget);
     }
 
     protected override void _OnConnectionEstablished()
@@ -99,26 +98,49 @@ public partial class StreamerbotClient : WebsocketClient
         GD.PrintRich("[wave]New " + eventSourceStr + "/" + eventTypeStr + " Event arrived![/wave]");
         foreach (var widget in ConnectedWidgets)
         {
-            foreach (var eventType in widget.StreamerbotEventRequests)
+            if (_GetWidgetEventRequests(widget, eventSourceStr, eventTypeStr, out EventType eventType))
             {
-                // GD.Print("-> Widget:"+ widget.Name +":"+ eventType.GetType().Name+" "+ eventType.ToString());
-                if (eventSourceStr != eventType.GetType().Name)
-                    continue;
-                if (eventTypeStr != eventType.ToString())
-                    continue;
-
-                GD.PrintRich("[b]Sending data to " + widget.Name + ".[/b]");
-
                 Variant data = new Variant();
                 answerDic.TryGetValue("data", out data);
-                //GD.Print(data);
-
-                widget.OnEventDataReceived(eventSourceStr, eventTypeStr, data.AsGodotDictionary());
-                break;
+                GD.PrintRich("[b]Sending data to " + widget.Name + ".[/b]");
+                widget.OnEventDataReceived(eventType, data.AsGodotDictionary());
             }
+            // continue;
+            // foreach (var reqType in widget.StreamerbotEventRequests)
+            // {
+
+            //     // GD.Print("-> Widget:"+ widget.Name +":"+ eventType.GetType().Name+" "+ eventType.ToString());
+            //     if (eventSourceStr != reqType.GetType().Name)
+            //         continue;
+            //     if (eventTypeStr != reqType.ToString())
+            //         continue;
+
+            //     GD.PrintRich("[b]Sending data to " + widget.Name + ".[/b]");
+
+            //     Variant data = new Variant();
+            //     answerDic.TryGetValue("data", out data);
+            //     //GD.Print(data);
+
+            //     widget.OnEventDataReceived(eventSourceStr, eventTypeStr, data.AsGodotDictionary());
+            //     break;
+            // }
         }
 
     }
 
+    private bool _GetWidgetEventRequests(StreamerWidget widget, string eventSourceStr, string eventTypeStr, out EventType eventType)
+    {
+        if (widget.StreamerBotEventRequests != null)
+        foreach (var reqType in widget.StreamerBotEventRequests)
+        {
+            if (reqType.source.Name != eventSourceStr) continue;
+            if (reqType.Name != eventTypeStr) continue;
+            eventType = reqType;
+            return true;
+        }
+
+        eventType = null;
+        return false;
+    }
 }
 

@@ -1,11 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text.RegularExpressions;
+using SB.Events;
 
 /// <summary>
 /// Baseclass for widgets who respond to <see cref="StreamerbotClient"/> event answers.
@@ -41,7 +37,8 @@ public abstract partial class StreamerWidget : Node
     /// } </code>
     /// </remarks>
     /// <value>Use the enums in <see cref="StreamerbotEventTypes"/>.</value>
-    public abstract Enum[] StreamerbotEventRequests { get ; set; }
+    // public abstract Enum[] StreamerbotEventRequests { get; set; }
+    public virtual EventType[] StreamerBotEventRequests { get; set; }
 
     //[Export] public Array<StreamerBotTrigger> StreamerbotEventRequest = new Array<StreamerBotTrigger>();
     //todo: if this is changed, resub to more streamer bot events
@@ -67,10 +64,10 @@ public abstract partial class StreamerWidget : Node
     /// </summary>
     protected void RequestEvents()
     {
-        StreamerbotClient.AddEventRequests(StreamerbotEventRequests, this);
+        StreamerbotClient.AddEventRequests(StreamerBotEventRequests, this);
     }
 
-    public void RequestEvent(Enum request) {
+    public void RequestEvent(EventType request) {
         if (StreamerbotClient == null)
         {
             GD.PushWarning("Widget missing reference to Streamerbot client.");
@@ -87,7 +84,8 @@ public abstract partial class StreamerWidget : Node
     /// This method is triggered when <see cref="StreamerbotClient"/> receives the event data requested over <see cref="RequestEvents"/>.
     /// </remarks>
     /// <param name="message">A JSON string that has the event data.</param>
-    public abstract void OnEventDataReceived(string source, string type, Dictionary data);
+    // public abstract void OnEventDataReceived(string source, string type, Dictionary data);
+    public abstract void OnEventDataReceived(EventType type, Dictionary data);
 
 
 }

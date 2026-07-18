@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using SB.Events;
 using System;
 
 public partial class HydrationStatUpdaterWidget : StreamerWidget
@@ -12,12 +13,9 @@ public partial class HydrationStatUpdaterWidget : StreamerWidget
     [Export]
     public int hydrationIncreasePerSip = 20;
 
-    public override Enum[] StreamerbotEventRequests
+    public override EventType[] StreamerBotEventRequests
     {
-        get => new Enum[]{
-                    StreamerbotEventTypes.Command.Triggered,
-                    StreamerbotEventTypes.Twitch.RewardRedemption
-        };
+        get => new []{ Command.Triggered, Twitch.RewardRedemption};
         set { }
     }
 
@@ -28,26 +26,26 @@ public partial class HydrationStatUpdaterWidget : StreamerWidget
         base._Ready();
         _DecreaseHydration();
     }
-
-    public override void OnEventDataReceived(string source, string type, Dictionary data)
+    public override void OnEventDataReceived(EventType type, Dictionary data)
     {
-        if (type == "RewardRedemption")
-        {
-            RewardRedemption reward = new(data);
-            if (reward.RewardName == "Hydrate")
-            {
-                IncreaseHydration();
-            }
-        }
+        switch (type.Name) {
+            case "RewardRedemption":
+                RewardRedemption reward = new(data);
+                if (reward.RewardName == "Hydrate")
+                {
+                    IncreaseHydration();
+                }
+                return;
 
-        if (type == "RewardRedemption")
-        {
-            CommandData command = new(data);
-            if (command.Name == "Hydrate")
-            {
-                IncreaseHydration();
-            }
+            case "Triggered":
+                CommandData command = new(data);
+                if (command.Name == "Hydrate")
+                {
+                    IncreaseHydration();
+                }
+                return;
         }
+        
     }
 
     private void IncreaseHydration()

@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using SB.Events;
 using System;
 using System.Reflection;
 
@@ -10,14 +11,9 @@ public partial class EnergyStatUpdaterWidget : StreamerWidget
 
     [Export]
     public int streamLength = 180;
-
-    public override Enum[] StreamerbotEventRequests
+    public override EventType[] StreamerBotEventRequests
     {
-        get
-        {
-            return new Enum[]{
-                    StreamerbotEventTypes.Obs.StreamingStarted};
-        }
+        get => new[] { Obs.StreamingStarted};
         set { }
     }
 
@@ -32,7 +28,7 @@ public partial class EnergyStatUpdaterWidget : StreamerWidget
         _WaitUntilDecreaseEnergy();
     }
 
-    public override void OnEventDataReceived(string source, string type, Dictionary data)
+    public override void OnEventDataReceived(EventType type, Dictionary data)
     {
         ResetEnergy();
     }
@@ -54,4 +50,6 @@ public partial class EnergyStatUpdaterWidget : StreamerWidget
             //ResourceSaver.Save(EnergyStat);
         }
     }
+
+
 }
