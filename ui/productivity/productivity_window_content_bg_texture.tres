@@ -1,0 +1,8 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://pofj46y1kqb4"]
+
+[ext_resource type="Texture2D" uid="uid://dpec85c31tbky" path="res://img/GUI/2025-05_window_background.png" id="1_wav1i"]
+
+[resource]
+texture = ExtResource("1_wav1i")
+texture_margin_left = 280.0
+region_rect = Rect2(192.1, 90, 317.251, 448.01)

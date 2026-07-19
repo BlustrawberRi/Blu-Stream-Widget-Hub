@@ -12,13 +12,6 @@ region_rect = Rect2(0, -4.96918, 151, 172.729)
 
 [node name="PomodoroWindow" instance=ExtResource("1_m1vcf")]
 
-[node name="Frög" type="Panel" parent="WindowContainer/WindowContent" index="1"]
-clip_contents = true
-custom_minimum_size = Vector2(151, 131)
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxTexture_chbe0")
-
 [node name="PomoInfo" type="VBoxContainer" parent="WindowContainer/WindowContent/MarginContainer/ScrollContainer/WindowContentContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 8
@@ -44,3 +37,10 @@ custom_minimum_size = Vector2(50, 35)
 layout_mode = 2
 theme_type_variation = &"PomodoroProgressBar"
 value = 42.0
+
+[node name="Frög" type="Panel" parent="WindowContainer/WindowContent" index="1"]
+clip_contents = true
+custom_minimum_size = Vector2(151, 131)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_chbe0")

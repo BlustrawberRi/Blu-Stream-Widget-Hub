@@ -1,0 +1,10 @@
+[gd_resource type="StyleBoxFlat" format=3 uid="uid://dxys2askcekbf"]
+
+[resource]
+content_margin_bottom = 25.0
+bg_color = Color(0.447059, 0.415686, 0.8, 1)
+border_width_bottom = 50
+border_color = Color(0.448, 0.416, 0.8, 0)
+border_blend = true
+expand_margin_bottom = 25.0
+shadow_color = Color(0.14, 0.0723333, 0, 0.180392)

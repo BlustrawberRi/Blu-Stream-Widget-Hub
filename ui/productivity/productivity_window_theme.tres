@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=19 format=3 uid="uid://blwjr54f6akyw"]
+[gd_resource type="Theme" load_steps=23 format=3 uid="uid://blwjr54f6akyw"]
 
 [ext_resource type="FontFile" uid="uid://bcxwvxum1m5ov" path="res://ui/font/MADE Tommy Soft Regular PERSONAL USE.otf" id="1_cwubt"]
 [ext_resource type="StyleBox" uid="uid://bpppsws15uphp" path="res://ui/productivity/productivity_window_button_style.tres" id="2_cwubt"]
@@ -6,11 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://blnb2ojefs5hl" path="res://img/GUI/2025-05 todo window toggle toggled.png" id="3_qt358"]
 [ext_resource type="Texture2D" uid="uid://ba82aidhu5mj3" path="res://img/GUI/2025-05 todo window toggle.png" id="3_vlsko"]
 [ext_resource type="FontFile" uid="uid://cd733hmafgxp4" path="res://ui/font/MADE Tommy Soft Medium PERSONAL USE.otf" id="4_3wc2m"]
-[ext_resource type="StyleBox" uid="uid://bw7atxwpucmx5" path="res://ui/productivity/productivity_window_background_gradient_style.tres" id="4_vlsko"]
+[ext_resource type="StyleBox" uid="uid://bw7atxwpucmx5" path="res://ui/productivity/productivity_window_content_bg.tres" id="6_nhfn6"]
 [ext_resource type="Texture2D" uid="uid://cfccxkumy0bck" path="res://img/GUI/2025-05 pomodoro progress bar.png" id="7_d1w4d"]
 [ext_resource type="Texture2D" uid="uid://cq4v6rpn27hc6" path="res://img/GUI/2025-05 pomodoro progress bar fill.png" id="8_ud1f4"]
 [ext_resource type="StyleBox" uid="uid://c0jbdmbvg5633" path="res://ui/productivity/productivity_progressbar_bg.tres" id="9_d1w4d"]
 [ext_resource type="StyleBox" uid="uid://cylr3u7k26v7a" path="res://ui/productivity/productivity_progressbar_fill.tres" id="10_ud1f4"]
+[ext_resource type="StyleBox" uid="uid://d2vgk0puytdia" path="res://ui/productivity/productivity_window_header_style-hover.tres" id="12_nhfn6"]
+[ext_resource type="StyleBox" uid="uid://blgcfg3mg4g51" path="res://ui/productivity/productivity_window_header_style.tres" id="13_fypqh"]
+[ext_resource type="StyleBox" uid="uid://dxys2askcekbf" path="res://ui/productivity/productivity_window_header_style-gradient.tres" id="14_fypqh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_57lls"]
 
@@ -52,6 +55,15 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fypqh"]
+content_margin_bottom = 25.0
+bg_color = Color(0.448, 0.416, 0.8, 0.870588)
+border_width_bottom = 50
+border_color = Color(0.448, 0.416, 0.8, 0)
+border_blend = true
+expand_margin_bottom = 25.0
+shadow_color = Color(0.14, 0.0723333, 0, 0.180392)
+
 [resource]
 Button/colors/font_color = Color(0.87451, 0.870588, 0.815686, 1)
 Button/colors/font_disabled_color = Color(0.87451, 0.870588, 0.815686, 0.313726)
@@ -82,7 +94,7 @@ MarginContainer/constants/margin_left = 20
 MarginContainer/constants/margin_right = 20
 MarginContainer/constants/margin_top = 10
 Panel/styles/panel = ExtResource("3_cwubt")
-PanelContainer/styles/panel = ExtResource("4_vlsko")
+PanelContainer/styles/panel = ExtResource("6_nhfn6")
 PomodoroProgressBar/base_type = &"ProgressBar"
 PomodoroProgressBar/styles/background = SubResource("StyleBoxTexture_nhfn6")
 PomodoroProgressBar/styles/fill = SubResource("StyleBoxTexture_fypqh")
@@ -97,3 +109,10 @@ RichTextLabel/fonts/normal_font = SubResource("FontVariation_3wc2m")
 VBoxContainer/constants/separation = 1
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_3wc2m")
 VScrollBar/styles/scroll = SubResource("StyleBoxFlat_vlsko")
+WindowTitleBar/base_type = &"Button"
+WindowTitleBar/styles/hover = ExtResource("12_nhfn6")
+WindowTitleBar/styles/normal = ExtResource("13_fypqh")
+WindowTitleBar_gradient/base_type = &"Button"
+WindowTitleBar_gradient/styles/hover = SubResource("StyleBoxFlat_fypqh")
+WindowTitleBar_gradient/styles/normal = ExtResource("14_fypqh")
+WindowTitleBar_gradient/styles/pressed = ExtResource("14_fypqh")

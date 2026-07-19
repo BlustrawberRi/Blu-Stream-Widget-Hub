@@ -7,10 +7,10 @@
 [ext_resource type="Script" uid="uid://kxcpvedqwfr4" path="res://scripts/Stats/ProductivityStatUpdaterWidget.cs" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://ccwf651efih01" path="res://ui/gui_scenes/DEPR_chat_todo_window.tscn" id="6_uodij"]
 [ext_resource type="Script" uid="uid://bc2x05ul3jlla" path="res://scripts/ChatTodo/TodoItemGenerator.cs" id="6_w48qg"]
-[ext_resource type="Resource" uid="uid://b5k0cgojxfdxg" path="res://stats/Energy Stat.tres" id="7_5vw27"]
-[ext_resource type="Resource" uid="uid://omnukfteplfp" path="res://stats/Productivity_Stat.tres" id="7_272bh"]
+[ext_resource type="Resource" path="res://stats/Energy Stat.tres" id="7_5vw27"]
+[ext_resource type="Resource" path="res://stats/Productivity_Stat.tres" id="7_272bh"]
 [ext_resource type="PackedScene" uid="uid://bn4dpk6jstlbq" path="res://ui/gui_scenes/todo_container.tscn" id="7_vivmo"]
-[ext_resource type="Resource" uid="uid://cqd3317x74p6l" path="res://stats/Hydration Stat.tres" id="8_4c57u"]
+[ext_resource type="Resource" uid="uid://clcxuy3aftnxn" path="res://stats/Hydration Stat.tres" id="8_4c57u"]
 [ext_resource type="Script" uid="uid://fmcqa4gde4wu" path="res://scripts/Stats/EnergyStatUpdaterWidget.cs" id="9_kek77"]
 [ext_resource type="Script" uid="uid://bno4hhcbm7g6p" path="res://scripts/Stats/HydrationStatUpdaterWidget.cs" id="11_efxa6"]
 [ext_resource type="Script" uid="uid://chjabn386tk4a" path="res://scripts/ChatTodo/ChatTodoWidget.cs" id="14_w48qg"]
@@ -51,8 +51,10 @@ StreamerBotConnection = NodePath("../../../Streamer Bot Connection")
 
 [node name="ProductivityWindow" parent="UI" instance=ExtResource("4_dg77c")]
 layout_mode = 1
-offset_right = -750.0
-offset_bottom = -419.0
+offset_left = -332.0
+offset_top = 31.0
+offset_right = -1082.0
+offset_bottom = -388.0
 windowTitleString = "productivity"
 
 [node name="TodoStreamerWidget" type="Node" parent="UI/ProductivityWindow" node_paths=PackedStringArray("StreamerbotClient")]
@@ -74,41 +76,20 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 StreamerbotClient = NodePath("../../Streamer Bot Connection")
 
-[node name="Stats Window" parent="UI"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-offset_left = 869.0
-offset_top = 31.0
-offset_right = 1122.0
-offset_bottom = 85.0
-size_flags_vertical = 2
-stats = Array[Resource]([ExtResource("7_272bh"), ExtResource("7_5vw27"), ExtResource("8_4c57u")])
-script = null
-
-[node name="ProductivityStatUpdater" type="Node" parent="UI/Stats Window" node_paths=PackedStringArray("StreamerbotClient")]
+[node name="UI_Stats Window#ProductivityStatUpdater" type="Node" parent="."]
 script = ExtResource("6_7mycd")
 productivityStat = ExtResource("7_272bh")
-StreamerbotClient = NodePath("../../../Streamer Bot Connection")
 metadata/_custom_type_script = "uid://d34pmiql6abn3"
 
-[node name="EnergyStatUpdater" type="Node" parent="UI/Stats Window" node_paths=PackedStringArray("StreamerbotClient")]
+[node name="UI_Stats Window#EnergyStatUpdater" type="Node" parent="."]
 script = ExtResource("9_kek77")
 EnergyStat = ExtResource("7_5vw27")
 streamLength = 10
-StreamerbotClient = NodePath("../../../Streamer Bot Connection")
 metadata/_custom_type_script = "uid://d34pmiql6abn3"
 
-[node name="HydrationStatUpdater" type="Node" parent="UI/Stats Window" node_paths=PackedStringArray("StreamerbotClient")]
+[node name="UI_Stats Window#HydrationStatUpdater" type="Node" parent="."]
 script = ExtResource("11_efxa6")
 HydrationStat = ExtResource("8_4c57u")
-StreamerbotClient = NodePath("../../../Streamer Bot Connection")
 metadata/_custom_type_script = "uid://d34pmiql6abn3"
 
 [connection signal="button_up" from="UI/VBoxContainer/RequestBtn" to="Streamer Bot Connection" method="SendRequest"]
