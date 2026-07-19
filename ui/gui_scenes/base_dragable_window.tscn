@@ -49,7 +49,7 @@ layout_mode = 2
 
 [node name="WindowTitleBar" type="Button" parent="WindowContainer"]
 editor_description = "If parents have siblings, please let Input through."
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
 size_flags_vertical = 0
 focus_mode = 0
@@ -74,6 +74,7 @@ layout_mode = 2
 alignment = 2
 
 [node name="WindowTitleName" type="RichTextLabel" parent="WindowContainer/WindowTitleBar/MarginContainer/WindowTitleContentContainer"]
+clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
@@ -85,6 +86,7 @@ theme_override_font_sizes/mono_font_size = 25
 theme_override_font_sizes/normal_font_size = 25
 theme_override_font_sizes/bold_font_size = 25
 bbcode_enabled = true
+text = "[b]wimdowygt[/b]"
 scroll_active = false
 vertical_alignment = 1
 

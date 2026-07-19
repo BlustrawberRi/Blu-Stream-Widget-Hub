@@ -63,7 +63,7 @@ public partial class DragableWindowContainer : Control
     {
         RichTextLabel WindowTitle = FindChild("WindowTitleName") as RichTextLabel;
         if (WindowTitle != null)
-            WindowTitle.Text = windowTitleString;
+            WindowTitle.Text = "[b]"+windowTitleString + "[/b]";
     }
 
     public void AddWindowContent(Node content)

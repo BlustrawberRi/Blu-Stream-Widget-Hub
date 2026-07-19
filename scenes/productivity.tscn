@@ -7,13 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://b3fsdrndp2sf8" path="res://ui/gui_scenes/ChatTodoWindow.tscn" id="4_byvgc"]
 [ext_resource type="PackedScene" uid="uid://1n5mk6jgse5l" path="res://ui/gui_scenes/StatWindow.tscn" id="4_u6lee"]
 [ext_resource type="Script" uid="uid://fmcqa4gde4wu" path="res://scripts/Stats/EnergyStatUpdaterWidget.cs" id="5_wuwu2"]
-[ext_resource type="Resource" uid="uid://cgu3efewfm2dw" path="res://stats/Energy Stat.tres" id="6_rghmn"]
-[ext_resource type="Resource" uid="uid://kqr3k6qkdknd" path="res://stats/Hydration Stat.tres" id="7_1ua1e"]
+[ext_resource type="Resource" path="res://stats/Energy Stat.tres" id="6_rghmn"]
+[ext_resource type="Resource" path="res://stats/Hydration Stat.tres" id="7_1ua1e"]
 [ext_resource type="Script" uid="uid://bno4hhcbm7g6p" path="res://scripts/Stats/HydrationStatUpdaterWidget.cs" id="7_rghmn"]
 [ext_resource type="Script" uid="uid://ixswpc1blcxt" path="res://scripts/Stats/StatManager.cs" id="7_wd3be"]
 [ext_resource type="PackedScene" uid="uid://dnodyq4kusxpf" path="res://ui/gui_scenes/raid_fireflies.tscn" id="8_ddokc"]
 [ext_resource type="Script" uid="uid://kxcpvedqwfr4" path="res://scripts/Stats/ProductivityStatUpdaterWidget.cs" id="8_hch00"]
-[ext_resource type="Resource" uid="uid://v2liebmm52f2" path="res://stats/Productivity_Stat.tres" id="9_onvwf"]
+[ext_resource type="Resource" path="res://stats/Productivity_Stat.tres" id="9_onvwf"]
 [ext_resource type="PackedScene" uid="uid://b7xinwaojw88" path="res://ui/gui_scenes/MilkMerchant.tscn" id="11_1ua1e"]
 
 [node name="Productivity" type="Node2D"]
@@ -51,7 +51,7 @@ anchor_bottom = 0.0
 offset_left = 64.0
 offset_top = 48.0
 offset_right = 414.0
-offset_bottom = 256.0
+offset_bottom = 250.0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 0
@@ -95,10 +95,10 @@ windowTitleString = "VTuber Stats"
 RaidWaitTime = 25
 
 [node name="Productivity Goal Meter" parent="GUI" instance=ExtResource("3_dgpwa")]
-offset_left = 1216.0
-offset_top = 172.0
-offset_right = 1542.0
-offset_bottom = 912.0
+offset_left = 1203.0
+offset_top = 44.0
+offset_right = 1529.0
+offset_bottom = 784.0
 
 [node name="Raid fireflies" parent="GUI" instance=ExtResource("8_ddokc")]
 layout_mode = 1

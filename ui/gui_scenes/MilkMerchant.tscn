@@ -517,7 +517,7 @@ textSpeed = 28.684
 talkSpeed = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="Shop/SpeechBubble"]
-custom_minimum_size = Vector2(993.433, 199.906)
+custom_minimum_size = Vector2(990.304, 197.591)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_b233o")
