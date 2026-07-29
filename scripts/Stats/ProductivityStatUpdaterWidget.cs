@@ -22,22 +22,33 @@ public partial class ProductivityStatUpdaterWidget : StreamerWidget
     public override void OnEventDataReceived(EventType type, Dictionary data)
     {
         CommandData command = new(data);
-        if (command.Name == "Finish Todo")
+        switch (command.Name )
         {
-            // Todo: create scripts for each stat (looking for a specific command or whatever)
-            IncreaseProductivity();
+            case "Finish Todo":
+                // Todo: create scripts for each stat (looking for a specific command or whatever)
+                IncreaseProductivity(1);
+                break;
+            case "Add PP":
+                IncreaseProductivity(1);
+                break;
+            case "Remove PP":
+                ReduceProductivity(1);
+                break;
         }
     }
 
-    private void IncreaseProductivity()
+    private void IncreaseProductivity(int i)
     {
-        productivityStat.Value++;
+        productivityStat.Value += i;
         ResourceSaver.Save(productivityStat);
 
         if (productivityStat.Value >= productivityStat.MaxValue)
         {
             GD.PrintRich("[rainbow][wave]WE DID IT! Productivity Level Up![/wave][/rainbow]");
-
         }
+    }
+    private void ReduceProductivity(int i)
+    {
+        IncreaseProductivity(-i);
     }
 }

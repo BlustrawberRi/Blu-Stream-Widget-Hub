@@ -1,9 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://clcxwuwfyi2tm"]
+[gd_scene load_steps=20 format=3 uid="uid://clcxwuwfyi2tm"]
 
 [ext_resource type="Theme" uid="uid://blwjr54f6akyw" path="res://ui/productivity/productivity_window_theme.tres" id="1_2ow8h"]
 [ext_resource type="Texture2D" uid="uid://b3w6otdxx2ylx" path="res://img/productivity goal bar/2026-04 productivity bar back.webp" id="1_3bx7c"]
 [ext_resource type="Script" uid="uid://btv2im4ive24u" path="res://scripts/ProductivityGoalWidget.cs" id="1_ydp6n"]
-[ext_resource type="Resource" uid="uid://cuktsvhxpyg3v" path="res://stats/Productivity_Stat.tres" id="3_5pd42"]
+[ext_resource type="Resource" uid="uid://c81wo8awe2023" path="res://stats/Productivity_Stat.tres" id="3_5pd42"]
 [ext_resource type="Script" uid="uid://c8qnn3fpo8atn" path="res://scripts/ShiftingTextureProgressBar.cs" id="3_liua0"]
 [ext_resource type="Texture2D" uid="uid://dn5nsl80ctjm5" path="res://img/productivity goal bar/2026-04 productivity bar inside.webp" id="3_ljn7y"]
 [ext_resource type="Texture2D" uid="uid://dsgfr1nthgp5m" path="res://img/productivity goal bar/2026-04 productivity bar inside mask.webp" id="5_4kjwo"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://dgy0uwa7yolv5" path="res://scripts/DragableWindowContainer.cs" id="9_4llx1"]
 [ext_resource type="Texture2D" uid="uid://cytyo5s4gcoev" path="res://img/productivity goal bar/2026-04 productivity bar inside star.webp" id="9_5pd42"]
 [ext_resource type="Texture2D" uid="uid://tlmxsqxb6c6k" path="res://img/productivity goal bar/2026-04 productivity_bar_indicator.png" id="11_2ow8h"]
+[ext_resource type="Script" uid="uid://c0w2iau4hovf4" path="res://scripts/CommandWidget.cs" id="13_2ow8h"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xt6t3"]
 blend_mode = 1
@@ -340,3 +341,9 @@ vertical_alignment = 1
 layout_mode = 2
 texture = ExtResource("11_2ow8h")
 stretch_mode = 5
+
+[node name="CommandWidget" type="Node" parent="."]
+script = ExtResource("13_2ow8h")
+commandName = "Show PP"
+
+[connection signal="CommandTriggered" from="CommandWidget" to="." method="Display"]

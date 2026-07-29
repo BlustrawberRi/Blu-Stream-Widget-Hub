@@ -12,6 +12,7 @@ public partial class ProductivityGoalWidget : StatContainer
     {
 		Visible = false;
 
+		ShowNumber();
 		Stat.Changed += OnStatChanged;
 		Stat.StatMaxAchieved += OnStatMaxAchieved;
 
@@ -36,6 +37,10 @@ public partial class ProductivityGoalWidget : StatContainer
 		CelebrateStatChanged();
 	}
 
+	public void Display(string commandName, string commandText)
+    {
+		CelebrateStatChanged();
+    }
 	new public async Task Show()
 	{
 		Modulate = new Color(Modulate, a: 0);
