@@ -19,3 +19,8 @@ mono_crash.*.json
 .vscode/
 *.code-workspace
 .history/
+
+# Constantly changing
+stats/Energy Stat.tres
+stats/Hydration Stat.tres
+stats/Productivity_Stat.tres

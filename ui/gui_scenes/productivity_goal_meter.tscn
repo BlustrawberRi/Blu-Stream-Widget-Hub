@@ -1,17 +1,17 @@
 [gd_scene load_steps=19 format=3 uid="uid://clcxwuwfyi2tm"]
 
+[ext_resource type="Theme" uid="uid://blwjr54f6akyw" path="res://ui/productivity/productivity_window_theme.tres" id="1_2ow8h"]
 [ext_resource type="Texture2D" uid="uid://b3w6otdxx2ylx" path="res://img/productivity goal bar/2026-04 productivity bar back.webp" id="1_3bx7c"]
 [ext_resource type="Script" uid="uid://btv2im4ive24u" path="res://scripts/ProductivityGoalWidget.cs" id="1_ydp6n"]
-[ext_resource type="Resource" uid="uid://cmyit63im03bk" path="res://stats/Dono Stat.tres" id="2_6oo7w"]
-[ext_resource type="Texture2D" uid="uid://b1xvs1ubyomsh" path="res://img/productivity goal bar/2026-04 productivity bar outside.webp" id="2_ydp6n"]
+[ext_resource type="Resource" uid="uid://bb5f5t5ffon6y" path="res://stats/Productivity_Stat.tres" id="3_5pd42"]
 [ext_resource type="Script" uid="uid://c8qnn3fpo8atn" path="res://scripts/ShiftingTextureProgressBar.cs" id="3_liua0"]
 [ext_resource type="Texture2D" uid="uid://dn5nsl80ctjm5" path="res://img/productivity goal bar/2026-04 productivity bar inside.webp" id="3_ljn7y"]
 [ext_resource type="Texture2D" uid="uid://dsgfr1nthgp5m" path="res://img/productivity goal bar/2026-04 productivity bar inside mask.webp" id="5_4kjwo"]
 [ext_resource type="Texture2D" uid="uid://vta1t0bxuibp" path="res://img/productivity goal bar/2026-04 productivity bar back star.webp" id="7_liua0"]
+[ext_resource type="Texture2D" uid="uid://bpt737sbfcgd1" path="res://img/productivity goal bar/2026-04 productivity bar outside.webp" id="8_5pd42"]
 [ext_resource type="Script" uid="uid://dgy0uwa7yolv5" path="res://scripts/DragableWindowContainer.cs" id="9_4llx1"]
 [ext_resource type="Texture2D" uid="uid://cytyo5s4gcoev" path="res://img/productivity goal bar/2026-04 productivity bar inside star.webp" id="9_5pd42"]
 [ext_resource type="Texture2D" uid="uid://tlmxsqxb6c6k" path="res://img/productivity goal bar/2026-04 productivity_bar_indicator.png" id="11_2ow8h"]
-[ext_resource type="FontFile" uid="uid://bcxwvxum1m5ov" path="res://ui/font/MADE Tommy Soft Regular PERSONAL USE.otf" id="11_5pd42"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xt6t3"]
 blend_mode = 1
@@ -43,9 +43,10 @@ anchors_preset = 0
 offset_right = 326.0
 offset_bottom = 740.0
 mouse_filter = 2
+theme = ExtResource("1_2ow8h")
 script = ExtResource("1_ydp6n")
 MaxEffect = NodePath("Dragable/FilledEffect")
-Stat = ExtResource("2_6oo7w")
+Stat = ExtResource("3_5pd42")
 StatProgressBar = NodePath("Dragable/ProgressBar")
 
 [node name="Dragable" type="Control" parent="." node_paths=PackedStringArray("Handle")]
@@ -121,10 +122,10 @@ mouse_default_cursor_shape = 0
 theme = null
 theme_type_variation = &""
 min_value = 0.0
-max_value = 100.0
+max_value = 40.0
 step = 1.0
 page = 0.0
-value = 25.0
+value = 0.0
 exp_edit = false
 rounded = true
 allow_greater = false
@@ -133,7 +134,7 @@ script = ExtResource("3_liua0")
 TextureProgressMask = ExtResource("5_4kjwo")
 TextureProgressFill = ExtResource("3_ljn7y")
 TextureUnder = ExtResource("1_3bx7c")
-TextureOver = ExtResource("2_ydp6n")
+TextureOver = ExtResource("8_5pd42")
 Left = 10
 Top = 35
 Right = 10
@@ -222,24 +223,27 @@ offset_left = -79.0
 offset_right = 124.0
 offset_bottom = 655.0
 
-[node name="Indicator" type="HBoxContainer" parent="IndicatorList"]
+[node name="Indicator1" type="HBoxContainer" parent="IndicatorList"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 50.0
+offset_left = 51.0
+offset_top = 481.0
+offset_right = 51.0
+offset_bottom = 531.0
 grow_horizontal = 2
 
-[node name="IndicatorLabel" type="RichTextLabel" parent="IndicatorList/Indicator"]
+[node name="IndicatorLabel" type="RichTextLabel" parent="IndicatorList/Indicator1"]
 clip_contents = false
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("11_5pd42")
-theme_override_font_sizes/normal_font_size = 30
-text = "????"
-horizontal_alignment = 2
+theme_type_variation = &"IndicatorLabel"
+text = "Emote"
+scroll_active = false
+horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="IndicatorArrow" type="TextureRect" parent="IndicatorList/Indicator"]
+[node name="IndicatorArrow" type="TextureRect" parent="IndicatorList/Indicator1"]
 layout_mode = 2
 texture = ExtResource("11_2ow8h")
 stretch_mode = 5
@@ -248,18 +252,21 @@ stretch_mode = 5
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 553.0
-offset_bottom = 603.0
+offset_left = 51.0
+offset_top = 324.0
+offset_right = 51.0
+offset_bottom = 374.0
 grow_horizontal = 2
 
 [node name="IndicatorLabel" type="RichTextLabel" parent="IndicatorList/Indicator2"]
 clip_contents = false
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("11_5pd42")
-theme_override_font_sizes/normal_font_size = 30
-text = "Emote"
-horizontal_alignment = 2
+theme_type_variation = &"IndicatorLabel"
+text = "Zoggga Redeem
+"
+scroll_active = false
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="IndicatorArrow" type="TextureRect" parent="IndicatorList/Indicator2"]
@@ -271,22 +278,49 @@ stretch_mode = 5
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 492.0
-offset_bottom = 542.0
+offset_left = 51.0
+offset_top = 167.0
+offset_right = 51.0
+offset_bottom = 217.0
 grow_horizontal = 2
 
 [node name="IndicatorLabel" type="RichTextLabel" parent="IndicatorList/Indicator3"]
 clip_contents = false
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("11_5pd42")
-theme_override_font_sizes/normal_font_size = 30
-text = "Redeem
+theme_type_variation = &"IndicatorLabel"
+text = "Emote Live Drawing
 "
-horizontal_alignment = 2
+scroll_active = false
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="IndicatorArrow" type="TextureRect" parent="IndicatorList/Indicator3"]
+layout_mode = 2
+texture = ExtResource("11_2ow8h")
+stretch_mode = 5
+
+[node name="Indicator4" type="HBoxContainer" parent="IndicatorList"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -14.0
+offset_right = 22.0
+offset_bottom = 86.0
+grow_horizontal = 2
+
+[node name="IndicatorLabel" type="RichTextLabel" parent="IndicatorList/Indicator4"]
+clip_contents = false
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme_type_variation = &"IndicatorLabel"
+bbcode_enabled = true
+text = "[rainbow]New VTuber Model[/rainbow]"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IndicatorArrow" type="TextureRect" parent="IndicatorList/Indicator4"]
 layout_mode = 2
 texture = ExtResource("11_2ow8h")
 stretch_mode = 5

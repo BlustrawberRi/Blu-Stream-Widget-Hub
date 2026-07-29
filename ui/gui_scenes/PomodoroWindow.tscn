@@ -12,9 +12,6 @@ region_rect = Rect2(0, -4.96918, 151, 172.729)
 
 [node name="PomodoroWindow" instance=ExtResource("1_m1vcf")]
 
-[node name="WindowTitleName" parent="WindowContainer/WindowTitleBar/MarginContainer/WindowTitleContentContainer" index="0"]
-text = "[b][/b]"
-
 [node name="Frög" type="Panel" parent="WindowContainer/WindowContent" index="0"]
 clip_contents = true
 custom_minimum_size = Vector2(151, 131)

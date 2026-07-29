@@ -86,7 +86,7 @@ theme_override_font_sizes/mono_font_size = 25
 theme_override_font_sizes/normal_font_size = 25
 theme_override_font_sizes/bold_font_size = 25
 bbcode_enabled = true
-text = "[b]wimdowygt[/b]"
+text = "[b][/b]"
 scroll_active = false
 vertical_alignment = 1
 
