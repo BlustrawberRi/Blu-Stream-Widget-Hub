@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://blwjr54f6akyw" path="res://ui/productivity/productivity_window_theme.tres" id="1_2ow8h"]
 [ext_resource type="Texture2D" uid="uid://b3w6otdxx2ylx" path="res://img/productivity goal bar/2026-04 productivity bar back.webp" id="1_3bx7c"]
 [ext_resource type="Script" uid="uid://btv2im4ive24u" path="res://scripts/ProductivityGoalWidget.cs" id="1_ydp6n"]
-[ext_resource type="Resource" uid="uid://dv2cgo34t0fy1" path="res://stats/Productivity_Stat.tres" id="3_5pd42"]
+[ext_resource type="Resource" uid="uid://cuktsvhxpyg3v" path="res://stats/Productivity_Stat.tres" id="3_5pd42"]
 [ext_resource type="Script" uid="uid://c8qnn3fpo8atn" path="res://scripts/ShiftingTextureProgressBar.cs" id="3_liua0"]
 [ext_resource type="Texture2D" uid="uid://dn5nsl80ctjm5" path="res://img/productivity goal bar/2026-04 productivity bar inside.webp" id="3_ljn7y"]
 [ext_resource type="Texture2D" uid="uid://dsgfr1nthgp5m" path="res://img/productivity goal bar/2026-04 productivity bar inside mask.webp" id="5_4kjwo"]
@@ -37,7 +37,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.364706)
 [sub_resource type="Gradient" id="Gradient_cnf87"]
 colors = PackedColorArray(1, 0.5, 0.716667, 1, 0.789167, 0.77, 1, 1)
 
-[node name="Control" type="Control" node_paths=PackedStringArray("MaxEffect", "StatProgressBar")]
+[node name="Control" type="Control" node_paths=PackedStringArray("MaxEffect", "label", "StatProgressBar")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 326.0
@@ -46,6 +46,8 @@ mouse_filter = 2
 theme = ExtResource("1_2ow8h")
 script = ExtResource("1_ydp6n")
 MaxEffect = NodePath("Dragable/FilledEffect")
+label = NodePath("Dragable/Amount Label")
+visibleTime = 10
 Stat = ExtResource("3_5pd42")
 StatProgressBar = NodePath("Dragable/ProgressBar")
 
@@ -216,6 +218,20 @@ scale_amount_max = 0.5
 scale_amount_curve = SubResource("Curve_4llx1")
 color_ramp = SubResource("Gradient_liua0")
 color_initial_ramp = SubResource("Gradient_cnf87")
+
+[node name="Amount Label" type="RichTextLabel" parent="Dragable"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 655.0
+offset_right = 326.0
+offset_bottom = 715.0
+theme_type_variation = &"IndicatorLabel"
+theme_override_colors/default_color = Color(1, 0.801833, 0.59, 1)
+theme_override_font_sizes/normal_font_size = 50
+text = "100PP /100"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="IndicatorList" type="Control" parent="."]
 anchors_preset = 0
