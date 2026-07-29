@@ -50,10 +50,8 @@ public abstract partial class StreamerWidget : Node
         if (StreamerbotClient == null)
         {
             StreamerbotClient = GetNode<StreamerbotClient>("/root/SBClient");
-            GD.Print("SB? "+ StreamerbotClient);
             //StreamerbotClient = GetNode<StreamerbotClient>("../%StreamerbotClient");
         }
-        GD.Print("SB? " + StreamerbotClient);
 
         RequestEvents();
     }

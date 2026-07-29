@@ -3,6 +3,7 @@ using Microsoft.VisualBasic;
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
 /// <summary>
 /// Calls the Websocket (for StreamerBot) and receive data. 
@@ -30,7 +31,7 @@ public abstract partial class WebsocketClient : Node
 		Connect();
 	}
 
-	public override void _Process(double delta)
+	public override async void _Process(double delta)
 	{
 		ws.Poll();
 		var state = ws.GetReadyState();
@@ -42,8 +43,10 @@ public abstract partial class WebsocketClient : Node
             }
 			while (ws.GetAvailablePacketCount() > 0)
             {
-                _CollectPackets();
-            }
+				_CollectPackets();
+				//await ToSignal(GetTree().CreateTimer(0.1), SceneTreeTimer.SignalName.Timeout);
+
+			}
             _OnAnswerReceived(lastMessage);
         }
 		else if (state == WebSocketPeer.State.Closing) {

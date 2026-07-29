@@ -104,15 +104,24 @@ public partial class StreamerbotClient : WebsocketClient
     private void _FilterAnswer(string answer)
     {
         var answerDic = Json.ParseString(answer).AsGodotDictionary();
-        if (!answerDic.ContainsKey("id")) return;
-        switch (answerDic["id"].ToString())
+        if (answerDic == null)
         {
-            case SUBSCRIBE_ID:
-                _ProcessEventData(answerDic);
-                break;
-            case GET_EVENTS_ID:
-                _GetStreamerbotEvents(answerDic);
-                break;
+            GD.PrintErr("Answer wasn't in the right format: \n" + answer);
+            return;
+        }
+        if (answerDic.ContainsKey("id")){
+            switch (answerDic["id"].ToString())
+            {
+                case SUBSCRIBE_ID:
+                    break;
+                case GET_EVENTS_ID:
+                    _GetStreamerbotEvents(answerDic);
+                    break;
+            }
+        }
+        if (answerDic.ContainsKey("event"))
+        {
+            _ProcessEventData(answerDic);
         }
 
     }
@@ -124,6 +133,13 @@ public partial class StreamerbotClient : WebsocketClient
     }
 
 
+    /// <summary>
+    /// Process Data of streamerbot events
+    /// </summary>
+    /// <param name="answerDic"></param> <summary>
+    /// 
+    /// </summary>
+    /// <param name="answerDic"></param>
     private void _ProcessEventData(Dictionary answerDic)
     {
         if (!answerDic.ContainsKey("event")) return;
