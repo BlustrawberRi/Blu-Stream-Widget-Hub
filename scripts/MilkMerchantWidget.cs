@@ -115,7 +115,7 @@ public partial class MilkMerchantWidget : StreamerWidget
                 if (rr.RewardName == "Get some Milk")
                 {
                     customers.Add(rr.UserLogin);
-                }
+                } else { return; }
                 break;
                 
             default:

@@ -105,6 +105,7 @@ Stats = Array[Object]([ExtResource("6_rghmn"), ExtResource("7_1ua1e"), ExtResour
 [node name="EnergyWidget" type="Node" parent="Stat Manager"]
 script = ExtResource("5_wuwu2")
 EnergyStat = ExtResource("6_rghmn")
+streamLength = 300
 
 [node name="HydrationWidget" type="Node" parent="Stat Manager"]
 script = ExtResource("7_rghmn")
