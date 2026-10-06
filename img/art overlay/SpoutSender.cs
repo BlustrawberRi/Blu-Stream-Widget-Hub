@@ -1,0 +1,19 @@
+using Godot;
+using System;
+
+public partial class SpoutSender : SubViewport
+{
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+    {
+
+	}
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+		var rid = RenderingServer.ViewportGetTexture(GetViewport().GetViewportRid());
+		var u = RenderingServer.Singleton.TextureGetNativeHandle(rid);
+		GD.Print(u);
+	}
+}

@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://bm5084bojhylv"]
+
+[ext_resource type="Texture2D" uid="uid://bnp7ea6mavnhy" path="res://img/vtuber_texture.tres" id="1_ejwmv"]
+[ext_resource type="Texture2D" uid="uid://mupj3gvqsxb5" path="res://img/art overlay/OL-art_bg.webp" id="1_uhybc"]
+[ext_resource type="PackedScene" uid="uid://ca80kagvspjde" path="res://ui/gui_scenes/art_window.tscn" id="3_0vuf8"]
+[ext_resource type="Texture2D" uid="uid://uj5qnvb05r1u" path="res://img/art overlay/OL-art_window-border_waterfall.webp" id="3_ubxw6"]
+
+[sub_resource type="Gradient" id="Gradient_uhybc"]
+offsets = PackedFloat32Array(0, 0.45429364)
+colors = PackedColorArray(0.77254903, 0.7058824, 0.85882354, 1, 0.305882, 0.337255, 0.329412, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0vuf8"]
+gradient = SubResource("Gradient_uhybc")
+width = 2
+height = 66
+fill_to = Vector2(0, 1)
+
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1078.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("GradientTexture2D_0vuf8")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_uhybc")
+
+[node name="VTuber Texture" type="TextureRect" parent="."]
+visible = false
+clip_children = 2
+layout_mode = 0
+offset_left = -242.0
+offset_top = 229.0
+offset_right = 721.0
+offset_bottom = 1262.0
+texture = ExtResource("1_ejwmv")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="OlArtWindowBorderWaterfall" type="Sprite2D" parent="."]
+z_index = 11
+position = Vector2(1096, 938)
+texture = ExtResource("3_ubxw6")
+
+[node name="ArtWindow" parent="." instance=ExtResource("3_0vuf8")]
+custom_minimum_size = Vector2(1024, 900)
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 640.0
+offset_top = 66.0
+offset_right = 1664.0
+offset_bottom = 966.0
+grow_horizontal = 1
+grow_vertical = 1

@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://b50f41ujf8ikx"]
+
+[ext_resource type="PackedScene" uid="uid://bm5084bojhylv" path="res://scenes/artOL.tscn" id="1_8ywll"]
+[ext_resource type="Script" uid="uid://dpvr6tea8tawl" path="res://img/art overlay/SpoutSender.cs" id="1_oqtq4"]
+
+[node name="Spout" type="Node2D"]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+stretch = true
+mouse_target = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="SpoutViewport" type="SpoutViewport" parent="SubViewportContainer"]
+sender_name = "HEy"
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+size_2d_override_stretch = true
+render_target_clear_mode = 1
+render_target_update_mode = 4
+script = ExtResource("1_oqtq4")
+
+[node name="Node2D" parent="SubViewportContainer/SpoutViewport" instance=ExtResource("1_8ywll")]

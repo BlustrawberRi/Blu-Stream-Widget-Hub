@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca80kagvspjde"]
+
+[ext_resource type="PackedScene" uid="uid://c2rdpl27dpmdu" path="res://ui/gui_scenes/base_dragable_window.tscn" id="1_rthfk"]
+[ext_resource type="Texture2D" uid="uid://e1inwb3ttrm1" path="res://img/art overlay/obs_content_texture.tres" id="2_6r45c"]
+
+[node name="ArtWindow" instance=ExtResource("1_rthfk")]
+clip_children = 1
+theme_type_variation = &"BG_Art"
+
+[node name="Background" parent="." index="0"]
+theme_type_variation = &"BG_Art"
+
+[node name="BackroundTexture" parent="." index="1"]
+visible = false
+
+[node name="WindowTitleBar" parent="WindowContainer" index="0"]
+theme_type_variation = &"WindowTitleBar_Art"
+
+[node name="Spout OBS Content" type="TextureRect" parent="WindowContainer/WindowContent" index="0"]
+layout_mode = 2
+texture = ExtResource("2_6r45c")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="MarginContainer" parent="WindowContainer/WindowContent" index="1"]
+visible = false
