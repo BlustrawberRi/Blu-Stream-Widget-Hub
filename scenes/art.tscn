@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bm5084bojhylv"]
+[gd_scene load_steps=8 format=3 uid="uid://bm5084bojhylv"]
 
 [ext_resource type="Texture2D" uid="uid://bnp7ea6mavnhy" path="res://img/vtuber_texture.tres" id="1_ejwmv"]
 [ext_resource type="Texture2D" uid="uid://mupj3gvqsxb5" path="res://img/art overlay/OL-art_bg.webp" id="1_uhybc"]
 [ext_resource type="PackedScene" uid="uid://ca80kagvspjde" path="res://ui/gui_scenes/art_window.tscn" id="3_0vuf8"]
 [ext_resource type="Texture2D" uid="uid://uj5qnvb05r1u" path="res://img/art overlay/OL-art_window-border_waterfall.webp" id="3_ubxw6"]
+[ext_resource type="PackedScene" uid="uid://ce41te06y7x4j" path="res://ui/gui_scenes/chat.tscn" id="5_n6vwr"]
 
 [sub_resource type="Gradient" id="Gradient_uhybc"]
 offsets = PackedFloat32Array(0, 0.45429364)
@@ -68,3 +69,15 @@ offset_right = 1664.0
 offset_bottom = 966.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="Chat" parent="." instance=ExtResource("5_n6vwr")]
+z_index = 10
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+offset_left = -390.0
+offset_top = 20.0
+offset_right = -40.0
+offset_bottom = -168.0
+grow_horizontal = 0
+pivot_offset = Vector2(350, 0)
