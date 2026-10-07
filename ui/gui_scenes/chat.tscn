@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://ce41te06y7x4j"]
+[gd_scene load_steps=4 format=3 uid="uid://ce41te06y7x4j"]
 
 [ext_resource type="PackedScene" uid="uid://btotlxjs3uk8b" path="res://ui/gui_scenes/chat_bubble.tscn" id="1_3iwwn"]
+[ext_resource type="Script" uid="uid://oibw8d8wd746" path="res://scripts/Chat/Chat.cs" id="1_kx6l5"]
+[ext_resource type="Script" uid="uid://cghja318vrvan" path="res://scripts/Chat/ChatMessageWidget.cs" id="3_6rmxk"]
 
-[node name="Chat" type="Control"]
+[node name="ChatBox" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,15 +13,19 @@ offset_right = -1452.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Chat" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_kx6l5")
 
-[node name="ChatBubble" parent="VBoxContainer" instance=ExtResource("1_3iwwn")]
+[node name="ChatBubble" parent="Chat" instance=ExtResource("1_3iwwn")]
 layout_mode = 2
 ChatterName = "Zoggga"
 ChatterMessage = "Hi bluu"
+
+[node name="ChatMessageWidget" type="Node" parent="."]
+script = ExtResource("3_6rmxk")

@@ -64,6 +64,8 @@ colors = PackedColorArray(1, 0.801833, 0.59, 1, 1, 1, 1, 0)
 offset_right = 301.0
 offset_bottom = 91.0
 script = ExtResource("1_jkm6u")
+ChatterName = "Zogga"
+ChatterMessage = "Message"
 ChatterNameLabel = NodePath("HBoxContainer/Container/ChatterNameLabel")
 ChatterMessageLabel = NodePath("HBoxContainer/Container/TextMargin/ChatterText")
 
@@ -97,6 +99,7 @@ axis_stretch_vertical = 2
 
 [node name="ChatterNameLabel" type="RichTextLabel" parent="HBoxContainer/Container"]
 z_index = 1
+clip_contents = false
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/default_color = Color(0.7921569, 0.64705884, 0.6862745, 1)
@@ -106,6 +109,7 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("3_vin2u")
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
+text = "Zogga"
 fit_content = true
 
 [node name="TextMargin" type="MarginContainer" parent="HBoxContainer/Container"]
@@ -124,6 +128,7 @@ theme_override_colors/default_color = Color(0.20784314, 0.27450982, 0.27058825, 
 theme_override_fonts/normal_font = ExtResource("4_p1sly")
 theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
+text = "Message"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1

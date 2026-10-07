@@ -2,6 +2,7 @@ using Godot;
 using System;
 using Godot.Collections;
 using SB.Events;
+using System.Collections.Generic;
 
 
 [GlobalClass, Icon("res://editor/icons/StreamerbotClient.svg")]
@@ -11,10 +12,10 @@ using SB.Events;
 public partial class StreamerbotClient : WebsocketClient
 {
     [Export]
-    private Dictionary<String, Array<String>> eventRequestList = new Dictionary<string, Array<string>>();
+    private Godot.Collections.Dictionary<String, Array<String>> eventRequestList = new ();
 
     //private Dictionary<StreamerWidget, Dictionary<String, Array<String>>> WidgetEventRequests ;
-    private Array<StreamerWidget> ConnectedWidgets = new Array<StreamerWidget>();
+    private List<StreamerWidget> ConnectedWidgets = new ();
     private const string SUBSCRIBE_ID = "godot-subEvent-BluWiHu";
     private const string GET_EVENTS_ID = "godot-getEvents-BluWiHu";
 
@@ -51,7 +52,7 @@ public partial class StreamerbotClient : WebsocketClient
     /// </summary>
     /// <param name="eventTypes">The events the widget wants data from. Choose from <see cref="StreamerBotEventTypes"/></param>
     /// <param name="widget">The widget requesting the event data. StreamerbotClient will send the answer to that widget.</param>
-    public void AddEventRequests(EventType[] eventTypes, StreamerWidget widget)
+    public void AddEventRequests(List<EventType> eventTypes, StreamerWidget widget)
     {
         GD.PrintRich("[b]" + widget.Name + " added Requests [/b]:");
         if (eventTypes == null) return;

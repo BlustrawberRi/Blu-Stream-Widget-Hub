@@ -3,6 +3,7 @@ using Godot.Collections;
 using SB;
 using SB.Events;
 using System;
+using System.Collections.Generic;
 
 public partial class RaidParticleWidget : StreamerWidget
 {
@@ -19,10 +20,7 @@ public partial class RaidParticleWidget : StreamerWidget
 	// 	set { }
 	// }
 
-    public override EventType[] StreamerBotEventRequests {
-		get => new[] { Twitch.Raid };
-		set { } 
-	}
+	public new List<EventType> StreamerBotEventRequests = new() { Twitch.Raid };
 
 
 	// Called when the node enters the scene tree for the first time.

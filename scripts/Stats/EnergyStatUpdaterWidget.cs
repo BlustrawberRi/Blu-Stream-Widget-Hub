@@ -2,6 +2,7 @@ using Godot;
 using Godot.Collections;
 using SB.Events;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 public partial class EnergyStatUpdaterWidget : StreamerWidget
@@ -11,11 +12,7 @@ public partial class EnergyStatUpdaterWidget : StreamerWidget
 
     [Export]
     public int streamLength = 180;
-    public override EventType[] StreamerBotEventRequests
-    {
-        get => new[] { Obs.StreamingStarted};
-        set { }
-    }
+    public new List<EventType> StreamerBotEventRequests = new() { Obs.StreamingStarted};
 
     public override void _Ready()
     {

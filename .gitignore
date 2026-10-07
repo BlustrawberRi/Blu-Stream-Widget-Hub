@@ -24,3 +24,7 @@ mono_crash.*.json
 stats/Energy Stat.tres
 stats/Hydration Stat.tres
 stats/Productivity_Stat.tres
+
+
+addons/spout-gd/README.md
+addons/spout-gd/~spout_gd.windows.template_debug.dll

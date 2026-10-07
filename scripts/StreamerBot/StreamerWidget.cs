@@ -2,6 +2,8 @@ using Godot;
 using Godot.Collections;
 using System;
 using SB.Events;
+using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 /// Baseclass for widgets who respond to <see cref="StreamerbotClient"/> event answers.
@@ -15,7 +17,7 @@ public abstract partial class StreamerWidget : Node
     [Export]
     public StreamerbotClient StreamerbotClient;
 
-    
+
 
     /// <summary>
     /// The streamer.bot events whose data is needed.
@@ -23,25 +25,20 @@ public abstract partial class StreamerWidget : Node
     /// <remarks>
     /// Example:
     /// <code>
-    /// public override Enum[] StreamerbotEventRequests
+    /// public override EventType[] StreamerBotEventRequests
     /// {
-    ///     get
-    ///     {
-    ///         return new Enum[]{
-    ///             StreamerbotEventTypes.Twitch.Raid,
-    ///             StreamerbotEventTypes.Twitch.RewardRedemption,
-    ///             StreamerbotEventTypes.Twitch.ChatMessage 
-    ///         };
-    ///     }
-    ///     set { }
-    /// } </code>
+    ///    get => new[] { Twitch.RewardRedemption, Command.Triggered };
+    ///    set { }
+    /// } 
+    /// </code>
     /// </remarks>
     /// <value>Use the enums in <see cref="StreamerbotEventTypes"/>.</value>
     // public abstract Enum[] StreamerbotEventRequests { get; set; }
-    public virtual EventType[] StreamerBotEventRequests { get; set; }
+    public List<EventType> StreamerBotEventRequests = new();
 
-    //[Export] public Array<StreamerBotTrigger> StreamerbotEventRequest = new Array<StreamerBotTrigger>();
-    //todo: if this is changed, resub to more streamer bot events
+
+    // [Export] public Array<StreamerBotTrigger> StreamerbotEventRequest = new Array<StreamerBotTrigger>();
+    // todo: if this is changed, resub to more streamer bot events
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -66,6 +63,8 @@ public abstract partial class StreamerWidget : Node
     }
 
     public void RequestEvent(EventType request) {
+        // todo add to StreamerBoteventRequests
+
         if (StreamerbotClient == null)
         {
             GD.PushWarning("Widget missing reference to Streamerbot client.");

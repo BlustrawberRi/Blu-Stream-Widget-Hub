@@ -2,16 +2,13 @@ using Godot;
 using Godot.Collections;
 using SB.Events;
 using System;
+using System.Collections.Generic;
 
 public partial class ProductivityStatUpdaterWidget : StreamerWidget
 {
     [Export] public StreamStat productivityStat;
 
-    public override EventType[] StreamerBotEventRequests
-    {
-        get => new[]{ Command.Triggered };
-        set { }
-    }
+    public new List<EventType> StreamerBotEventRequests = new(){ Command.Triggered };
 
     public override void _Ready()
     {

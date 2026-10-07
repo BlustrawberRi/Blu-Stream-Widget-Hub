@@ -7,13 +7,14 @@ using Godot;
 
 namespace SB.Events
 {
-    public enum EventSource
+    public enum EventSourceList
     {
         Application,
         Command,
         CrowdControl,
         Twitch
     }
+
 
     public partial class EventType : GodotObject
     {
@@ -32,198 +33,198 @@ namespace SB.Events
     }
     // regex for new class from event List:
     // (\w*)\.(.*)\n
-    // public static EventType $2 =>new("$2", typeof($1));\n
+    // public readonly static EventType $2 =>new("$2", typeof($1));\n
 
-    public static class Command
+    public static class Command 
     {
-        public static string Name => "Command";
+        public readonly static string Name = "Command";
 
-        public enum eventTypeList
+        public enum EventTypeList
         {
             Triggered, Cooldown
         }
 
-        public static EventType Triggered => new("Triggered", typeof(Command));
-        public static EventType Cooldown => new("Cooldown", typeof(Command));
+        public readonly static EventType Triggered = new("Triggered", typeof(Command));
+        public readonly static EventType Cooldown = new("Cooldown", typeof(Command));
 
     }
     public static class Twitch
     {
-        public static string Name => "Twitch";
-        public static EventType AdRun => new("AdRun", typeof(Twitch));
-        public static EventType Announcement => new("Announcement", typeof(Twitch));
-        public static EventType AutomaticRewardRedemption => new("AutomaticRewardRedemption", typeof(Twitch));
-        public static EventType AutoModMessageHeld => new("AutoModMessageHeld", typeof(Twitch));
-        public static EventType AutoModMessageUpdate => new("AutoModMessageUpdate", typeof(Twitch));
-        public static EventType BetterTTVEmoteAdded => new("BetterTTVEmoteAdded", typeof(Twitch));
-        public static EventType BetterTTVEmoteRemoved => new("BetterTTVEmoteRemoved", typeof(Twitch));
-        public static EventType BitsBadgeTier => new("BitsBadgeTier", typeof(Twitch));
-        public static EventType BlockedTermsAdded => new("BlockedTermsAdded", typeof(Twitch));
-        public static EventType BlockedTermsDeleted => new("BlockedTermsDeleted", typeof(Twitch));
-        public static EventType BotEventSubConnected => new("BotEventSubConnected", typeof(Twitch));
-        public static EventType BotEventSubDisconnected => new("BotEventSubDisconnected", typeof(Twitch));
-        public static EventType BotWhisper => new("BotWhisper", typeof(Twitch));
-        public static EventType BroadcasterAuthenticated => new("BroadcasterAuthenticated", typeof(Twitch));
-        public static EventType BroadcasterChatConnected => new("BroadcasterChatConnected", typeof(Twitch));
-        public static EventType BroadcasterChatDisconnected => new("BroadcasterChatDisconnected", typeof(Twitch));
-        public static EventType BroadcasterEventSubConnected => new("BroadcasterEventSubConnected", typeof(Twitch));
-        public static EventType BroadcasterEventSubDisconnected => new("BroadcasterEventSubDisconnected", typeof(Twitch));
-        public static EventType CharityCompleted => new("CharityCompleted", typeof(Twitch));
-        public static EventType CharityDonation => new("CharityDonation", typeof(Twitch));
-        public static EventType CharityProgress => new("CharityProgress", typeof(Twitch));
-        public static EventType CharityStarted => new("CharityStarted", typeof(Twitch));
-        public static EventType ChatCleared => new("ChatCleared", typeof(Twitch));
-        public static EventType ChatEmoteModeOff => new("ChatEmoteModeOff", typeof(Twitch));
-        public static EventType ChatEmoteModeOn => new("ChatEmoteModeOn", typeof(Twitch));
-        public static EventType ChatFollowerModeChanged => new("ChatFollowerModeChanged", typeof(Twitch));
-        public static EventType ChatFollowerModeOff => new("ChatFollowerModeOff", typeof(Twitch));
-        public static EventType ChatFollowerModeOn => new("ChatFollowerModeOn", typeof(Twitch));
-        public static EventType ChatMessage => new("ChatMessage", typeof(Twitch));
-        public static EventType ChatMessageDeleted => new("ChatMessageDeleted", typeof(Twitch));
-        public static EventType ChatSlowModeChanged => new("ChatSlowModeChanged", typeof(Twitch));
-        public static EventType ChatSlowModeOff => new("ChatSlowModeOff", typeof(Twitch));
-        public static EventType ChatSlowModeOn => new("ChatSlowModeOn", typeof(Twitch));
-        public static EventType ChatSubscriberModeOff => new("ChatSubscriberModeOff", typeof(Twitch));
-        public static EventType ChatSubscriberModeOn => new("ChatSubscriberModeOn", typeof(Twitch));
-        public static EventType ChatUniqueModeOff => new("ChatUniqueModeOff", typeof(Twitch));
-        public static EventType ChatUniqueModeOn => new("ChatUniqueModeOn", typeof(Twitch));
-        public static EventType Cheer => new("Cheer", typeof(Twitch));
-        public static EventType CoinCheer => new("CoinCheer", typeof(Twitch));
-        public static EventType CommunityGoalContribution => new("CommunityGoalContribution", typeof(Twitch));
-        public static EventType CommunityGoalEnded => new("CommunityGoalEnded", typeof(Twitch));
-        public static EventType CustomPowerUpRedemption => new("CustomPowerUpRedemption", typeof(Twitch));
-        public static EventType FirstWord => new("FirstWord", typeof(Twitch));
-        public static EventType Follow => new("Follow", typeof(Twitch));
-        public static EventType GiftBomb => new("GiftBomb", typeof(Twitch));
-        public static EventType GiftPaidUpgrade => new("GiftPaidUpgrade", typeof(Twitch));
-        public static EventType GiftSub => new("GiftSub", typeof(Twitch));
-        public static EventType GoalBegin => new("GoalBegin", typeof(Twitch));
-        public static EventType GoalEnd => new("GoalEnd", typeof(Twitch));
-        public static EventType GoalProgress => new("GoalProgress", typeof(Twitch));
-        public static EventType GuestStarGuestUpdate => new("GuestStarGuestUpdate", typeof(Twitch));
-        public static EventType GuestStarSessionBegin => new("GuestStarSessionBegin", typeof(Twitch));
-        public static EventType GuestStarSessionEnd => new("GuestStarSessionEnd", typeof(Twitch));
-        public static EventType GuestStarSettingsUpdate => new("GuestStarSettingsUpdate", typeof(Twitch));
-        public static EventType GuestStarSlotUpdate => new("GuestStarSlotUpdate", typeof(Twitch));
-        public static EventType HypeChat => new("HypeChat", typeof(Twitch));
-        public static EventType HypeChatLevel => new("HypeChatLevel", typeof(Twitch));
-        public static EventType HypeTrainEnd => new("HypeTrainEnd", typeof(Twitch));
-        public static EventType HypeTrainLevelUp => new("HypeTrainLevelUp", typeof(Twitch));
-        public static EventType HypeTrainStart => new("HypeTrainStart", typeof(Twitch));
-        public static EventType HypeTrainUpdate => new("HypeTrainUpdate", typeof(Twitch));
-        public static EventType ModeratorAdded => new("ModeratorAdded", typeof(Twitch));
-        public static EventType ModeratorRemoved => new("ModeratorRemoved", typeof(Twitch));
-        public static EventType Modiversary => new("Modiversary", typeof(Twitch));
-        public static EventType PayItForward => new("PayItForward", typeof(Twitch));
-        public static EventType PermittedTermsAdded => new("PermittedTermsAdded", typeof(Twitch));
-        public static EventType PermittedTermsDeleted => new("PermittedTermsDeleted", typeof(Twitch));
-        public static EventType PollArchived => new("PollArchived", typeof(Twitch));
-        public static EventType PollCompleted => new("PollCompleted", typeof(Twitch));
-        public static EventType PollCreated => new("PollCreated", typeof(Twitch));
-        public static EventType PollTerminated => new("PollTerminated", typeof(Twitch));
-        public static EventType PollUpdated => new("PollUpdated", typeof(Twitch));
-        public static EventType PowerUpRedemption => new("PowerUpRedemption", typeof(Twitch));
-        public static EventType PredictionCanceled => new("PredictionCanceled", typeof(Twitch));
-        public static EventType PredictionCompleted => new("PredictionCompleted", typeof(Twitch));
-        public static EventType PredictionCreated => new("PredictionCreated", typeof(Twitch));
-        public static EventType PredictionLocked => new("PredictionLocked", typeof(Twitch));
-        public static EventType PredictionUpdated => new("PredictionUpdated", typeof(Twitch));
-        public static EventType PresentViewers => new("PresentViewers", typeof(Twitch));
-        public static EventType PrimePaidUpgrade => new("PrimePaidUpgrade", typeof(Twitch));
-        public static EventType PyramidBroken => new("PyramidBroken", typeof(Twitch));
-        public static EventType PyramidSuccess => new("PyramidSuccess", typeof(Twitch));
-        public static EventType Raid => new("Raid", typeof(Twitch));
-        public static EventType RaidCancelled => new("RaidCancelled", typeof(Twitch));
-        public static EventType RaidSend => new("RaidSend", typeof(Twitch));
-        public static EventType RaidStart => new("RaidStart", typeof(Twitch));
-        public static EventType ReSub => new("ReSub", typeof(Twitch));
-        public static EventType RewardCreated => new("RewardCreated", typeof(Twitch));
-        public static EventType RewardDeleted => new("RewardDeleted", typeof(Twitch));
-        public static EventType RewardRedemption => new("RewardRedemption", typeof(Twitch));
-        public static EventType RewardRedemptionUpdated => new("RewardRedemptionUpdated", typeof(Twitch));
-        public static EventType RewardUpdated => new("RewardUpdated", typeof(Twitch));
-        public static EventType SevenTVEmoteAdded => new("SevenTVEmoteAdded", typeof(Twitch));
-        public static EventType SevenTVEmoteRemoved => new("SevenTVEmoteRemoved", typeof(Twitch));
-        public static EventType SharedChatAnnouncement => new("SharedChatAnnouncement", typeof(Twitch));
-        public static EventType SharedChatCommunitySubGift => new("SharedChatCommunitySubGift", typeof(Twitch));
-        public static EventType SharedChatGiftPaidUpgrade => new("SharedChatGiftPaidUpgrade", typeof(Twitch));
-        public static EventType SharedChatMessageDeleted => new("SharedChatMessageDeleted", typeof(Twitch));
-        public static EventType SharedChatPayItForward => new("SharedChatPayItForward", typeof(Twitch));
-        public static EventType SharedChatPrimePaidUpgrade => new("SharedChatPrimePaidUpgrade", typeof(Twitch));
-        public static EventType SharedChatRaid => new("SharedChatRaid", typeof(Twitch));
-        public static EventType SharedChatResub => new("SharedChatResub", typeof(Twitch));
-        public static EventType SharedChatSessionBegin => new("SharedChatSessionBegin", typeof(Twitch));
-        public static EventType SharedChatSessionEnd => new("SharedChatSessionEnd", typeof(Twitch));
-        public static EventType SharedChatSessionUpdate => new("SharedChatSessionUpdate", typeof(Twitch));
-        public static EventType SharedChatSub => new("SharedChatSub", typeof(Twitch));
-        public static EventType SharedChatSubGift => new("SharedChatSubGift", typeof(Twitch));
-        public static EventType SharedChatUserBanned => new("SharedChatUserBanned", typeof(Twitch));
-        public static EventType SharedChatUserTimedout => new("SharedChatUserTimedout", typeof(Twitch));
-        public static EventType SharedChatUserUnbanned => new("SharedChatUserUnbanned", typeof(Twitch));
-        public static EventType SharedChatUserUntimedout => new("SharedChatUserUntimedout", typeof(Twitch));
-        public static EventType SharedModiversary => new("SharedModiversary", typeof(Twitch));
-        public static EventType ShieldModeBegin => new("ShieldModeBegin", typeof(Twitch));
-        public static EventType ShieldModeEnd => new("ShieldModeEnd", typeof(Twitch));
-        public static EventType ShoutoutCreated => new("ShoutoutCreated", typeof(Twitch));
-        public static EventType ShoutoutReceived => new("ShoutoutReceived", typeof(Twitch));
-        public static EventType StreamOffline => new("StreamOffline", typeof(Twitch));
-        public static EventType StreamOnline => new("StreamOnline", typeof(Twitch));
-        public static EventType StreamUpdate => new("StreamUpdate", typeof(Twitch));
-        public static EventType StreamUpdateGameOnConnect => new("StreamUpdateGameOnConnect", typeof(Twitch));
-        public static EventType Sub => new("Sub", typeof(Twitch));
-        public static EventType SubCounterRollover => new("SubCounterRollover", typeof(Twitch));
-        public static EventType SuspiciousUserMessage => new("SuspiciousUserMessage", typeof(Twitch));
-        public static EventType SuspiciousUserUpdate => new("SuspiciousUserUpdate", typeof(Twitch));
-        public static EventType UnbanRequestApproved => new("UnbanRequestApproved", typeof(Twitch));
-        public static EventType UnbanRequestCreated => new("UnbanRequestCreated", typeof(Twitch));
-        public static EventType UnbanRequestDenied => new("UnbanRequestDenied", typeof(Twitch));
-        public static EventType UpcomingAd => new("UpcomingAd", typeof(Twitch));
-        public static EventType UserBanned => new("UserBanned", typeof(Twitch));
-        public static EventType UserTimedOut => new("UserTimedOut", typeof(Twitch));
-        public static EventType UserUnbanned => new("UserUnbanned", typeof(Twitch));
-        public static EventType UserUntimedOut => new("UserUntimedOut", typeof(Twitch));
-        public static EventType ViewerCountUpdate => new("ViewerCountUpdate", typeof(Twitch));
-        public static EventType VipAdded => new("VipAdded", typeof(Twitch));
-        public static EventType VipRemoved => new("VipRemoved", typeof(Twitch));
-        public static EventType WarnedUser => new("WarnedUser", typeof(Twitch));
-        public static EventType WarningAcknowledged => new("WarningAcknowledged", typeof(Twitch));
-        public static EventType WatchStreak => new("WatchStreak", typeof(Twitch));
-        public static EventType Whisper => new("Whisper", typeof(Twitch));
+        public readonly static string Name = "Twitch";
+        public readonly static EventType AdRun = new("AdRun", typeof(Twitch));
+        public readonly static EventType Announcement = new("Announcement", typeof(Twitch));
+        public readonly static EventType AutomaticRewardRedemption = new("AutomaticRewardRedemption", typeof(Twitch));
+        public readonly static EventType AutoModMessageHeld = new("AutoModMessageHeld", typeof(Twitch));
+        public readonly static EventType AutoModMessageUpdate = new("AutoModMessageUpdate", typeof(Twitch));
+        public readonly static EventType BetterTTVEmoteAdded = new("BetterTTVEmoteAdded", typeof(Twitch));
+        public readonly static EventType BetterTTVEmoteRemoved = new("BetterTTVEmoteRemoved", typeof(Twitch));
+        public readonly static EventType BitsBadgeTier = new("BitsBadgeTier", typeof(Twitch));
+        public readonly static EventType BlockedTermsAdded = new("BlockedTermsAdded", typeof(Twitch));
+        public readonly static EventType BlockedTermsDeleted = new("BlockedTermsDeleted", typeof(Twitch));
+        public readonly static EventType BotEventSubConnected = new("BotEventSubConnected", typeof(Twitch));
+        public readonly static EventType BotEventSubDisconnected = new("BotEventSubDisconnected", typeof(Twitch));
+        public readonly static EventType BotWhisper = new("BotWhisper", typeof(Twitch));
+        public readonly static EventType BroadcasterAuthenticated = new("BroadcasterAuthenticated", typeof(Twitch));
+        public readonly static EventType BroadcasterChatConnected = new("BroadcasterChatConnected", typeof(Twitch));
+        public readonly static EventType BroadcasterChatDisconnected = new("BroadcasterChatDisconnected", typeof(Twitch));
+        public readonly static EventType BroadcasterEventSubConnected = new("BroadcasterEventSubConnected", typeof(Twitch));
+        public readonly static EventType BroadcasterEventSubDisconnected = new("BroadcasterEventSubDisconnected", typeof(Twitch));
+        public readonly static EventType CharityCompleted = new("CharityCompleted", typeof(Twitch));
+        public readonly static EventType CharityDonation = new("CharityDonation", typeof(Twitch));
+        public readonly static EventType CharityProgress = new("CharityProgress", typeof(Twitch));
+        public readonly static EventType CharityStarted = new("CharityStarted", typeof(Twitch));
+        public readonly static EventType ChatCleared = new("ChatCleared", typeof(Twitch));
+        public readonly static EventType ChatEmoteModeOff = new("ChatEmoteModeOff", typeof(Twitch));
+        public readonly static EventType ChatEmoteModeOn = new("ChatEmoteModeOn", typeof(Twitch));
+        public readonly static EventType ChatFollowerModeChanged = new("ChatFollowerModeChanged", typeof(Twitch));
+        public readonly static EventType ChatFollowerModeOff = new("ChatFollowerModeOff", typeof(Twitch));
+        public readonly static EventType ChatFollowerModeOn = new("ChatFollowerModeOn", typeof(Twitch));
+        public readonly static EventType ChatMessage = new("ChatMessage", typeof(Twitch));
+        public readonly static EventType ChatMessageDeleted = new("ChatMessageDeleted", typeof(Twitch));
+        public readonly static EventType ChatSlowModeChanged = new("ChatSlowModeChanged", typeof(Twitch));
+        public readonly static EventType ChatSlowModeOff = new("ChatSlowModeOff", typeof(Twitch));
+        public readonly static EventType ChatSlowModeOn = new("ChatSlowModeOn", typeof(Twitch));
+        public readonly static EventType ChatSubscriberModeOff = new("ChatSubscriberModeOff", typeof(Twitch));
+        public readonly static EventType ChatSubscriberModeOn = new("ChatSubscriberModeOn", typeof(Twitch));
+        public readonly static EventType ChatUniqueModeOff = new("ChatUniqueModeOff", typeof(Twitch));
+        public readonly static EventType ChatUniqueModeOn = new("ChatUniqueModeOn", typeof(Twitch));
+        public readonly static EventType Cheer = new("Cheer", typeof(Twitch));
+        public readonly static EventType CoinCheer = new("CoinCheer", typeof(Twitch));
+        public readonly static EventType CommunityGoalContribution = new("CommunityGoalContribution", typeof(Twitch));
+        public readonly static EventType CommunityGoalEnded = new("CommunityGoalEnded", typeof(Twitch));
+        public readonly static EventType CustomPowerUpRedemption = new("CustomPowerUpRedemption", typeof(Twitch));
+        public readonly static EventType FirstWord = new("FirstWord", typeof(Twitch));
+        public readonly static EventType Follow = new("Follow", typeof(Twitch));
+        public readonly static EventType GiftBomb = new("GiftBomb", typeof(Twitch));
+        public readonly static EventType GiftPaidUpgrade = new("GiftPaidUpgrade", typeof(Twitch));
+        public readonly static EventType GiftSub = new("GiftSub", typeof(Twitch));
+        public readonly static EventType GoalBegin = new("GoalBegin", typeof(Twitch));
+        public readonly static EventType GoalEnd = new("GoalEnd", typeof(Twitch));
+        public readonly static EventType GoalProgress = new("GoalProgress", typeof(Twitch));
+        public readonly static EventType GuestStarGuestUpdate = new("GuestStarGuestUpdate", typeof(Twitch));
+        public readonly static EventType GuestStarSessionBegin = new("GuestStarSessionBegin", typeof(Twitch));
+        public readonly static EventType GuestStarSessionEnd = new("GuestStarSessionEnd", typeof(Twitch));
+        public readonly static EventType GuestStarSettingsUpdate = new("GuestStarSettingsUpdate", typeof(Twitch));
+        public readonly static EventType GuestStarSlotUpdate = new("GuestStarSlotUpdate", typeof(Twitch));
+        public readonly static EventType HypeChat = new("HypeChat", typeof(Twitch));
+        public readonly static EventType HypeChatLevel = new("HypeChatLevel", typeof(Twitch));
+        public readonly static EventType HypeTrainEnd = new("HypeTrainEnd", typeof(Twitch));
+        public readonly static EventType HypeTrainLevelUp = new("HypeTrainLevelUp", typeof(Twitch));
+        public readonly static EventType HypeTrainStart = new("HypeTrainStart", typeof(Twitch));
+        public readonly static EventType HypeTrainUpdate = new("HypeTrainUpdate", typeof(Twitch));
+        public readonly static EventType ModeratorAdded = new("ModeratorAdded", typeof(Twitch));
+        public readonly static EventType ModeratorRemoved = new("ModeratorRemoved", typeof(Twitch));
+        public readonly static EventType Modiversary = new("Modiversary", typeof(Twitch));
+        public readonly static EventType PayItForward = new("PayItForward", typeof(Twitch));
+        public readonly static EventType PermittedTermsAdded = new("PermittedTermsAdded", typeof(Twitch));
+        public readonly static EventType PermittedTermsDeleted = new("PermittedTermsDeleted", typeof(Twitch));
+        public readonly static EventType PollArchived = new("PollArchived", typeof(Twitch));
+        public readonly static EventType PollCompleted = new("PollCompleted", typeof(Twitch));
+        public readonly static EventType PollCreated = new("PollCreated", typeof(Twitch));
+        public readonly static EventType PollTerminated = new("PollTerminated", typeof(Twitch));
+        public readonly static EventType PollUpdated = new("PollUpdated", typeof(Twitch));
+        public readonly static EventType PowerUpRedemption = new("PowerUpRedemption", typeof(Twitch));
+        public readonly static EventType PredictionCanceled = new("PredictionCanceled", typeof(Twitch));
+        public readonly static EventType PredictionCompleted = new("PredictionCompleted", typeof(Twitch));
+        public readonly static EventType PredictionCreated = new("PredictionCreated", typeof(Twitch));
+        public readonly static EventType PredictionLocked = new("PredictionLocked", typeof(Twitch));
+        public readonly static EventType PredictionUpdated = new("PredictionUpdated", typeof(Twitch));
+        public readonly static EventType PresentViewers = new("PresentViewers", typeof(Twitch));
+        public readonly static EventType PrimePaidUpgrade = new("PrimePaidUpgrade", typeof(Twitch));
+        public readonly static EventType PyramidBroken = new("PyramidBroken", typeof(Twitch));
+        public readonly static EventType PyramidSuccess = new("PyramidSuccess", typeof(Twitch));
+        public readonly static EventType Raid = new("Raid", typeof(Twitch));
+        public readonly static EventType RaidCancelled = new("RaidCancelled", typeof(Twitch));
+        public readonly static EventType RaidSend = new("RaidSend", typeof(Twitch));
+        public readonly static EventType RaidStart = new("RaidStart", typeof(Twitch));
+        public readonly static EventType ReSub = new("ReSub", typeof(Twitch));
+        public readonly static EventType RewardCreated = new("RewardCreated", typeof(Twitch));
+        public readonly static EventType RewardDeleted = new("RewardDeleted", typeof(Twitch));
+        public readonly static EventType RewardRedemption = new("RewardRedemption", typeof(Twitch));
+        public readonly static EventType RewardRedemptionUpdated = new("RewardRedemptionUpdated", typeof(Twitch));
+        public readonly static EventType RewardUpdated = new("RewardUpdated", typeof(Twitch));
+        public readonly static EventType SevenTVEmoteAdded = new("SevenTVEmoteAdded", typeof(Twitch));
+        public readonly static EventType SevenTVEmoteRemoved = new("SevenTVEmoteRemoved", typeof(Twitch));
+        public readonly static EventType SharedChatAnnouncement = new("SharedChatAnnouncement", typeof(Twitch));
+        public readonly static EventType SharedChatCommunitySubGift = new("SharedChatCommunitySubGift", typeof(Twitch));
+        public readonly static EventType SharedChatGiftPaidUpgrade = new("SharedChatGiftPaidUpgrade", typeof(Twitch));
+        public readonly static EventType SharedChatMessageDeleted = new("SharedChatMessageDeleted", typeof(Twitch));
+        public readonly static EventType SharedChatPayItForward = new("SharedChatPayItForward", typeof(Twitch));
+        public readonly static EventType SharedChatPrimePaidUpgrade = new("SharedChatPrimePaidUpgrade", typeof(Twitch));
+        public readonly static EventType SharedChatRaid = new("SharedChatRaid", typeof(Twitch));
+        public readonly static EventType SharedChatResub = new("SharedChatResub", typeof(Twitch));
+        public readonly static EventType SharedChatSessionBegin = new("SharedChatSessionBegin", typeof(Twitch));
+        public readonly static EventType SharedChatSessionEnd = new("SharedChatSessionEnd", typeof(Twitch));
+        public readonly static EventType SharedChatSessionUpdate = new("SharedChatSessionUpdate", typeof(Twitch));
+        public readonly static EventType SharedChatSub = new("SharedChatSub", typeof(Twitch));
+        public readonly static EventType SharedChatSubGift = new("SharedChatSubGift", typeof(Twitch));
+        public readonly static EventType SharedChatUserBanned = new("SharedChatUserBanned", typeof(Twitch));
+        public readonly static EventType SharedChatUserTimedout = new("SharedChatUserTimedout", typeof(Twitch));
+        public readonly static EventType SharedChatUserUnbanned = new("SharedChatUserUnbanned", typeof(Twitch));
+        public readonly static EventType SharedChatUserUntimedout = new("SharedChatUserUntimedout", typeof(Twitch));
+        public readonly static EventType SharedModiversary = new("SharedModiversary", typeof(Twitch));
+        public readonly static EventType ShieldModeBegin = new("ShieldModeBegin", typeof(Twitch));
+        public readonly static EventType ShieldModeEnd = new("ShieldModeEnd", typeof(Twitch));
+        public readonly static EventType ShoutoutCreated = new("ShoutoutCreated", typeof(Twitch));
+        public readonly static EventType ShoutoutReceived = new("ShoutoutReceived", typeof(Twitch));
+        public readonly static EventType StreamOffline = new("StreamOffline", typeof(Twitch));
+        public readonly static EventType StreamOnline = new("StreamOnline", typeof(Twitch));
+        public readonly static EventType StreamUpdate = new("StreamUpdate", typeof(Twitch));
+        public readonly static EventType StreamUpdateGameOnConnect = new("StreamUpdateGameOnConnect", typeof(Twitch));
+        public readonly static EventType Sub = new("Sub", typeof(Twitch));
+        public readonly static EventType SubCounterRollover = new("SubCounterRollover", typeof(Twitch));
+        public readonly static EventType SuspiciousUserMessage = new("SuspiciousUserMessage", typeof(Twitch));
+        public readonly static EventType SuspiciousUserUpdate = new("SuspiciousUserUpdate", typeof(Twitch));
+        public readonly static EventType UnbanRequestApproved = new("UnbanRequestApproved", typeof(Twitch));
+        public readonly static EventType UnbanRequestCreated = new("UnbanRequestCreated", typeof(Twitch));
+        public readonly static EventType UnbanRequestDenied = new("UnbanRequestDenied", typeof(Twitch));
+        public readonly static EventType UpcomingAd = new("UpcomingAd", typeof(Twitch));
+        public readonly static EventType UserBanned = new("UserBanned", typeof(Twitch));
+        public readonly static EventType UserTimedOut = new("UserTimedOut", typeof(Twitch));
+        public readonly static EventType UserUnbanned = new("UserUnbanned", typeof(Twitch));
+        public readonly static EventType UserUntimedOut = new("UserUntimedOut", typeof(Twitch));
+        public readonly static EventType ViewerCountUpdate = new("ViewerCountUpdate", typeof(Twitch));
+        public readonly static EventType VipAdded = new("VipAdded", typeof(Twitch));
+        public readonly static EventType VipRemoved = new("VipRemoved", typeof(Twitch));
+        public readonly static EventType WarnedUser = new("WarnedUser", typeof(Twitch));
+        public readonly static EventType WarningAcknowledged = new("WarningAcknowledged", typeof(Twitch));
+        public readonly static EventType WatchStreak = new("WatchStreak", typeof(Twitch));
+        public readonly static EventType Whisper = new("Whisper", typeof(Twitch));
 
     }
     public static class Obs
     {
-        public static string Name => "Obs";
-        public static EventType Connected => new("Connected", typeof(Obs));
-        public static EventType Disconnected => new("Disconnected", typeof(Obs));
-        public static EventType Event => new("Event", typeof(Obs));
-        public static EventType RecordingStarted => new("RecordingStarted", typeof(Obs));
-        public static EventType RecordingStopped => new("RecordingStopped", typeof(Obs));
-        public static EventType SceneChanged => new("SceneChanged", typeof(Obs));
-        public static EventType StreamingStarted => new("StreamingStarted", typeof(Obs));
-        public static EventType StreamingStopped => new("StreamingStopped", typeof(Obs));
-        public static EventType VendorEvent => new("VendorEvent", typeof(Obs));
+        public readonly static string Name = "Obs";
+        public readonly static EventType Connected = new("Connected", typeof(Obs));
+        public readonly static EventType Disconnected = new("Disconnected", typeof(Obs));
+        public readonly static EventType Event = new("Event", typeof(Obs));
+        public readonly static EventType RecordingStarted = new("RecordingStarted", typeof(Obs));
+        public readonly static EventType RecordingStopped = new("RecordingStopped", typeof(Obs));
+        public readonly static EventType SceneChanged = new("SceneChanged", typeof(Obs));
+        public readonly static EventType StreamingStarted = new("StreamingStarted", typeof(Obs));
+        public readonly static EventType StreamingStopped = new("StreamingStopped", typeof(Obs));
+        public readonly static EventType VendorEvent = new("VendorEvent", typeof(Obs));
 
     }
     public static class Kofi
     {
-        public static string Name => "Kofi";
-        public static EventType Commission =>new("Commission", typeof(Kofi));
-        public static EventType Donation =>new("Donation", typeof(Kofi));
-        public static EventType Resubscription =>new("Resubscription", typeof(Kofi));
-        public static EventType ShopOrder =>new("ShopOrder", typeof(Kofi));
-        public static EventType Subscription =>new("Subscription", typeof(Kofi));
+        public readonly static string Name = "Kofi";
+        public readonly static EventType Commission =new("Commission", typeof(Kofi));
+        public readonly static EventType Donation =new("Donation", typeof(Kofi));
+        public readonly static EventType Resubscription =new("Resubscription", typeof(Kofi));
+        public readonly static EventType ShopOrder =new("ShopOrder", typeof(Kofi));
+        public readonly static EventType Subscription =new("Subscription", typeof(Kofi));
 
     }
     public static class StreamElements
     {
-        public static string Name => "StreamElements";
-        public static EventType Authenticated =>new("Authenticated", typeof(StreamElements));
-        public static EventType Connected =>new("Connected", typeof(StreamElements));
+        public readonly static string Name = "StreamElements";
+        public readonly static EventType Authenticated =new("Authenticated", typeof(StreamElements));
+        public readonly static EventType Connected =new("Connected", typeof(StreamElements));
     
-        public static EventType Disconnected =>new("Disconnected", typeof(StreamElements));
-        public static EventType Merch =>new("Merch", typeof(StreamElements));
-        public static EventType Tip =>new("Tip", typeof(StreamElements));
+        public readonly static EventType Disconnected =new("Disconnected", typeof(StreamElements));
+        public readonly static EventType Merch =new("Merch", typeof(StreamElements));
+        public readonly static EventType Tip =new("Tip", typeof(StreamElements));
         
     }
 }

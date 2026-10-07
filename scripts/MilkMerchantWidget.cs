@@ -25,11 +25,7 @@ public partial class MilkMerchantWidget : StreamerWidget
     [Export] public Array<string> customers = new();
     public string CurrentCustomer { get; set; }
 
-    public override EventType[] StreamerBotEventRequests
-    {
-        get => new[] { Twitch.Raid, Twitch.RewardRedemption, Twitch.ChatMessage };// TODO: subscribe dynamically 
-        set { }
-    }
+    public new List<EventType> StreamerBotEventRequests = new() { Twitch.Raid, Twitch.RewardRedemption, Twitch.ChatMessage };
 
     [Signal] public delegate void DialogueChangedEventHandler(string text);
     [Signal] public delegate void TriggeredEventHandler();

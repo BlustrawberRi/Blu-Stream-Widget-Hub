@@ -16,11 +16,8 @@ using System.ComponentModel;
 /// </remarks>
 public partial class ChatTodoWidget : StreamerWidget
 {
-    public override EventType[] StreamerBotEventRequests
-    {
-        get => new[] { Twitch.RewardRedemption, Command.Triggered };
-        set { }
-    }
+    public new List<EventType> StreamerBotEventRequests = new() { Twitch.RewardRedemption, Command.Triggered };
+    
 
     [Signal]
     public delegate void TodoReceivedEventHandler(string todo, ChatUser user, string timestamp);

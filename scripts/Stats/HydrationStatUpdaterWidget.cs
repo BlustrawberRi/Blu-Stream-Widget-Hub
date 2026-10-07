@@ -2,6 +2,7 @@ using Godot;
 using Godot.Collections;
 using SB.Events;
 using System;
+using System.Collections.Generic;
 
 public partial class HydrationStatUpdaterWidget : StreamerWidget
 {
@@ -13,11 +14,7 @@ public partial class HydrationStatUpdaterWidget : StreamerWidget
     [Export]
     public int hydrationIncreasePerSip = 20;
 
-    public override EventType[] StreamerBotEventRequests
-    {
-        get => new []{ Command.Triggered, Twitch.RewardRedemption};
-        set { }
-    }
+    public new List<EventType> StreamerBotEventRequests = new(){ Command.Triggered, Twitch.RewardRedemption};
 
 
 
