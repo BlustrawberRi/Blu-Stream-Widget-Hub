@@ -92,12 +92,12 @@ public partial class MilkMerchantWidget : StreamerWidget
                 if (!waitForChoice)
                     return;
                 //GD.Print(data.ToString().Replace(",", ",\n").Replace("{", "{\n\t"));
-                var msg_data = data.GetValueOrDefault("message").AsGodotDictionary();
-                string user = msg_data.GetValueOrDefault("username").ToString();
+                var user_data = data.GetValueOrDefault("user").AsGodotDictionary();
+                string userLogin = user_data.GetValueOrDefault("login").ToString();
 
-                if (customers.Count != 0 && user == customers[0])
+                if (customers.Count != 0 && userLogin == customers[0])
                 {
-                    string message = msg_data.GetValueOrDefault("message").ToString();
+                    string message = data.GetValueOrDefault("text").ToString();
 
                     OnMilkChoice(message);
                 }
@@ -227,3 +227,4 @@ public partial class MilkMerchantWidget : StreamerWidget
     }
 
 }
+
