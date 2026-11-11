@@ -6,16 +6,22 @@ public partial class StreamStat : Resource
 {
     [Export] public string StatName { get; set; }
     //private string SaveStatPath => "res://stats/" + StatName + ".tres"; //make this global
+
+    [Export] public string SaveStatOverride;
+    //"user://" + StatSaveDir + "\\" + Stat.StatName + ".tres";
     [Export]
     public int Value
     {
         get { return _value; }
         set
         {
+            if (StopAtMaxValue && value > MaxValue)
+                return;
             _value = StopAtMaxValue ?
             Math.Min(MaxValue, Math.Max(value, MinValue))
             : Math.Max(value, MinValue);
 
+            GD.Print(this.StatName + " updated to " + _value);
             Save();
 
             EmitSignal(SignalName.ValueChanged, _value);
@@ -42,7 +48,11 @@ public partial class StreamStat : Resource
     {
         if (this.ResourcePath != "")
         {
-            ResourceSaver.Save(this);
+            if (Engine.IsEditorHint())
+                ResourceSaver.Save(this);
+
+            if (saveAcrossSessions)
+                ResourceSaver.Save(this, "user://" + SaveStatOverride + ResourceName + ".tres");
         }
     }
 
