@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Threading.Tasks;
 
-public partial class ProductivityGoalWidget : StatContainer
+public partial class ProductivityGoalContainer : StatContainer
 {
 	[Export] public CpuParticles2D MaxEffect;
 	[Export] public RichTextLabel label;

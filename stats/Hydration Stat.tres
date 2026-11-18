@@ -5,8 +5,4 @@
 [resource]
 script = ExtResource("1_7xx5d")
 StatName = "Hydration"
-Value = 0
-MinValue = 0
-MaxValue = 100
-StopAtMaxValue = false
-saveAcrossSessions = false
+Value = 100

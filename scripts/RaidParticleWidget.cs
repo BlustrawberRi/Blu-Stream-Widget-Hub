@@ -20,7 +20,7 @@ public partial class RaidParticleWidget : StreamerWidget
 	// 	set { }
 	// }
 
-	public new List<EventType> StreamerBotEventRequests = new() { Twitch.Raid };
+	public override List<EventType> StreamerBotEventRequests { get; set; } = new() { Twitch.Raid };
 
 
 	// Called when the node enters the scene tree for the first time.

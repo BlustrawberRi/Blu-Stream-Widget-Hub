@@ -8,7 +8,7 @@ public partial class CommandWidget : StreamerWidget
 {
 	[Export] string commandName;
 	[Signal] public delegate void CommandTriggeredEventHandler(string commandName, string commandText);
-	public new List<EventType> StreamerBotEventRequests = new() { Command.Triggered };
+	public override List<EventType> StreamerBotEventRequests { get; set; } = new() { Command.Triggered };
 
 	public override void OnEventDataReceived(EventType type, Dictionary data)
 	{

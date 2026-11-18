@@ -16,7 +16,7 @@ using System.ComponentModel;
 /// </remarks>
 public partial class ChatTodoWidget : StreamerWidget
 {
-    public new List<EventType> StreamerBotEventRequests = new() { Twitch.RewardRedemption, Command.Triggered };
+    public override List<EventType> StreamerBotEventRequests { get; set; } = new() { Twitch.RewardRedemption, Command.Triggered };
     
 
     [Signal]

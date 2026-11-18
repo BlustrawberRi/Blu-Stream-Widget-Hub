@@ -34,7 +34,7 @@ public abstract partial class StreamerWidget : Node
     /// </remarks>
     /// <value>Use the enums in <see cref="StreamerbotEventTypes"/>.</value>
     // public abstract Enum[] StreamerbotEventRequests { get; set; }
-    public List<EventType> StreamerBotEventRequests = new();
+    public virtual List<EventType> StreamerBotEventRequests { get; set; } = new();
 
 
     // [Export] public Array<StreamerBotTrigger> StreamerbotEventRequest = new Array<StreamerBotTrigger>();

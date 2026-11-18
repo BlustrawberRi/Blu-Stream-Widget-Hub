@@ -8,7 +8,7 @@ public partial class ProductivityStatUpdaterWidget : StreamerWidget
 {
     [Export] public StreamStat productivityStat;
 
-    public new List<EventType> StreamerBotEventRequests = new(){ Command.Triggered };
+    public override List<EventType> StreamerBotEventRequests { get; set; } = new(){ Command.Triggered };
 
     public override void _Ready()
     {

@@ -2,8 +2,8 @@
 
 [ext_resource type="Theme" uid="uid://blwjr54f6akyw" path="res://ui/productivity/productivity_window_theme.tres" id="1_2ow8h"]
 [ext_resource type="Texture2D" uid="uid://b3w6otdxx2ylx" path="res://img/productivity goal bar/2026-04 productivity bar back.webp" id="1_3bx7c"]
-[ext_resource type="Script" uid="uid://btv2im4ive24u" path="res://scripts/ProductivityGoalWidget.cs" id="1_ydp6n"]
-[ext_resource type="Resource" uid="uid://bc6hx47mcjkoi" path="res://stats/Productivity_Stat.tres" id="3_5pd42"]
+[ext_resource type="Script" uid="uid://btv2im4ive24u" path="res://scripts/ProductivityGoalContainer.cs" id="1_ydp6n"]
+[ext_resource type="Resource" path="res://stats/Productivity_Stat.tres" id="3_5pd42"]
 [ext_resource type="Script" uid="uid://c8qnn3fpo8atn" path="res://scripts/ShiftingTextureProgressBar.cs" id="3_liua0"]
 [ext_resource type="Texture2D" uid="uid://dn5nsl80ctjm5" path="res://img/productivity goal bar/2026-04 productivity bar inside.webp" id="3_ljn7y"]
 [ext_resource type="Texture2D" uid="uid://dsgfr1nthgp5m" path="res://img/productivity goal bar/2026-04 productivity bar inside mask.webp" id="5_4kjwo"]
@@ -119,9 +119,18 @@ focus_neighbor_bottom = NodePath("")
 focus_next = NodePath("")
 focus_previous = NodePath("")
 focus_mode = 0
+focus_behavior_recursive = 0
 mouse_filter = 0
+mouse_behavior_recursive = 0
 mouse_force_pass_scroll_events = true
 mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
 theme = null
 theme_type_variation = &""
 min_value = 0.0

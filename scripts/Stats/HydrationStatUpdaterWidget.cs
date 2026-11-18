@@ -14,7 +14,7 @@ public partial class HydrationStatUpdaterWidget : StreamerWidget
     [Export]
     public int hydrationIncreasePerSip = 20;
 
-    public new List<EventType> StreamerBotEventRequests = new(){ Command.Triggered, Twitch.RewardRedemption};
+    public override List<EventType> StreamerBotEventRequests { get; set; } = new(){ Command.Triggered, Twitch.RewardRedemption};
 
 
 

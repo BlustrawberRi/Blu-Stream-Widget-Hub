@@ -12,7 +12,7 @@ public partial class EnergyStatUpdaterWidget : StreamerWidget
 
     [Export]
     public int streamLength = 180;
-    public new List<EventType> StreamerBotEventRequests = new() { Obs.StreamingStarted};
+    public override List<EventType> StreamerBotEventRequests { get; set; } = new() { Obs.StreamingStarted};
 
     public override void _Ready()
     {

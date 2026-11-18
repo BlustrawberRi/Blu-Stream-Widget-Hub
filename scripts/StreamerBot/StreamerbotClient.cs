@@ -54,7 +54,7 @@ public partial class StreamerbotClient : WebsocketClient
     /// <param name="widget">The widget requesting the event data. StreamerbotClient will send the answer to that widget.</param>
     public void AddEventRequests(List<EventType> eventTypes, StreamerWidget widget)
     {
-        GD.PrintRich("[b]" + widget.Name + " added Requests [/b]:");
+        GD.PrintRich("[b]" + widget.GetPath() +" ("+ widget.GetType() + ") added Requests [/b]:");
         if (eventTypes == null) return;
         foreach (var et in eventTypes)
         {

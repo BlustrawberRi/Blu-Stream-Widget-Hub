@@ -56,7 +56,8 @@ public abstract partial class WebsocketClient : Node
 		}
 		else if (state == WebSocketPeer.State.Closed)
 		{
-        	_OnConnectionClosed();	
+			_OnConnectionClosed();
+			Connect(); //reconnect
 		}
 	}
 
@@ -112,9 +113,7 @@ public abstract partial class WebsocketClient : Node
 
         //var reason = ws.GetCloseReason();
         GD.Print("Websocket closed.");
-
         SetProcess(false);
-
         EmitSignal(SignalName.ConnectionClosed);
 	}
 
