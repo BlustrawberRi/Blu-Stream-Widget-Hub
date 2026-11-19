@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b50f41ujf8ikx"]
 
 [ext_resource type="PackedScene" uid="uid://bm5084bojhylv" path="res://scenes/art.tscn" id="1_8ywll"]
-[ext_resource type="Script" uid="uid://dpvr6tea8tawl" path="res://img/art overlay/SpoutSender.cs" id="1_oqtq4"]
+[ext_resource type="Texture2D" uid="uid://dnnjrxr7rmd7d" path="res://img/milk merchant/2025 milkmerchant shop.webp" id="3_x5joj"]
 
 [node name="Spout" type="Node2D"]
 
@@ -16,14 +16,14 @@ handle_input_locally = false
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
-[node name="SpoutViewport" type="SpoutViewport" parent="SubViewportContainer"]
-sender_name = "HEy"
-transparent_bg = true
+[node name="SpoutViewport2" type="SpoutViewport" parent="SubViewportContainer"]
+sender_name = "HELP"
 handle_input_locally = false
 size = Vector2i(1920, 1080)
-size_2d_override_stretch = true
-render_target_clear_mode = 1
 render_target_update_mode = 4
-script = ExtResource("1_oqtq4")
 
-[node name="Node2D" parent="SubViewportContainer/SpoutViewport" instance=ExtResource("1_8ywll")]
+[node name="Node2D" parent="SubViewportContainer/SpoutViewport2" instance=ExtResource("1_8ywll")]
+
+[node name="2025MilkmerchantShop" type="Sprite2D" parent="SubViewportContainer/SpoutViewport2"]
+position = Vector2(596, 530)
+texture = ExtResource("3_x5joj")
