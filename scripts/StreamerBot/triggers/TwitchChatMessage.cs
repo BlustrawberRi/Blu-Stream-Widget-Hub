@@ -1,10 +1,11 @@
 
 using Godot.Collections;
 
-public class TwitchChat : StreamerbotTrigger
+public class TwitchChatMessage : StreamerbotTrigger
 {
     // todo: add all the other things
     public string Text;
+    public TCMUser User = new();
     public struct Meta
     {
         public string FirstMessage;
@@ -19,7 +20,7 @@ public class TwitchChat : StreamerbotTrigger
         public bool IsTest;
     }
     
-    public struct User
+    public class TCMUser
     {
         public string Color;
         public bool Subscribed;
@@ -31,10 +32,13 @@ public class TwitchChat : StreamerbotTrigger
 
     }
 
-    public TwitchChat(Dictionary data) : base(data) { }
+    public TwitchChatMessage(Dictionary data) : base(data) { }
     public override void CreateDataObject(Dictionary data)
     {
-        throw new System.NotImplementedException();
+        Text = DataToString(data, ["text"]);
+        User.Login = DataToString(data, ["user", "login"]);
+        User.Name = DataToString(data, ["user", "name"]);
+        //User.Subscribed = DataToBool(data, ["user", "subscribed"]);
     }
 
     // { "user": { 

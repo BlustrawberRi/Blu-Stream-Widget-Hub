@@ -11,14 +11,20 @@ public partial class Chat : VBoxContainer
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
-	{
-	}
+    {
+		foreach (var child in this.GetChildren())
+		{
+			child.QueueFree();
+		}
+    }
 
 	public void CreateNewBubble(String chatterName, String message)
 	{
 		ChatBubble bubble = ChatBubbleReference.Instantiate<ChatBubble>();
 		AddChild(bubble);
-		
 		bubbles.Add(bubble);
+
+		bubble.SetChatterName(chatterName);
+		bubble.SetMessageText(message);
 	}
 }

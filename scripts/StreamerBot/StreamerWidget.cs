@@ -20,16 +20,12 @@ public abstract partial class StreamerWidget : Node
 
 
     /// <summary>
-    /// The streamer.bot events whose data is needed.
+    /// The streamer.bot events whose data is being waited for.
     /// </summary>
     /// <remarks>
     /// Example:
     /// <code>
-    /// public override EventType[] StreamerBotEventRequests
-    /// {
-    ///    get => new[] { Twitch.RewardRedemption, Command.Triggered };
-    ///    set { }
-    /// } 
+    /// public override List<EventType> StreamerBotEventRequests {get; set;} = new() {Twitch.RewardRedemption, Command.Triggered};
     /// </code>
     /// </remarks>
     /// <value>Use the enums in <see cref="StreamerbotEventTypes"/>.</value>

@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b50f41ujf8ikx"]
+[gd_scene load_steps=2 format=3 uid="uid://b50f41ujf8ikx"]
 
 [ext_resource type="PackedScene" uid="uid://bm5084bojhylv" path="res://scenes/art.tscn" id="1_8ywll"]
-[ext_resource type="Texture2D" uid="uid://dnnjrxr7rmd7d" path="res://img/milk merchant/2025 milkmerchant shop.webp" id="3_x5joj"]
 
 [node name="Spout" type="Node2D"]
 
@@ -23,7 +22,3 @@ size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
 [node name="Node2D" parent="SubViewportContainer/SpoutViewport2" instance=ExtResource("1_8ywll")]
-
-[node name="2025MilkmerchantShop" type="Sprite2D" parent="SubViewportContainer/SpoutViewport2"]
-position = Vector2(596, 530)
-texture = ExtResource("3_x5joj")

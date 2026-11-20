@@ -61,11 +61,11 @@ offsets = PackedFloat32Array(0.7744108, 1)
 colors = PackedColorArray(1, 0.801833, 0.59, 1, 1, 1, 1, 0)
 
 [node name="ChatBubble" type="MarginContainer" node_paths=PackedStringArray("ChatterNameLabel", "ChatterMessageLabel")]
-offset_right = 301.0
-offset_bottom = 91.0
+offset_right = 307.0
+offset_bottom = 157.0
 script = ExtResource("1_jkm6u")
 ChatterName = "Zogga"
-ChatterMessage = "Message"
+ChatterMessage = "Messageg ejrkfahrk wekrfhikfrwehkif huwehf uwehf"
 ChatterNameLabel = NodePath("HBoxContainer/Container/ChatterNameLabel")
 ChatterMessageLabel = NodePath("HBoxContainer/Container/TextMargin/ChatterText")
 
@@ -85,18 +85,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="ChatBubbleBG" type="NinePatchRect" parent="HBoxContainer/Container"]
-modulate = Color(1, 1, 1, 0.50980395)
-custom_minimum_size = Vector2(50, 44.815)
-layout_mode = 2
-texture = ExtResource("2_jkm6u")
-patch_margin_left = 20
-patch_margin_top = 13
-patch_margin_right = 20
-patch_margin_bottom = 13
-axis_stretch_horizontal = 2
-axis_stretch_vertical = 2
-
 [node name="ChatterNameLabel" type="RichTextLabel" parent="HBoxContainer/Container"]
 z_index = 1
 clip_contents = false
@@ -112,6 +100,18 @@ bbcode_enabled = true
 text = "Zogga"
 fit_content = true
 
+[node name="ChatBubbleBG" type="NinePatchRect" parent="HBoxContainer/Container"]
+modulate = Color(1, 1, 1, 0.50980395)
+custom_minimum_size = Vector2(50, 44.815)
+layout_mode = 2
+texture = ExtResource("2_jkm6u")
+patch_margin_left = 20
+patch_margin_top = 13
+patch_margin_right = 20
+patch_margin_bottom = 13
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
 [node name="TextMargin" type="MarginContainer" parent="HBoxContainer/Container"]
 layout_mode = 2
 size_flags_vertical = 4
@@ -122,15 +122,17 @@ theme_override_constants/margin_bottom = 20
 
 [node name="ChatterText" type="RichTextLabel" parent="HBoxContainer/Container/TextMargin"]
 clip_contents = false
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/default_color = Color(0.20784314, 0.27450982, 0.27058825, 1)
 theme_override_fonts/normal_font = ExtResource("4_p1sly")
 theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
-text = "Message"
+text = "Messageg ejrkfahrk wekrfhikfrwehkif huwehf uwehf"
 fit_content = true
 scroll_active = false
+autowrap_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 

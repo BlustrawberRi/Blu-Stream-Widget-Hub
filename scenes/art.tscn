@@ -41,21 +41,15 @@ offset_bottom = 1080.0
 texture = ExtResource("1_uhybc")
 
 [node name="VTuber Texture" type="TextureRect" parent="."]
-visible = false
 clip_children = 2
 layout_mode = 0
-offset_left = -242.0
-offset_top = 229.0
-offset_right = 721.0
-offset_bottom = 1262.0
+offset_left = -200.0
+offset_top = 20.0
+offset_right = 763.0
+offset_bottom = 1053.0
 texture = ExtResource("1_ejwmv")
 expand_mode = 1
 stretch_mode = 6
-
-[node name="OlArtWindowBorderWaterfall" type="Sprite2D" parent="."]
-z_index = 11
-position = Vector2(1096, 938)
-texture = ExtResource("3_ubxw6")
 
 [node name="ArtWindow" parent="." instance=ExtResource("3_0vuf8")]
 custom_minimum_size = Vector2(1024, 900)
@@ -69,6 +63,13 @@ offset_right = 1664.0
 offset_bottom = 966.0
 grow_horizontal = 1
 grow_vertical = 1
+windowTitleString = "[b]blustrawberri art[/b]"
+
+[node name="OlArtWindowBorderWaterfall" type="Sprite2D" parent="ArtWindow"]
+z_index = 11
+position = Vector2(499.98633, 870.25006)
+scale = Vector2(1.0389831, 1.0389831)
+texture = ExtResource("3_ubxw6")
 
 [node name="Chat" parent="." instance=ExtResource("5_n6vwr")]
 z_index = 10

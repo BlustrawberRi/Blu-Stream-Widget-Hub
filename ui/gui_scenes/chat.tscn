@@ -21,6 +21,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kx6l5")
+ChatBubbleReference = ExtResource("1_3iwwn")
 
 [node name="ChatBubble" parent="Chat" instance=ExtResource("1_3iwwn")]
 layout_mode = 2
@@ -29,3 +30,5 @@ ChatterMessage = "Hi bluu"
 
 [node name="ChatMessageWidget" type="Node" parent="."]
 script = ExtResource("3_6rmxk")
+
+[connection signal="ChatMessageReceived" from="ChatMessageWidget" to="Chat" method="CreateNewBubble"]
